@@ -61,9 +61,7 @@ function Login() {
       toast.loading("Pobieram dane....");
       const response = await axios.post(
         process.env.REACT_APP_LOCALHOST+"api/auth/sendpasswordresetlink",
-        {
-          email,
-        }
+        { email}
       );
       toast.dismiss();
       if (response.data.success) {
@@ -159,18 +157,18 @@ function Login() {
           </div>
        <div className="tw-flex tw-justify-center tw-items-end">
             <div className="tw-flex tw-flex-row tw-w-[350px] tw-space-x-20 ">
-            {/*   <h1
+                <h1
                 className="tw-uppercase tw-text-[#ffffff] tw-cursor-pointer tw-text-xs shadow"
                 onClick={() => setShowForgotPassword(true)}
               >
                 Nie pamiętasz hasła?
-              </h1>
+              </h1> 
               <Link
                 className="tw-uppercase tw-text-[#ffffff] tw-text-xs tw-cursor-pointer shadow"
                 to="/register"
               >
                 Rejestracja
-              </Link> */}
+              </Link> 
             </div> 
           </div>
         </div>

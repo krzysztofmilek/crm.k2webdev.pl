@@ -55,7 +55,7 @@ przeklejoć w miejsce 13 wierszy niżej*/
       if (mailType == "verify") {
         emailContent = `<h4>Otrzymujesz tego maila ponieważ zarejetrowałeś się na MERN AUTH.
     Aby potwierdzić rejestrację proszę klinąć w poniższy link. <br />
-    <a href="http://localhost:3000/verify/${ecryptToken}">${ecryptToken}</a></h4>`;
+    <a href="http://crm.k2webdev.pl/verify/${ecryptToken}">${ecryptToken}</a></h4>`;
         mailOptions = {
           from: "Registration MERN AUTH Mailer - send@k2webdev.pl",
           to: user.email,
@@ -64,7 +64,7 @@ przeklejoć w miejsce 13 wierszy niżej*/
         };
       } else {
         emailContent = `<h4>Kliknija aby zmienić hasło<br />
-          <a href="http://www.crm.k2webdev.pl/">${ecryptToken}</a></h4>`;
+          <a href="http://www.crm.k2webdev.pl/resetpassword/${ecryptToken}">${ecryptToken}</a></h4>`;
         mailOptions = {
           from: "Registration MERN AUTH Mailer - send@k2webdev.pl",
           to: user.email,

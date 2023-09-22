@@ -1,0 +1,9 @@
+{
+    "git.ignoreLimitWarning": true,
+    "eslint.nodeEnv": "",
+    "eslint.execArgv": null,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+      "eslint.validate": ["javascript"]
+}

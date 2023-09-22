@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 
+
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [position, setPosition] = useState("");
-  const [uCase, setUCase] = useState("red");
-  const [num, setNum] = useState("red");
-  const [sChar, setSChar] = useState("red");
-  const [passLength, setPassLength] = useState("red");
+  const [uCase, setUCase] = useState("orangeBag");
+  const [num, setNum] = useState("orangeBag");
+  const [sChar, setSChar] = useState("orangeBag");
+  const [passLength, setPassLength] = useState("orangeBag");
   // eslint-disable-next-line
   const [emailTrue, setEmailTrue] = useState(false);
 
@@ -78,20 +79,20 @@ function Register() {
     if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
       setUCase("green");
     } else {
-      setUCase("red");
+      setUCase("orangeBag");
       return;
     }
     // Check for numbers
     if (password.match(/([0-9])/)) {
       setNum("green");
     } else {
-      setNum("red");
+      setNum("orangeBag");
     }
     // Check for special character
     if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
       setSChar("green");
     } else {
-      setSChar("red");
+      setSChar("orangeBag");
     }
     // Check for PASSWORD LENGTH
     if (password.length > 5) {
@@ -102,7 +103,7 @@ function Register() {
   }, [password]);
   return (
     <div className="tw-flex tw-w-full tw-flex-row tw-justify-center tw-items-center tw-h-screen bg">
-      <div className="tw-w-[400px] tw-flex tw-space-y-5 tw-flex-col tw-p-5 tw-shadow-lg tw-border-2 tw-border-secondary-500 tw-rounded-lg tw-bg-white">
+      <div className="tw-w-[400px] tw-flex tw-space-y-5 tw-flex-col tw-p-5 borderTurkuse tw-rounded-lg">
         <lottie-player
           src=" https://assets3.lottiefiles.com/temp/lf20_ODCUyx.json"
           background="transparent"
@@ -112,7 +113,7 @@ function Register() {
           autoplay
         ></lottie-player>
 
-        <h1 className="tw-font-semibold tw-text-2xl tw-uppercase tw-text-primary tw-text-center">
+        <h1 className="tw-font-semibold tw-text-2xl tw-uppercase turkuse tw-text-center">
           Formularz rejestracji
         </h1>
         <input
@@ -139,7 +140,8 @@ function Register() {
         />
         <input
           type="password"
-          className="tw-py-2 tw-px-3 tw-border tw-border-secondary focus:tw-outline-none tw-w-full tw-rounded-3xl focus:tw-ring-0  focus:tw-border-secondary"
+         /*  className=" borderTurkuse border-radius: 25px" */
+          className="tw-py-2 tw-px-3  tw-border tw-border-secondary focus:tw-outline-none tw-w-full tw-rounded-3xl focus:tw-ring-0  focus:tw-border-secondary"
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
@@ -153,7 +155,10 @@ function Register() {
         />
 
         <div className="tw-flex tw-text-xs tw-flex-col tw-w-full tw-border-0 tw-ps-3">
+         
+          <span className=" tw-text-white"> weryfikacja hasła</span>
           <span className="form-list tw-flex tw-flex-row ">
+           
             <span className={`${uCase} tw-flex tw-flex-col tw-text-secondary`}>
               &nbsp;duże i małe •
             </span>
@@ -176,19 +181,24 @@ function Register() {
 
         <div className="tw-flex tw-justify-between tw-items-end">
           <Link
-            className="hover:tw-underline tw-uppercase tw-text-xs tw-text-secondary"
+            className="hover:tw-underline tw-uppercase tw-text-xs tw-text-[white]"
             to="/login"
           >
             Zaloguj się
           </Link>
           <button
-            className="tw-py-1 tw-px-5 tw-text-white tw-bg-primary tw-uppercase tw-rounded-3xl"
+              className="tw-py-1 tw-px-5 tw-text-white tw-bg-primary  tw-uppercase tw-rounded-3xl"
             onClick={registerUser}
           >
             Zarejestruj się
-          </button>
+            </button>
+
+
+       
         </div>
+        
       </div>
+      
     </div>
   );
 }

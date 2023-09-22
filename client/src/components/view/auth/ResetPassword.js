@@ -30,12 +30,12 @@ function ResetPassword() {
     } catch (error) {}
   }; 
   return (
-    <div className="tw-flex tw-w-full tw-flex-row tw-justify-center tw-items-center tw-h-screen tw-bg-gradient-to-b tw-from-blue-500 tw-from-30% tw-via-sky-500 tw-via-60% tw-to-white-500 tw-to-100%" >
-      <div className="tw-flex tw-flex-col ">
+    <div className="tw-flex tw-w-full bg tw-flex-row tw-justify-center tw-items-center tw-h-screen " >
+      <div className="tw-flex tw-flex-col  ">
        
         
         
-        <div className="tw-w-[350px] md:tw-min-w-0 tw-bg-white tw-flex tw-space-y-5 tw-flex-col tw-p-5 tw-shadow-lg tw-border-2 tw-border-secondary-500 tw-rounded-lg">
+        <div className="tw-w-[350px] borderTurkuse md:tw-min-w-0 tw-flex tw-space-y-5 tw-flex-col tw-p-5 tw-shadow-lg tw-border-2 tw-border-secondary-500 tw-rounded-lg">
        <lottie-player
           src="https://assets10.lottiefiles.com/packages/lf20_ff305byc.json"
           
@@ -46,7 +46,7 @@ function ResetPassword() {
           style={{ height:250+"px"}}
           autoplay
         ></lottie-player> 
-          <h1 className="tw-font-semibold tw-text-2xl tw-uppercase tw-text-primary tw-text-center">
+          <h1 className="tw-font-semibold tw-text-2xl tw-uppercase turkuse tw-text-center">
             ZMiana hasła
           </h1>
 
@@ -68,13 +68,13 @@ function ResetPassword() {
 
           <div className="tw-flex tw-justify-between tw-items-end">
             <Link
-              className="hover:tw-underline tw-text-xs tw-uppercase  tw-text-secondary"
+              className="hover:tw-underline tw-text-xs tw-uppercase  tw-text-white"
               to="/login"
             >
               Strona główna
             </Link>
             <button
-              className="tw-py-1 tw-px-5 tw-text-white tw-bg-primary tw-rounded-3xl"
+              className="tw-py-1 tw-px-5 tw-text-white tw-uppercase tw-bg-primary tw-rounded-3xl"
              onClick={resetPassword}
             >
               Zresetuj hasło
@@ -84,9 +84,9 @@ function ResetPassword() {
 
         <div className="tw-text-center tw-p-3  tw-text-xs ">
           <a href="wwww.k2webdev.pl" target="_blank" className="k2webdevLink ">
-            <span className="tw-text-white">K2</span>
+            <span className="tw-text-[#ccc]">K2</span>
             <span className="orange">web</span>
-            <span className="tw-text-white">dev</span>
+            <span className="tw-text-[#ccc]">dev</span>
           </a>
         </div>
       </div>

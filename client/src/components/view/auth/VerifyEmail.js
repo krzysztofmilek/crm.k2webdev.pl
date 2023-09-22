@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function VerifyEmail() {
   const parms = useParams();
@@ -35,23 +37,32 @@ function VerifyEmail() {
     <div className="flex min-h-screen p-5 justify-center items-center">
       {// eslint-disable-next-line
       emailVerified == "" && (
-        <h1 className="text-white text-4xl">
+        <h1 className="text-4xl">
           Proszę poczekać na weryfikację adresu e-mail
         </h1>
       )}
 
 {// eslint-disable-next-line
-emailVerified == "true" && (
-        <h1 className="text-white text-4xl">
+emailVerified == "true" && (<span>
+        <h1 className="text-4xl">
          Twój e-mail został zweryfikowany poprawnie
         </h1>
-       
+        <Button
+              variant="outline-success"
+              className="btn m-3"
+              as={Link}
+              to="/login"
+          
+            >
+             Przejdz do panelu logowania
+            </Button>
+       </span>
       )}
 
 {
 // eslint-disable-next-line
 emailVerified == "false" && (
-        <h1 className="text-white text-4xl">
+        <h1 className="text-4xl">
      Błędna weryfikacja
         </h1>
       )}

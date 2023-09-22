@@ -1,7 +1,6 @@
 .App {
   text-align: center;
   font-size: 0.9em;
-
 }
 
 .App-logo {
@@ -9,16 +8,13 @@
   pointer-events: none;
 }
 .bg {
+  background: url("./components/img/bg.jpeg");
 
- background: url("./components/img/bg.jpeg");
-
-/*   background-color: rgba(89, 131, 252, 1);
+  /*   background-color: rgba(89, 131, 252, 1);
 background-image: linear-gradient(90deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 100%);  */
 
-/* /* background-color: rgba(89, 131, 252, 1);
+  /* /* background-color: rgba(89, 131, 252, 1);
 background-image: linear-gradient(185deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 100%); */
-
-
 }
 
 .buttonLogin {
@@ -151,9 +147,8 @@ hr {
   color: red;
   font-weight: 500;
 }
-.turkuse{
-  color:#01e1e9;
-  
+.turkuse {
+  color: #01e1e9;
 }
 
 .container {
@@ -164,7 +159,7 @@ hr {
   margin-top: 10px;
   padding: 25px;
   background-color: white;
-/*   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2),
+  /*   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2),
     0px 4px 6px 0px rgba(0, 0, 0, 0.19); */
   min-height: 85vh;
   border-bottom-width: 0px;
@@ -185,7 +180,7 @@ hr {
   border-top-width: 0px;
   background-color: white;
   width: 100%;
-/*   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2),
+  /*   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2),
     0px 4px 6px 0px rgba(0, 0, 0, 0.19); */
 }
 .containerBody {
@@ -284,11 +279,54 @@ h4 {
   box-shadow: 0 0 10px #01e1e9;
   border-style: groove;
   backdrop-filter: blur(250px);
-  
-
-
 }
-.shadow{
+
+.borderTurkuse {
+  border: 2px solid #01e1e9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #01e1e9;
+  border-style: groove;
+  backdrop-filter: blur(250px);
+}
+.borderTurkuse:hover{
+  border: 2px solid #01e1e9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #01e1e9;
+  border-style: groove;
+  backdrop-filter: blur(250px);
+}
+.borderTurkuse:visited{
+  border: 2px solid #01e1e9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #01e1e9;
+  border-style: groove;
+  backdrop-filter: blur(250px);
+}
+.orangeBag{
+  color:orange !important;
+}
+
+/* 
+a:link {
+  color: green;
+}
+
+a:visited {
+  color: green;
+}
+
+
+a:hover {
+  color: red;
+}
+
+
+a:active {
+  color: yellow;
+}
+ */ 
+
+.shadow {
   text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
 }
 .intro {
@@ -385,9 +423,9 @@ h3 {
     min-height: 100vh;
     background-color: #ffffff;
   }
-  
+
   .intro {
-       display: none;
+    display: none;
   }
   .container {
     margin-left: 5px;
@@ -397,18 +435,18 @@ h3 {
   .chanceContainer {
     width: 100%;
   }
-.containerFooter{
-  border: 0px !important;
-  box-shadow: 0px 4px 6px 0px rgba(255, 255, 255, 1),
-  0px 0px 6px 0px rgba(255, 255, 255, 1);
-}
+  .containerFooter {
+    border: 0px !important;
+    box-shadow: 0px 4px 6px 0px rgba(255, 255, 255, 1),
+      0px 0px 6px 0px rgba(255, 255, 255, 1);
+  }
   .signUpPanel {
     width: 300px !important;
   }
-  .container{
+  .container {
     border: 0px !important;
   }
-  
+
   .show {
     display: true;
   }
