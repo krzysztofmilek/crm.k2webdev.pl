@@ -1,58 +1,61 @@
 <b>CRM CAR & SCOOTER</b>
 <br /><br />
-<b>OPIS PROJEKTU</b>
-<br />Celem projektu jest stworzenie systemu do zarządzania szeroko pojętymi relacjami z obecnymi i potencjalnymi klientami,  ma umożliwiać ocenę szans sprzedaży, ułatwiać obsługę kontrahentów oraz  analizować przeprowadzone działania.  Moduł ofertowania ma być skalowalny i dostosowywany do specyfiki danej branży ( tu: sprzedaż samochodów i skuterów ) 
+<b>PROJECT DESCRIPTION</b>
+<br />The aim of the project is to create a system for managing broad customer relations with existing and potential clients. It should enable sales opportunity assessment, facilitate customer handling, and analyze conducted actions. The quoting module should be scalable and adaptable to the specifics of a given industry (in this case: automotive and scooter sales).
 <br /><br />
-<b>INSTALACJA</b><br />
-<b>DEMO</b><br /><br /> 
-<b>ZASTOSOWANE TECHNOLOGIE</b>
+INSTALLATION<br />
+DEMO<br />
+
+TECHNOLOGIES USED<br />
 - JavaScript
 - React
 - NodeJS
-- Exxpress
-- MongoDB<br/>
-  FRAMEWORKS
-  - axios
-  - dotenv
-  - multer
-  - bcrypt
-  - print to pdf
-  - react-hot-toast
-  - bootstrap
-  - tailWind CSS
-  - convert-excel-to-json
-  - fs-extra
-  - jsonwebtoken
-  - moment
-  - mongoose
+- Express
+- MongoDB
 
-<b>MODUŁY</b>
+FRAMEWORKS
+- axios
+- dotenv
+- multer
+- bcrypt
+- print to pdf
+- react-hot-toast
+- bootstrap
+- tailWind CSS
+- convert-excel-to-json
+- fs-extra
+- jsonwebtoken
+- moment
+- mongoose
+
+<b>MODULES</b>
+
 - HOME:
- <br> Moduł dostarczający informacji o przeterminowanych, bieżących i przyszłych zdarzeniach. Umozliwia podejrzenie zdarzenia i na jego podstawie podjęcie odpowiedniego działania.
-  - zapoznanie się z wcześniej zebranymi informacjami, wykonaną ofertą oraz załącznikami
-  - kontynuację zdarzenia
-  - zamknięcie Leda wraz z podaniem powodu zamknięcia
+ <br>
+A module providing information on overdue, current, and future events. It allows for viewing the event and taking appropriate action based on it.
+- Reviewing previously gathered information, created offers, and attachments.
+- Continuing the event.
+- Closing the Lead along with specifying the reason for closure.
 
-  Ponadto dostarcza podstawowe informacje nt skuteczności danego handlowca oraz zdefiniowanych planów miesięcznych
-- NOWY LEAD:<br />
-  Podstawowa, pełna ścieżka działania umożliwiająca: 
-  - dodanie nowego KLienta,
-  - zdefiniowanie żródła i sposobu kontaktu
-  - dodanie załączników
-  - zdefiniowanie daty ponownego kontaktu
-  - wybór produktu i stworzenie na jego podstawie oferty handlowej
-  - kalkulację ceny
-  - dodanie doposażenia
-  - okreslenie rabatu
-    
-- KLIENCI<br />
-  Moduł umozliwiający zarządzenie Klientami( wyszukanie, dodanie, edycja, usuwanie).<br />
-  Ponadto, na podstawie wcześniej wyszukanych danych umożliwia przejście do tworzenia oferrty
- 
-- GIEŁDA:
-- UŻYTKOWNICY:
-- USTAWIENIA.
-- MAGAZYN
-- OFERTY
+Additionally, it provides basic information about the effectiveness of a given salesperson and defined monthly plans.
+<br />
+- NEW LEAD:
+A basic, full path of action that enables:
 
-- Licencja
+- Adding a new customer.
+- Defining the source and method of contact.
+- Adding attachments.
+- Defining the date of re-contact.
+- Choosing a product and creating a commercial offer based on it.
+- Price calculation.
+- Adding accessories.
+- Determining discounts.<br />
+- CUSTOMERS<br />
+ A module allowing for customer management (searching, adding, editing, deleting).<br /> Additionally, based on previously searched data, it allows for transitioning to creating an offer.
+
+- MARKETPLACE
+- USERS
+- SETTINGS
+- WAREHOUSE
+- OFFERS
+- LICENSE
