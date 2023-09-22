@@ -1,0 +1,41 @@
+.textCustomer{
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.getLeft {
+    text-align: left;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    font-size: 0.8em;
+    font-weight: 700;
+  }
+
+  input {
+    --tw-ring-shadow: 0 0 #000 !important;
+  }
+
+.inputField{
+  border-radius: 5px;
+  border: 1px solid #ccc;
+ }
+
+.inputField:focus{
+  border: 1px solid #ccc;
+ }
+
+.top{
+    padding-top:50px;
+  }
+
+.btn{
+    width:50px;
+  }
+
+  @media all and (max-width:992px) {
+    .top {
+        padding-top:20px;
+        text-align:center
+    }
+   
+}

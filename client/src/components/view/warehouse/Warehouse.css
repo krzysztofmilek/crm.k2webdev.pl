@@ -1,0 +1,34 @@
+.useCarContainer{
+    border: 0px solid black;
+    background-color: white;
+}
+.borderTable{
+    border: 2px solid black;
+
+}
+.titleWarehouse{
+    font-weight: bold;
+    color: chocolate;
+}
+
+.padding40{
+    padding-left: 40px;
+}
+input {
+    --tw-ring-shadow: 0 0 #ccc !important;
+  }
+  input:focus {
+    --tw-ring-shadow: 0 0 #ccc !important;
+  }
+.inputCar{
+    margin: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+   
+  }
+  .inputCar:focus{
+    --tw-box-shadow: 0 0 #ccc !important;
+    --tw-ring-shadow: 0 0 #ccc !important;
+    border: 1px solid #ccc;
+    
+  }

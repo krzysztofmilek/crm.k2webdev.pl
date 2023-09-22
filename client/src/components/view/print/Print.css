@@ -1,0 +1,47 @@
+.bodyPrint {
+  background-color: white !important;
+  width: auto;
+  font-size: 12px;
+  border: 0px solid #ccc;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius:0px;
+  border-bottom:none !important;
+}
+.pad10 {
+  padding: 25px;
+  font-size: 12px;
+}
+
+.boldPrint {
+  font-weight: 700;
+  border-bottom:none !important;
+}
+
+.removeBorder{
+    border-bottom: none !important;
+}
+.imgSmall {
+  width: 90%;
+  border: 1px solid #fff;
+  justify-content: center;
+  display: flex;
+  padding-left: 50px !important;
+
+
+}
+.imgFull {
+  width: 100%;
+}
+
+.titlePrint {
+  color: red;
+  font-size: 2em !important;
+  font-weight: 700;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+li {
+  margin-left: 20px !important;
+  padding: 0px !important;
+  margin: 0px;
+}

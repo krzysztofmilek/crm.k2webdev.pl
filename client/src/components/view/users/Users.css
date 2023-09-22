@@ -1,0 +1,33 @@
+.hiddenMobile{
+    text-align: left;
+}
+.inputUser{
+  margin: 10px 10px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  
+}
+.inputUser:focus{
+
+  border: 1px solid #ccc;
+  
+}
+
+.form-control:focus{
+  --tw-border-color: 0 0 #CCC !important;
+}
+
+input {
+  --tw-ring-shadow: 0 0 #CCC !important;
+  --tw-box-shadow: 0 0 #CCC !important;
+  --tw-border-color: 0 0 #CCC !important;
+}
+
+
+@media all and (max-width:992px) {
+    .hiddenMobile {
+      display:none;
+  
+   
+    }
+}

@@ -1,0 +1,134 @@
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    margin:0px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+ 
+  }
+  textarea:focus{
+    border: 1px solid #ccc;
+  }
+
+  textarea:focus-within{
+    border: 10px solid #ccc; 
+  }
+.textAction{
+    padding-bottom: 0px;
+    margin-top:25px;
+    margin-bottom: 0px;
+}
+
+  .formAction{
+    margin-top: 25px;
+  }
+  .inputAction {
+    width: 90%;
+    padding: .35rem 0.75rem;
+     display: flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .inputAction:focus{
+  outline: none !important;
+  border: 1px solid #ccc;
+  }
+
+  .inputFlex{
+    display: flex;
+    width:100%;
+    border: 0px solid red;
+  }
+.inputBlock{
+    display: block;
+    width:100%;
+    border: 0px solid yellow;
+}
+  .selectAction {
+    width: 90%;
+    padding: 12px 20px;
+     display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .textCustomer{
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+
+
+  .getCenterActionInfo {
+    text-align: center;
+    padding: 0px;
+    margin-top: 20px;
+    font-size: 0.8em;
+    font-weight: 700;
+  }
+  .titleActionInfo {
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    font-weight: 700;
+  }
+
+  .titleInputActionInfo{
+    font-size: 0.9em !important;
+    text-transform: uppercase;
+    margin-top: 5px !important;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+
+ 
+.showTask{
+display:block;
+  }
+  .hiddenTask{
+    display:none;
+  }
+  
+ .inputAction:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .success {
+    background-color: #ddffdd;
+    border-left: 6px solid #4CAF50;
+    width: 400px;
+}
+
+  @media all and (max-width: 992px) {
+
+/*   form{
+    height: 100vh;
+    margin-top: 25px;
+  } */
+  .inputAction {
+    width: 100%;
+  }
+  .selectAction {
+    width: 100%;}
+
+    .inputFlex{
+        display: block;
+        width:100%;
+      }
+    .inputBlock{
+        display: block;
+        width:100%;
+    }
+}

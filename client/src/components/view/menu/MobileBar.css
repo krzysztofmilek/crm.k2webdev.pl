@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  width: 100%;
+  height: 4em;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+  border: 0px solid red;
+}
+
+.burger-logo {
+  font-size: 1.2em;
+
+  text-align: left !important;
+  width: 100%;
+}
+.burger-menu {
+  height: 100%;
+  width: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.burger-bar {
+  width: 2em;
+  height: 0.4em;
+  background-color: black;
+  border-radius: 0.5em;
+  z-index: 99;
+}
+
+.menu {
+  height: 100vh;
+  background-color: white;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  left: 0;
+  width: 100% !important;
+  z-index: 98;
+  display: flexbox;
+  border: 0px solid red;
+  padding-top: 10vh;
+  font-weight: 500;
+  font-size: 2em;
+  text-transform: uppercase;
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+}
+
+.burger-menu-class {
+  background-color: orange;
+  transition: ease-out 0.5s;
+}
+.burger-menu-class-link {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #71c2ff;
+  padding-left: 50px;
+  text-decoration: none;
+  background-color: white;
+  width: 100vw !important;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+
+}
+.burger-menu-class-link:hover {
+  color: white;
+  background-color: #71c2ff;
+  width: 100vw !important;
+  transform: translate(5em);
+  transition: ease-out 0.5s;
+}
+
+.hidden {
+  display: none;
+
+
+
+}
+.visible {
+  display: inherit;
+}
+
+
+.burger-bar.clicked:nth-child(1) {
+  transform: rotate(45deg) translate(0.3em, 0.5em);
+  transition: ease-out 0.5s;
+}
+.burger-bar.clicked:nth-child(2) {
+  transform: scale(0);
+  transition: ease-out 0s;
+}
+.burger-bar.clicked:nth-child(3) {
+  transform: rotate(135deg) translate(-0.3em, 0.5em);
+  transition: ease-out 0.5s;
+}
+.burger-bar.clicked:nth-child(4) {
+  transform: scale(0);
+  transition: ease-out 0s;
+}
+
+.burger-bar.unclicked {
+  transform: rotate(0) translate(0);
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+}
+
+.loginNavBar {
+  width: 100% !important;
+  border: 0px solid red;
+  padding-right: 20px;
+  font-weight: 500;
+  text-align: end;
+}
+.visibleMenu{
+    display: block;
+}
+.hiddenMenu{
+    display: none;  
+}
+
+@media all and (max-width:992px) {
+    .hiddenMenu {
+      display:block;
+    }
+    .visibleMenu{
+        display:none;
+    }
+}
