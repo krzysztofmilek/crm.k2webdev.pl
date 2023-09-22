@@ -288,43 +288,14 @@ h4 {
   border-style: groove;
   backdrop-filter: blur(250px);
 }
-.borderTurkuse:hover{
-  border: 2px solid #01e1e9;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #01e1e9;
-  border-style: groove;
-  backdrop-filter: blur(250px);
+.margin20{
+  margin: 20px;
 }
-.borderTurkuse:visited{
-  border: 2px solid #01e1e9;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #01e1e9;
-  border-style: groove;
-  backdrop-filter: blur(250px);
-}
+
 .orangeBag{
   color:orange !important;
 }
 
-/* 
-a:link {
-  color: green;
-}
-
-a:visited {
-  color: green;
-}
-
-
-a:hover {
-  color: red;
-}
-
-
-a:active {
-  color: yellow;
-}
- */ 
 
 .shadow {
   text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
@@ -467,7 +438,31 @@ h3 {
   }
   .btn {
     margin-bottom: 5px;
+    max-width: 300px;
   }
+  .borderTurkuse {
+    border: 2px solid #01e1e9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #01e1e9;
+  border-style: groove;
+  backdrop-filter: blur(250px)
+  }
+  .main {
+    display: flex;
+    border: 0px solid #01e1e9;
+    padding:10px;
+    border: 2px solid #01e1e9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #01e1e9;
+  border-style: groove;
+  backdrop-filter: blur(250px);
+  max-width: 95%!important;
+ 
+  }
+  .margin20{
+    margin: 5px;;
+  }
+
 }
 @keyframes App-logo-spin {
   from {

@@ -27,7 +27,7 @@ function Login() {
       });
       toast.loading("Pobieram dane....", { className: "toastLoading" });
       const response = await axios.post(
-        process.env.REACT_APP_LOCALHOST+"api/auth/login",
+        process.env.REACT_APP_LOCALHOST + "api/auth/login",
         userObj
       );
       toast.dismiss();
@@ -60,8 +60,8 @@ function Login() {
     try {
       toast.loading("Pobieram dane....");
       const response = await axios.post(
-        process.env.REACT_APP_LOCALHOST+"api/auth/sendpasswordresetlink",
-        { email}
+        process.env.REACT_APP_LOCALHOST + "api/auth/sendpasswordresetlink",
+        { email }
       );
       toast.dismiss();
       if (response.data.success) {
@@ -83,96 +83,103 @@ function Login() {
     }
   };
   return (
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
     <div className="tw-flex tw-w-full  tw-flex-col tw-justify-center tw-items-center tw-h-screen bg ">
-      
       {!showForgotPassword && (
-        <div className="main ">
-        <div className="intro">
-        <strong>Cel:</strong> <br />
-      
-        Celem projektu jest stworzenie systemu do zarządzania szeroko pojętymi relacjami z obecnymi i potencjalnymi klientami. 
-        Ma umożliwiać ocenę szans sprzedaży, ułatwiać obsługę kontrahentów oraz analizować przeprowadzone działania. 
-        Moduł ofertowania ma być skalowalny i dostosowywany do specyfiki danej branży.
-        <br />  <br /> 
-        <strong>Stack:</strong> <br /> FrontEnd: JavaScript, React, HTML, CSS 
-        <br />Biblioteki: React Router, Multer, React-Table,  React-Bootstrap, Axios, JWT, Bcrypt, js-html2pdf, react-to-print, React-hot-toast, JWT 
-        <br />Backend: Node, Express, MongoDB<br /><br />
-        <strong> Dane logowania:</strong>
-        <br /> admin: a@k2webdev.pl password 1234
-        <br /> user: u@k2webdev.pl password 1234 
-
-
-        </div>
-         <div className="tw-flex tw-space-y-5 tw-flex-col tw-p-5 tw-justify-center ">
-        
-          <h1 className="tw-font-semibold tw-text-2xl tw-uppercase turkuse tw-text-center">
-            CRM k2webdev
-          </h1>
-          <div className="tw-flex  tw-flex-row ">
-            <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0 tw-bg-white ">
-              <img
-                className="imgLoginUser"
-                src="https://img.icons8.com/windows/32/null/user-lock--v1.png"
-                alt="Hasło"
-              />
-            </span>
-
-            <input
-              type="text"
-              className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary" 
-              placeholder="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
+        <div className="main">
+          <div className="intro">
+            <strong>Cel:</strong> <br />
+            Celem projektu jest stworzenie systemu do zarządzania szeroko
+            pojętymi relacjami z obecnymi i potencjalnymi klientami. Ma
+            umożliwiać ocenę szans sprzedaży, ułatwiać obsługę kontrahentów oraz
+            analizować przeprowadzone działania. Moduł ofertowania ma być
+            skalowalny i dostosowywany do specyfiki danej branży.
+            <br /> <br />
+            <strong>Stack:</strong> <br /> FrontEnd: JavaScript, React, HTML,
+            CSS
+            <br />
+            Biblioteki: React Router, Multer, React-Table, React-Bootstrap,
+            Axios, JWT, Bcrypt, js-html2pdf, react-to-print, React-hot-toast,
+            JWT
+            <br />
+            Backend: Node, Express, MongoDB
+            <br />
+            <br />
+            <strong> Dane logowania:</strong>
+            <br /> admin: a@k2webdev.pl password 1234
+            <br /> user: u@k2webdev.pl password 1234
           </div>
-          <div className="tw-flex  tw-flex-row">
-            <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0  tw-bg-white ">
-              <img
-                className="imgLoginUser"
-                src="https://img.icons8.com/windows/32/null/user-lock--v1.png"
-                alt="Hasło"
+          <div className="tw-flex tw-space-y-5 tw-flex-col tw-justify-center margin20 ">
+            <h1 className="tw-font-semibold tw-text-2xl tw-uppercase turkuse tw-text-center">
+              CRM k2webdev
+            </h1>
+            <div className="tw-flex tw-w-full tw-flex-row ">
+              <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0 tw-bg-white ">
+                <img
+                  className="imgLoginUser"
+                  src="https://img.icons8.com/windows/32/null/user-lock--v1.png"
+                  alt="Hasło"
+                />
+              </span>
+
+              <input
+                type="text"
+                className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary"
+                placeholder="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
-            </span>
-            <input
-              type="password"
-              className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary"
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-          </div>
-          <div className="">
-          <Button
+            </div>
+            <div className="tw-flex  tw-flex-row">
+              <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0  tw-bg-white ">
+                <img
+                  className="imgLoginUser"
+                  src="https://img.icons8.com/windows/32/null/user-lock--v1.png"
+                  alt="Hasło"
+                />
+              </span>
+              <input
+                type="password"
+                className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary"
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </div>
+            <div className="">
+              <Button
                 type="submit"
                 className="buttonLogin "
                 variant="success"
-            onClick={loginUser} 
-          >Zaloguj <img
-              className="imgLogin"
-              src="https://img.icons8.com/ios-filled/50/null/login-rounded-right.png"
-              alt="znajdz"
-            />
-          </Button>
-          </div>
-       <div className="tw-flex tw-justify-center tw-items-end">
-            <div className="tw-flex tw-flex-row tw-w-[350px] tw-space-x-20 ">
+                onClick={loginUser}
+              >
+                Zaloguj{" "}
+                <img
+                  className="imgLogin"
+                  src="https://img.icons8.com/ios-filled/50/null/login-rounded-right.png"
+                  alt="znajdz"
+                />
+              </Button>
+            </div>
+            <div className="tw-flex tw-justify-center tw-items-end">
+              <div className="tw-flex tw-flex-row  tw-space-x-20 ">
                 <h1
-                className="tw-uppercase tw-text-[#ffffff] tw-cursor-pointer tw-text-xs shadow"
-                onClick={() => setShowForgotPassword(true)}
-              >
-                Nie pamiętasz hasła?
-              </h1> 
-              <Link
-                className="tw-uppercase tw-text-[#ffffff] tw-text-xs tw-cursor-pointer shadow"
-                to="/register"
-              >
-                Rejestracja
-              </Link> 
-            </div> 
+                  className="tw-uppercase tw-text-[#ffffff] tw-cursor-pointer tw-text-xs shadow"
+                  onClick={() => setShowForgotPassword(true)}
+                >
+                  Nie pamiętasz hasła?
+                </h1>
+                <Link
+                  className="tw-uppercase tw-text-[#ffffff] tw-text-xs tw-cursor-pointer shadow"
+                  to="/register"
+                >
+                  Rejestracja
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-      </div>)}
+      )}
 
       {showForgotPassword && (
         <div className="tw-flex tw-space-y-5 tw-flex-col tw-p-5 tw-shadow-lg tw-border-2 tw-border-secondary-500 tw-rounded-lg tw-bg-white">
