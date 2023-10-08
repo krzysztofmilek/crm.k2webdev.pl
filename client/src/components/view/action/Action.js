@@ -168,18 +168,13 @@ const Action = (props) => {
                 <option value="gielda" name="gielda">
                   Giełda
                 </option>
-                <option value="Klient-firma-telefon" name="kft">
-                  Klient - Firma - Telefon
+                <option value="Klient-firma" name="kft">
+                  Klient - Firma
                 </option>
-                <option value="Firma-klient-telefon" name="fkt">
-                  Firma - Klient - Telefon
+                <option value="Firma-klient" name="fkt">
+                  Firma - Klient
                 </option>
-                <option value="Klient-firma-email" name="kfe">
-                  Klient - Firma - Email
-                </option>
-                <option value="Firma-klient-email" name="fke">
-                  Firma - Klient - Email
-                </option>
+             
               </select>
             </div>
             <div className="inputBlock">

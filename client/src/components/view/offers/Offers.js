@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Toasts from "../../toasts/Toasts";
 import OverlayTrig from "../../overLay/OverlayTrig";
+ import  "./Offers.css" 
 
 const Offers = (props) => {
   const [offer, setOffer] = useState([]);
@@ -36,7 +37,7 @@ const Offers = (props) => {
   useEffect(() => {
     getOffer();
   }, []);
-  console.log(props);
+
   return (
     <span className="tw-flex tw-flex-col tw-justify-center tw-items-center">
       <Toasts
@@ -122,10 +123,9 @@ const Offers = (props) => {
                       <Button
                         variant="link"
                         size="sm"
-                        className="btn-small"
-                        // onClick={() => sednOffer(use)}
-                      >
-                        <OverlayTrig
+                        className="btn-small smallSize"
+                                   >
+                        <OverlayTrig 
                           imagePath="https://img.icons8.com/pastel-glyph/64/send.png"
                           toltip="Wyslij ofertę"
                           onClick={(e) => {
@@ -153,8 +153,7 @@ const Offers = (props) => {
                           addEquipTwoName: use.addEquipTwoName,
                           addEquipTwoPrice: use.addEquipTwoPrice,
                           addInfo: use.addInfo,
-                          // scontoCash: priceCar.scontoCash,
-                          // action: action,
+            
                         }}
                       >
                         <OverlayTrig

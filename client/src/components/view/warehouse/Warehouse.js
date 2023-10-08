@@ -41,7 +41,7 @@ const Warehouse = (props) => {
     let lowerGetFindCustomer = getFindCustomer.toLowerCase();
     setSearch(lowerGetFindCustomer);
   };
-console.log("car z magazynu", car)
+
   const getData = () => {
     setCustomer(props.state?.customer);
     setUser(props.state?.token);
@@ -129,7 +129,7 @@ console.log("car z magazynu", car)
             className="mb-3"
           >
             <Tab eventKey="carBox" title="Samochody">
-              <div className="getRight">
+              <div className="ButtonRight">
                 <span className={showDetail}>
                   <EditDetailCar
                     closeAction={closeAction}
@@ -150,12 +150,14 @@ console.log("car z magazynu", car)
                     action={props.state?.idAction}
                   />
                 </span>
+               
                 <span className={show}>
-                  <Button variant="outline-success" as={Link} to="/addcar">
+                  <Button variant="outline-success"  as={Link} to="/addcar">
                     Dodaj Samochód
                   </Button>
+               
                 </span>
-                <div className="conatinerDataCompany tw-text-left">
+                <div className="conatinerDataCompany tw-text-left ">
                   <form id="formSearch" className="">
                     Wyszukaj
                     <input
@@ -182,17 +184,17 @@ console.log("car z magazynu", car)
                     >
                         <thead>
                       <tr>
-                        <th>Marka</th>
-                        <th>Model</th>
-                        <th>Nr rej.</th>
-                        <th>VIN</th>
-                        <th>Rocznik</th>
-                        <th>Poj.</th>
-                        <th>KM</th>
-                        <th>Cena brutto</th>
-                        <th>Edycja</th>
-                        <th>Oferta</th>
-                        <th>Usuń</th>
+                        <th id="id1">Marka</th>
+                        <th id="id2">Model</th>
+                        <th id="id3">Nr rej.</th>
+                        <th id="id4">VIN</th>
+                        <th id="id5">Rocznik</th>
+                        <th id="id6">Poj.</th>
+                        <th id="id7">KM</th>
+                        <th id="id8">Cena brutto</th>
+                        <th id="id9" >Edycja</th>
+                        <th id="id10">Oferta</th>
+                        <th id="id11">Usuń</th>
                       
 
                       </tr>
@@ -214,21 +216,21 @@ console.log("car z magazynu", car)
                           .map((item, index) => {
                             return (
                               <tr key={index}>
-                                <td className="tableFontSize">{item.make}</td>
-                                <td className="tableFontSize">{item.model}</td>
-                                <td className="tableFontSize">
+                                <td id="id1"  className="tableFontSize">{item.make}</td>
+                                <td id="id2"  className="tableFontSize">{item.model}</td>
+                                <td id="id3"  className="tableFontSize">
                                   {item.nr_rejestracyjny}
                                 </td>
-                                <td className="tableFontSize">{item.vin} </td>
-                                <td className="tableFontSize">{item.year}</td>
-                                <td className="tableFontSize">
+                                <td id="id4"  className="tableFontSize">{item.vin} </td>
+                                <td id="id5"  className="tableFontSize">{item.year}</td>
+                                <td id="id6"  className="tableFontSize">
                                   {item.engine_capacity}
                                 </td>
-                                <td className="tableFontSize">
+                                <td id="id7"  className="tableFontSize">
                                   {item.engine_power}
                                 </td>
-                                <td className="tableFontSize">{item.price}</td>
-                                <td className="tableFontSize">
+                                <td id="id8"  className="tableFontSize">{item.price}</td>
+                                <td id="id9"  className="tableFontSize">
                                   <OverlayTrig
                                     imagePath="https://img.icons8.com/ios/30/edit-property.png"
                                     toltip="Szczegóły / Edycja"
@@ -237,7 +239,7 @@ console.log("car z magazynu", car)
                                     }}
                                   />
                                 </td>
-                                <td className="tableFontSize">
+                                <td id="id10" className="tableFontSize">
                                   <Link>
                                     <OverlayTrig
                                       imagePath="https://img.icons8.com/cotton/30/recieve.png"
@@ -248,7 +250,7 @@ console.log("car z magazynu", car)
                                     />
                                   </Link>
                                 </td>
-                                <td className="tableFontSize">
+                                <td id="id11"  className="tableFontSize">
                                   <ModalDeleteCar
                                     post={item}
                                     getAllCarsArray={getAllCarsArray}

@@ -9,7 +9,7 @@ nav {
   background-color: #ffffff;
   display: flex;
   justify-content: flex-end;
-  padding: 1em;
+  padding: 1em 0 1em 0;
   border: 0px solid red;
 }
 

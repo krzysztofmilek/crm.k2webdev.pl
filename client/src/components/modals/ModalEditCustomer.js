@@ -61,6 +61,9 @@ function ModalEditCustomer(props) {
       />
 
 
+
+
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton className="modalHeaderColor">
           <Modal.Title>Edycja użytkownika</Modal.Title>

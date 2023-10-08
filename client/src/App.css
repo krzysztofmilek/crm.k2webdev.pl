@@ -8,7 +8,9 @@
   pointer-events: none;
 }
 .bg {
-  background: url("./components/img/bg.jpeg");
+  background: url("./components/img/bg.png");
+ 
+  background-size: cover; 
 
   /*   background-color: rgba(89, 131, 252, 1);
 background-image: linear-gradient(90deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 100%);  */
@@ -254,15 +256,6 @@ h4 {
   font-size: 1em;
 }
 
-/* .input-group {
-  display: flex;
-  align-content: stretch;
-  text-align: left;
-  vertical-align: center;
-  justify-content: center;
-  border: 0px solid #000;
-} */
-
 .input-group {
   display: flex;
   align-content: stretch;
@@ -288,14 +281,13 @@ h4 {
   border-style: groove;
   backdrop-filter: blur(250px);
 }
-.margin20{
+.margin20 {
   margin: 20px;
 }
 
-.orangeBag{
-  color:orange !important;
+.orangeBag {
+  color: orange !important;
 }
-
 
 .shadow {
   text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
@@ -387,6 +379,9 @@ h3 {
 .green {
   color: green;
 }
+.fullFlex{
+  display: flex;
+}
 
 @media all and (max-width: 992px) {
   .App {
@@ -414,17 +409,24 @@ h3 {
   .signUpPanel {
     width: 300px !important;
   }
+  .input-group {
+  
+    width: 320px !important;
+  }
   .container {
     border: 0px !important;
   }
-
+  .fullFlex{
+    display: block;
+  }
+  
   .show {
     display: true;
   }
   li {
     text-align: left !important;
   }
-  red tr td:nth-of-type(2) {
+   tr td:nth-of-type(2) {
     display: none;
   }
   tr td:nth-of-type(3) {
@@ -442,27 +444,44 @@ h3 {
   }
   .borderTurkuse {
     border: 2px solid #01e1e9;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #01e1e9;
-  border-style: groove;
-  backdrop-filter: blur(250px)
+    border-radius: 10px;
+    box-shadow: 0 0 10px #01e1e9;
+    border-style: groove;
+    backdrop-filter: blur(250px);
   }
   .main {
     display: flex;
     border: 0px solid #01e1e9;
-    padding:10px;
+    padding: 10px;
     border: 2px solid #01e1e9;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #01e1e9;
-  border-style: groove;
-  backdrop-filter: blur(250px);
-  max-width: 95%!important;
- 
+    border-radius: 10px;
+    box-shadow: 0 0 10px #01e1e9;
+    border-style: groove;
+    backdrop-filter: blur(250px);
+    max-width: 95% !important;
   }
-  .margin20{
-    margin: 5px;;
+  .margin20 {
+    margin: 5px;
   }
 
+  #id1chance {
+    display: revert !important;
+  }
+  #id2chance {
+    display: none !important;
+  }
+  #id3chance {
+    display: none !important;
+  }
+  #id4chance {
+    display: none !important;
+  }
+  #id5chance {
+    display: revert !important;
+  }
+  #id6chance {
+    display: revert !important;
+  }
 }
 @keyframes App-logo-spin {
   from {

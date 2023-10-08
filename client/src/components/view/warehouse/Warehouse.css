@@ -1,34 +1,134 @@
-.useCarContainer{
-    border: 0px solid black;
-    background-color: white;
+.useCarContainer {
+  border: 0px solid black;
+  background-color: white;
 }
-.borderTable{
-    border: 2px solid black;
+.borderTable {
+  border: 2px solid black;
+}
+.titleWarehouse {
+  font-weight: bold;
+  color: chocolate;
+}
 
-}
-.titleWarehouse{
-    font-weight: bold;
-    color: chocolate;
-}
-
-.padding40{
-    padding-left: 40px;
+.padding40 {
+  padding-left: 40px;
 }
 input {
-    --tw-ring-shadow: 0 0 #ccc !important;
+  --tw-ring-shadow: 0 0 #ccc !important;
+}
+input:focus {
+  --tw-ring-shadow: 0 0 #ccc !important;
+}
+.inputCar {
+  margin: 10px 10px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+.inputCar:focus {
+  --tw-box-shadow: 0 0 #ccc !important;
+  --tw-ring-shadow: 0 0 #ccc !important;
+  border: 1px solid #ccc;
+}
+.ButtonRight {
+  text-align: end;
+}
+.inputAddEqip{
+  border-radius: 5px;
+   border: 1px solid #ccc;
+   width: 250px;
+ }
+.inputAddEqiupPrice {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 150px;
+}
+
+@media all and (max-width: 992px) {
+  .ButtonRight {
+    text-align: center;
   }
-  input:focus {
-    --tw-ring-shadow: 0 0 #ccc !important;
-  }
-.inputCar{
-    margin: 10px 10px 10px 10px;
-    border-radius: 10px;
+
+  .inputAddEqiupPrice {
+    border-radius: 5px;
     border: 1px solid #ccc;
-   
+    width: 120px;
   }
-  .inputCar:focus{
-    --tw-box-shadow: 0 0 #ccc !important;
-    --tw-ring-shadow: 0 0 #ccc !important;
+.inputAddEqip{
+   border-radius: 5px;
     border: 1px solid #ccc;
+    width: 225px;
+  }
+
+  .conatinerDataCompany {
+    margin-top: 30px !important;
     
   }
+  .input_Search {
+    width: 210px !important;
+    height: 31px;
+    margin-right: 0px;
+  }
+  .form-control{
+    max-width: 90%;
+  }
+
+  tr td:nth-of-type(1) {
+    display: none !important;
+  }
+  tr td:nth-of-type(2) {
+    display: none !important;
+  }
+  tr td:nth-of-type(4) {
+    display: none !important;
+  }
+  tr td:nth-of-type(3) {
+    display: revert !important;
+  }
+
+  tr td:nth-of-type(5) {
+    display: none !important;
+  }
+  tr td:nth-of-type(6) {
+    display: none !important;
+  }
+  tr td:nth-of-type(7) {
+    display: none !important;
+  }
+  tr td:nth-of-type(8) {
+    display: none !important;
+  }
+
+  #id1 {
+    display: none !important;
+  }
+  #id2 {
+    display: none !important;
+  }
+  #id3 {
+    display: revert !important;
+  }
+  #id4 {
+    display: none !important;
+  }
+  #id5 {
+    display: none !important;
+  }
+  #id6 {
+    display: none !important;
+  }
+  #id7 {
+    display: none !important;
+  }
+  #id8 {
+    display: none !important;
+  }
+  #id9 {
+    display: revert !important;
+  }
+  #id10 {
+    display: revert !important;
+  }
+  #id11 {
+    display: revert !important;
+  }
+}

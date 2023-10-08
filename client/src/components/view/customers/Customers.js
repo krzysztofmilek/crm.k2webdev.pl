@@ -67,6 +67,21 @@ const Customers = (props) => {
       <div className="down">
         <p className="tittle">Wyszukaj Klienta</p>
         <hr />
+        <form id="formSearch" className="">
+                    Wyszukaj
+                    <input
+                      type="text"
+                      className="input_Search corner"
+                      name="inputSearch"
+                      id="inputSearch"
+                      onChange={findCustomer}
+                    />
+                    <div className="getCenterReset">
+                      <Button variant="outline-success" onClick={clear}>
+                        Reset
+                      </Button>
+                    </div>
+                  </form>
         <Table variant="light" striped bordered hover>
           <thead>
             <tr>
@@ -115,38 +130,30 @@ const Customers = (props) => {
               })
               .map((cust, index) => (
                 <tr key={index}>
-                  <td className="col-3 tableFontSize">{cust.name}</td>
-                  <td className="col-2 tableFontSize">{cust.phone}</td>
-                  <td className="col-2 tableFontSize">{cust.email}</td>
-                 {/*  <td className="col-2 tableFontSize">
-                    {cust.data.substring(0, 10)}
-                  </td> */}
-                  <td className="col-1">
+                  <td  id="id1customer" className="col-3 tableFontSize">{cust.name}</td>
+                  <td  id="id2customer" className="col-2 tableFontSize">{cust.phone}</td>
+                  <td  id="id3customer" className="col-2 tableFontSize">{cust.email}</td>
+                  <td  id="id4customer" className="">
                   <div className="tw-flex tw-w-full  tw-flex-col  tw-items-center ">
                     <OverlayTrig
-                      imagePath="https://img.icons8.com/windows/30/null/checked-user-male--v1.png"
+                    
+                      imagePath="https://img.icons8.com/windows/30/checked-user-male--v1.png"
                       toltip="Pobierz Dane Klienta"
                       onClick={(e) => {
                         getCustomerData(cust);
                       }}
+                     
                     />
                     </div>
                   </td>
-                  <td className="col-1 getCenter">
+                  <td  id="id5customer" className="">
                     <ModalEditCustomer
                       cust={cust}
                       getCustomers={getCustomers}
                     />
                   </td>
-                {/*   <td className="col-1 getCenter">
-                  <div className="tw-flex tw-w-full  tw-flex-col  tw-items-center ">
-                    <OverlayTrig
-                      imagePath="https://img.icons8.com/fluency-systems-regular/30/null/order-history.png"
-                      toltip="Historia Kontaktów z Klientem"
-                    />
-                    </div>
-                  </td> */}
-                  <td className="col-1 getCenter">
+             
+                  <td id="id6customer" className="getCenter">
                     <ModalDeleteCustomer post={cust} getUsers={getCustomers} />
                   </td>
                 </tr>

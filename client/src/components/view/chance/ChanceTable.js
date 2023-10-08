@@ -44,22 +44,12 @@ const ChanceTable = (props) => {
         <tbody>
           {chance?.map((act, index) => (
             <tr key={index}>
-              <td>{act.A}</td>
-              <td>{act.B}</td>
-              <td>{act.C}</td>
-              <td>{act.D}</td>
-              {/*   {access ? (
-                <> */}
-         {/*      <td>
-                <OverlayTrig
-                  imagePath="https://img.icons8.com/cotton/30/circled-chevron-right--v2.png"
-                  toltip="Przekaż"
-                  onClick={(e) => {
-                    setSimpleChance(act);
-                  }}
-                />
-              </td> */}
-              <td>
+              <td id="id1chance">{act.A}</td>
+              <td id="id2chance">{act.B}</td>
+              <td id="id3chance">{act.C}</td>
+              <td id="id4chance">{act.D}</td>
+     
+              <td id="id5chance">
                 <ModalDeleteChance
                   act={act._id}
                   _idArkusz={idArkusz}
@@ -68,7 +58,7 @@ const ChanceTable = (props) => {
               </td>
               {/*    </>
               ) : ( */}
-              <td>
+              <td id="id6chance">
                 <Link to="/lead"
                 state={{ customer: act }}> 
                 <OverlayTrig

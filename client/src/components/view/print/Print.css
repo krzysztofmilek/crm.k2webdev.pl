@@ -23,7 +23,7 @@
 }
 .imgSmall {
   width: 90%;
-  border: 1px solid #fff;
+  border: 0px solid red;
   justify-content: center;
   display: flex;
   padding-left: 50px !important;

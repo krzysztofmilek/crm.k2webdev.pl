@@ -5,7 +5,6 @@ import {
   Row,
   Col,
   Button,
-  InputGroup,
   ButtonGroup,
 } from "react-bootstrap";
 import axios from "axios";
@@ -49,11 +48,11 @@ const CustomerCard = (props) => {
   const getNextDay = getDay;
   const preGetMonth = getFullDate.getMonth();
   const preGetMonthAddOne = preGetMonth + 1;
-  const getMonth = preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : "";
+  const getMonth = preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : preGetMonthAddOne ;
   const getYear = getFullDate.getFullYear();
   const dateSubString = getYear + "-" + getMonth + "-" + getNextDay;
   const getDate = dateSubString.toString();
-
+console.log(getDate)
   const getIdUser = JSON.parse(localStorage.getItem("user"));
 
   const add = async () => {
@@ -88,16 +87,19 @@ const CustomerCard = (props) => {
         process.env.REACT_APP_LOCALHOST+"customer/add",
         pos
       );
+      console.log("POS", pos)
 
-      if (newCustomerRes.data.error) {
+   if (newCustomerRes.data.error) {
+        console.log(newCustomerRes.data)
         setShowToastAlert(true);
         return;
       } else {
         setNewCustomer(newCustomerRes.data);
         setCustomer(newCustomerRes.data);
+        console.log("Pos2", newCustomerRes.data)
         setShowToast(true);
         setShow(false);
-      }
+      } 
     }
   };
 
@@ -169,7 +171,7 @@ const CustomerCard = (props) => {
       />
 
       <Form>
-        <Row className="mb-3">
+        <Row className="mb-0">
           <Form.Group
             as={Col}
             md="4" // controlId="validationCustom01"
@@ -220,6 +222,8 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
+
+
           <Form.Group as={Col} md="4">
             <Form.Floating className="mb-1">
               <Form.Control
@@ -231,11 +235,11 @@ const CustomerCard = (props) => {
                 value={addCustomer.NIP || props.getCustomer?.NIP || ""}
                 onChange={getCustomer}
               />
-              <label htmlFor="NIP">NIP</label>
+              <label htmlFor="NIP" className="labelPadding">NIP</label>
             </Form.Floating>
           </Form.Group>
         </Row>
-        <Row className="mb-3">
+        <Row className="mb-0">
           <Form.Group
             as={Col}
             md="4" //controlId="validationCustom04"
@@ -263,9 +267,8 @@ const CustomerCard = (props) => {
             </Form.Floating>
           </Form.Group>
           <Form.Group as={Col} md="4">
-            <InputGroup>
-              <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-              <Form.Floating>
+
+              <Form.Floating className="mb-1" >
                 <Form.Control
                   type="text"
                   className="inputField"
@@ -283,10 +286,10 @@ const CustomerCard = (props) => {
                 />
                 <label htmlFor="email" className="labelPadding">Adres email</label>
               </Form.Floating>
-            </InputGroup>
+           
           </Form.Group>
           <Form.Group as={Col} md="4">
-            <Form.Floating>
+            <Form.Floating className="mb-1" >
               <Form.Control
                 //className="tw-hidden"
                 type="text"
@@ -311,7 +314,7 @@ const CustomerCard = (props) => {
             as={Col}
             md="4" 
           >
-            <Form.Floating>
+            <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
                 className="inputField"

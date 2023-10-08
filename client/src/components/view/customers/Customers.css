@@ -86,5 +86,24 @@
         display: none;
         padding-top: 10px;
       }
-   
+      #id1customer {
+        display: revert !important;
+        width:150px;
+      }
+      #id2customer {
+        display: none !important;
+      }
+      #id3customer {
+        display: none !important;
+      }
+      #id4customer {
+        display: revert !important;
+      }
+      #id5customer {
+        display: revert !important;
+      }
+      #id6customer {
+        display: revert !important;
+      }
+    
 }

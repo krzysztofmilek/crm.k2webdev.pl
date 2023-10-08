@@ -43,7 +43,7 @@ console.log(props.car)
 
   return (
     <span>
-      <div className="tw-flex">
+      <div className="fullFlex">
         <div className="conatinerDataCompany tw-text-left tw-m-1">
           <p className="tittle">Kalkulacja</p>
           <hr />
@@ -89,7 +89,7 @@ console.log(props.car)
             <label htmlFor="summary">Cena brutto po rabacie</label>
           </Form.Floating>
         </div>
-        <div className="conatinerDataCompany tw-text-left tw-m-1 ">
+       {/*  <div className="conatinerDataCompany tw-text-left tw-m-1 ">
           <p className="tittle">Doposażenie</p>
           <hr />
           <div className="tw-flex">
@@ -98,11 +98,8 @@ console.log(props.car)
                 onChange={getAddEquip}
                 name="addEquipOneName"
                 placeholder="name@example.com"
-                style={{
-                  borderRadius: "5px",
-                  border: "1px solid #ccc ",
-                  width: "250px",
-                }}
+                className="inputAddEqip"
+              
               />
               <label htmlFor="addEquip">Wpisz doposażenie</label>
             </Form.Floating>
@@ -112,11 +109,7 @@ console.log(props.car)
                 name="addEquipOnePrice"
                 onChange={getAddEquip}
                 placeholder="name@example.com"
-                style={{
-                  borderRadius: "5px",
-                  border: "1px solid #ccc ",
-                  width: "150px",
-                }}
+                className="inputAddEqiupPrice"
               />
               <label htmlFor="addEquipOnePrice">Cena brutto</label>
             </Form.Floating>
@@ -125,13 +118,10 @@ console.log(props.car)
             <Form.Floating className="mb-1 me-2">
               <Form.Control
                 onChange={getAddEquip}
+                className="inputAddEqip"
                 name="addEquipTwoName"
                 placeholder="name@example.com"
-                style={{
-                  borderRadius: "5px",
-                  border: "1px solid #ccc ",
-                  width: "250px",
-                }}
+           
               />
               <label htmlFor="addEquip">Wpisz doposażenie</label>
             </Form.Floating>
@@ -141,11 +131,8 @@ console.log(props.car)
                 name="addEquipTwoPrice"
                 onChange={getAddEquip}
                 placeholder="name@example.com"
-                style={{
-                  borderRadius: "5px",
-                  border: "1px solid #ccc ",
-                  width: "150px",
-                }}
+                className="inputAddEqiupPrice"
+           
               />
               <label htmlFor="addEquipTwoPrice">Cena brutto</label>
             </Form.Floating>
@@ -156,11 +143,8 @@ console.log(props.car)
                 onChange={getAddEquip}
                 name="addEquipThreeName"
                 placeholder="name@example.com"
-                style={{
-                  borderRadius: "5px",
-                  border: "1px solid #ccc ",
-                  width: "250px",
-                }}
+                className="inputAddEqip"
+             
               />
               <label htmlFor="addEquip">Wpisz doposażenie</label>
             </Form.Floating>
@@ -170,16 +154,13 @@ console.log(props.car)
                 name="addEquipThreePrice"
                 onChange={getAddEquip}
                 placeholder="name@example.com"
-                style={{
-                  borderRadius: "5px",
-                  border: "1px solid #ccc ",
-                  width: "150px",
-                }}
+                className="inputAddEqiupPrice"
+             
               />
               <label htmlFor="addEquipThreePrice">Cena brutto</label>
             </Form.Floating>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="conatinerDataCompany tw-text-left tw-m-1">
@@ -191,6 +172,7 @@ console.log(props.car)
             name="addInfo"
             onChange={getAddEquip}
             placeholder="name@example.com"
+          
             style={{
               borderRadius: "5px",
               border: "1px solid #ccc ",

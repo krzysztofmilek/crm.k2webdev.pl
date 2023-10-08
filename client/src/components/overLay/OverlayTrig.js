@@ -16,7 +16,7 @@ const OverlayTrig = (props) => {
             style={{
            
               backgroundColor: '#000000',
-              padding: '5px 10px',
+              padding: '5px 5px',
               color: 'white',
               fontSize: '12px',
               borderRadius: 10,
@@ -31,7 +31,8 @@ const OverlayTrig = (props) => {
     }
   >
     <img
-    style={{cursor: 'pointer'}}
+    style={{cursor: 'pointer',
+  width: '25px !important',}}
       className={props.class}
       src={props.imagePath}
       alt=" "

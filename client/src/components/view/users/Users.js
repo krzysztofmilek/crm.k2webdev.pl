@@ -235,30 +235,30 @@ const Users = () => {
                   })
                   .map((use, index) => (
                     <tr key={index}>
-                      <td className="tableFontSize">{use.name}</td>
-                      <td className="tableFontSize tw-items-center tw-justify-center">
+                      <td className="tableFontSize" id="one">{use.name}</td>
+                      <td className="tableFontSize tw-items-center tw-justify-center" id="two">
                         {use.phone}
                       </td>
-                      <td className="tableFontSize tw-items-center tw-justify-center">
+                      <td className="tableFontSize tw-items-center tw-justify-center" id="three">
                         {use.email}
                       </td>
-                      <td className="tableFontSize tw-items-center tw-justify-center">
+                      <td className="tableFontSize tw-items-center tw-justify-center" id="four">
                         {use.position}
                       </td>
 
-                      <td>
+                      <td id="fife">
                         <ModalEditUserPassword use={use} getUsers={getUsers} />
                       </td>
-                      <td>
+                      <td id="sixt">
                         <ModalEditUserPremission
                           use={use}
                           getUsers={getUsers}
                         />
                       </td>
-                      <td>
+                      <td id="seven">
                         <ModalEditUser use={use} getUsers={getUsers} />
                       </td>
-                      <td>
+                      <td id="eight">
                         <ModalDelete post={use} getUsers={getUsers} />
                       </td>
                     </tr>

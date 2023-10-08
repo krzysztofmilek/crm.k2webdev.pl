@@ -20,7 +20,7 @@ function ModalDeleteCustomer(post) {
   return (
     <div className="tw-flex tw-w-full  tw-flex-col  tw-items-center ">
       <OverlayTrig
-        imagePath="https://img.icons8.com/windows/30/null/remove-user-male--v1.png"
+        imagePath="https://img.icons8.com/windows/30/000000/remove-user-male--v1.png"
         toltip="Usuń Klienta"
         onClick={(e) => {
           handleShow(false);

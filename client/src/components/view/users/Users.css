@@ -1,33 +1,74 @@
-.hiddenMobile{
-    text-align: left;
+.hiddenMobile {
+  text-align: left;
 }
-.inputUser{
+.inputUser {
   margin: 10px 10px 10px 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
-  
 }
-.inputUser:focus{
-
+.inputUser:focus {
   border: 1px solid #ccc;
-  
 }
 
-.form-control:focus{
-  --tw-border-color: 0 0 #CCC !important;
+.form-control:focus {
+  --tw-border-color: 0 0 #ccc !important;
 }
 
 input {
-  --tw-ring-shadow: 0 0 #CCC !important;
-  --tw-box-shadow: 0 0 #CCC !important;
-  --tw-border-color: 0 0 #CCC !important;
+  --tw-ring-shadow: 0 0 #ccc !important;
+  --tw-box-shadow: 0 0 #ccc !important;
+  --tw-border-color: 0 0 #ccc !important;
 }
 
-
-@media all and (max-width:992px) {
-    .hiddenMobile {
-      display:none;
-  
+@media all and (max-width: 992px) {
+  .hiddenMobile {
+    display: none;
+  }
+  .inputUser {
+    margin: 2px 0px 0px 0px;
+  }
+#one{
+  display: revert !important; 
+}
+#two{
+  display: none !important; 
+}
+#three{
+  display: none !important; 
+}
+#four{
+  display: none !important; 
+}
+#fife{
+  display: revert !important; 
+}
+#sixt{
+  display: revert !important; 
+}
+#seven{
+  display: revert !important; 
+}
+#eight{
+  display: revert !important; 
+}
+  tr td:nth-of-type(1) {
+    display: revert !important;
+  }
+  tr td:nth-of-type(2) {
+    display: revert !important;
+  }
+  tr td:nth-of-type(3) {
+    display: none !important;
+  }
+  tr td:nth-of-type(4) {
+    display: none !important;
+  }
+  tr td:nth-of-type(5) {
+    display: revert !important;
+  }
+  tr td:nth-of-type(6) {
+    display: revert !important;
+  }
    
-    }
+
 }

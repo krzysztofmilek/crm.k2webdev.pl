@@ -23,12 +23,22 @@ const MobileBar = (props) => {
 
   return (
     <div className="getCenter">
-      <div className="loginNavBar">
-          <span className=" tw-flex tw-justify-end tw-flex-row  text-right tw-w-full"> 
-          {!userToken ? "" : userToken.name}
-
-          {!userToken.access ? " Użytkownik" : " Administrator  "}
-          <span  className="tw-px-2">
+   
+      <nav>
+        
+        <div className="burger-logo">K2<span className="orange">WEB</span>DEV CRM</div>
+        <div className="burger-menu "  onClick={updateMenu}>
+          <div className={burgerClass}></div>
+          <div className={burgerClass}></div>
+          <div className={burgerClass}></div>
+          <div className={burgerClass}></div>
+          
+        </div>
+      </nav>
+      <span className=" tw-flex tw-justify-end tw-flex-row  text-right tw-w-full"> 
+        <span>
+            {!userToken ? "" :  userToken.name}</span> 
+           <span  className="tw-px-2">
           <Link to="/logout">
      
        <OverlayTrigger
@@ -41,23 +51,11 @@ const MobileBar = (props) => {
            src="https://img.icons8.com/ios-filled/50/null/logout-rounded.png"
            alt="wyloguj"
          />
-       </OverlayTrigger>
+       </OverlayTrigger> 
      
      </Link>
-     </span>
+     </span> 
         </span>
-        </div>
-      <nav>
-        
-        <div className="burger-logo">K2WEBDEV CRM</div>
-        <div className="burger-menu" onClick={updateMenu}>
-          <div className={burgerClass}></div>
-          <div className={burgerClass}></div>
-          <div className={burgerClass}></div>
-          <div className={burgerClass}></div>
-          
-        </div>
-      </nav>
 
       <div className={menu_class}>
       

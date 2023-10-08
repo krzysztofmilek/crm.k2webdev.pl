@@ -4,7 +4,7 @@ import { Button, Row, Col } from "react-bootstrap";
 import "./Print.css";
 import { FooterPrint } from "./FooterPrint";
 import axios from "axios";
-import Html2Pdf from "js-html2pdf";
+
 
 const OffertCarPrint = (props) => {
   const [showAdd, setShowAdd] = useState({});
@@ -36,28 +36,10 @@ const OffertCarPrint = (props) => {
 
     onAfterPrint: () => {
       addOffer();
-      handleDownload();
+
     },
   });
 
-  const handleDownload = useReactToPrint({
-    onPrintError: (error) => console.log(error),
-    content: () => componentRef.current,
-    removeAfterPrint: true,
-    print: async (printIframe) => {
-      const document = printIframe.contentDocument;
-      if (document) {
-        const html = document.getElementById("getElementToPdf");
-        console.log(html);
-        const exporter = new Html2Pdf(html, {
-          filename: documentName,
-          image: { type: "jpeg", quality: 0.98 },
-          margin: [20, 20, 20, 20],
-        });
-        await exporter.getPdf(true);
-      }
-    },
-  });
 
   const getUser = async () => {
     // const user_jwt = JSON.parse(localStorage.getItem("user"));
@@ -85,8 +67,8 @@ const OffertCarPrint = (props) => {
       car: props.state.car._id,
       action: props.state.action?._id,
     };
-    //eslint-disable-next-line
-    const getDane = axios.post(
+   
+    axios.post(
       process.env.REACT_APP_LOCALHOST + "offer/add",
       pos
     );

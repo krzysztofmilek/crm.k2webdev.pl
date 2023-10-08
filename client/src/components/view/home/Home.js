@@ -23,10 +23,8 @@ const Home = (props) => {
   const propsMonth = start.slice(5, 7);
   const now = propsMonth.toString();
 
-
   const [dataSelect, setDataSelect] = useState({ monthSelect: now });
   const getIdUser = JSON.parse(localStorage.getItem("user"));
-
 
   const getDataAction = (act) => {
     //    console.log("Act",act)
@@ -45,7 +43,6 @@ const Home = (props) => {
   const getOffer = async () => {
     const data = await axios.get(process.env.REACT_APP_LOCALHOST + "offer/");
     setOffer(data.data);
-    console.log("getOffer");
   };
 
   const getAct = async (e) => {
@@ -53,7 +50,7 @@ const Home = (props) => {
       process.env.REACT_APP_LOCALHOST + "action/"
     );
     setActions(getAction.data);
-    console.log("getOffer");
+    console.log("wszystkie akcje z home", getAction.data);
   };
 
   const months = [
@@ -79,7 +76,8 @@ const Home = (props) => {
   const getFullDate = new Date();
   const preGetMonth = getFullDate.getMonth();
   const preGetMonthAddOne = preGetMonth + 1;
-  const getMonth = preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : "";
+  const getMonth =
+    preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : preGetMonthAddOne;
   const getMonthPrev = preGetMonth < 10 ? "0" + preGetMonth : "";
   const nowMonth = getMonth.toString();
   const prevMonth = getMonthPrev.toString();
@@ -90,20 +88,64 @@ const Home = (props) => {
       [e.target.name]: e.target.value,
     }));
 
-    const sold = actions.filter(
-      (act) =>
-        act.status === "sold" &&
-        getIdUser._id === act.user._id &&
-        act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
-    ).length;
+  const sold = actions.filter(
+    (act) =>
+      act.status === "sold" &&
+      getIdUser._id === act.user._id &&
+      act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
+  ).length;
 
-  
+  const stockMarket = actions.filter(
+    (act) =>
+      act.direction === "gielda" &&
+      getIdUser._id === act.user._id &&
+      act.nextContactData.slice(5, 7) === dataSelect.monthSelect
+  ).length;
+
+  const initiative = actions.filter(
+    (act) =>
+      act.direction === "inicjatywa" &&
+      getIdUser._id === act.user._id &&
+      act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
+  ).length;
+
+  const routeIn = actions.filter(
+    (act) =>
+      act.direction === "Klient-firma" &&
+      getIdUser._id === act.user._id &&
+      act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
+  ).length;
+
+  const routeOut = actions.filter(
+    (act) =>
+      act.direction === "Firma-klient" &&
+      getIdUser._id === act.user._id &&
+      act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
+  ).length;
+
+
+  const recomendations = actions.filter(
+    (act) =>
+      act.direction === "rekomendacje" &&
+      getIdUser._id === act.user._id &&
+      act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
+  ).length;
+  const recomendationsInt = parseInt(recomendations);
+
+  const lostChance = actions.filter(
+    (act) =>
+      (act.status === "other" ||
+        act.status === "resignation" ||
+        act.status === "competition") &&
+      getIdUser._id === act.user._id &&
+      act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
+  ).length;
+
   const closeAction = async () => {
     setShowWindow("hidden");
     //  console.log(showWindow);
   };
-console.log(sold)
-console.log(actions)
+
   useEffect(() => {
     getAct();
     getOffer();
@@ -116,7 +158,7 @@ console.log(actions)
       <Container className="">
         <Menu />
         <span className="showUsers conatinerDataCompany">
-          <div className="">
+          <div className="tw-pb-3">
             <Form.Floating className="mb-1">
               <Form.Select
                 id="monthSelect"
@@ -145,6 +187,12 @@ console.log(actions)
               dataSelect={dataSelect}
               getAct={getAct}
               sold={sold}
+              recomendations={recomendationsInt}
+              lostChance={lostChance}
+              stockMarket={stockMarket}
+              initiative={initiative}
+              routeIn={routeIn}
+              routeOut={routeOut}
             />
           </div>
         </span>
@@ -165,7 +213,6 @@ console.log(actions)
                 getOffer={getOffer}
                 offer={offer}
                 actions={actions}
-              
               />
             </div>
           </span>
