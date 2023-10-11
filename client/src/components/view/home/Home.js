@@ -50,7 +50,6 @@ const Home = (props) => {
       process.env.REACT_APP_LOCALHOST + "action/"
     );
     setActions(getAction.data);
-    console.log("wszystkie akcje z home", getAction.data);
   };
 
   const months = [
@@ -91,7 +90,7 @@ const Home = (props) => {
   const sold = actions.filter(
     (act) =>
       act.status === "sold" &&
-      getIdUser._id === act.user._id &&
+      getIdUser?._id === act.user?._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
 
@@ -105,7 +104,7 @@ const Home = (props) => {
   const initiative = actions.filter(
     (act) =>
       act.direction === "inicjatywa" &&
-      getIdUser._id === act.user._id &&
+      getIdUser._id === act.user?._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
 
@@ -122,7 +121,6 @@ const Home = (props) => {
       getIdUser._id === act.user._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
-
 
   const recomendations = actions.filter(
     (act) =>
@@ -143,7 +141,6 @@ const Home = (props) => {
 
   const closeAction = async () => {
     setShowWindow("hidden");
-    //  console.log(showWindow);
   };
 
   useEffect(() => {
@@ -232,23 +229,23 @@ const Home = (props) => {
                 })
                 .map((act, index) => (
                   <tr className="red" key={index}>
-                    <td className="col-1 tableFontSize">
-                      {act.nextContactData.slice(0, 10)}
+                    <td className="col-1 tableFontSize" id="id1action">
+                      {act.nextContactData?.slice(0, 10)}
                     </td>
-                    <td className="col-2 tableFontSize">{act.user?.name}</td>
-                    <td className="col-2 tableFontSize">
+                    {/* <td className="col-2 tableFontSize" id="id2action">{act.user?.name}</td>  */}
+                    <td className="col-2 tableFontSize" id="id3action">
                       {act.customer?.name}
                     </td>
-                    <td className="col-1 tableFontSize">
+                    <td className="col-1 tableFontSize" id="id4action">
                       {act.customer?.phone}
                     </td>
-                    <td className="col-5 tableFontSize">
+                    <td className="col-5 tableFontSize" id="id5action">
                       {act.information?.slice(0, 100)}{" "}
                     </td>
-                    <td className="col-1 getCenter">
+                    <td className="col-1 getCenter" id="id6action">
                       <OverlayTrig
                         imagePath="https://img.icons8.com/external-flatart-icons-outline-flatarticons/35/null/external-user-cv-resume-flatart-icons-outline-flatarticons.png"
-                        toltip="Zobacz szczegóły zadania"
+                        toltip="Zobacz szczegóły zadania - zadania nadchodzące"
                         onClick={(e) => {
                           getDataAction(act);
                         }}
@@ -271,23 +268,23 @@ const Home = (props) => {
                 })
                 .map((act, index) => (
                   <tr key={index}>
-                    <td className="col-1 tableFontSize">
-                      {act.nextContactData.slice(0, 10)}
+                    <td className="col-1 tableFontSize" id="id1action">
+                      {act.nextContactData?.slice(0, 10)}
                     </td>
-                    <td className="col-2 tableFontSize">{act.user?.name}</td>
-                    <td className="col-2 tableFontSize">
+                    {/* <td className="col-2 tableFontSize" id="id2action">{act.user?.name}</td>  */}
+                    <td className="col-2 tableFontSize" id="id3action">
                       {act.customer?.name}
                     </td>
-                    <td className="col-1 tableFontSize">
+                    <td className="col-1 tableFontSize" id="id4action">
                       {act.customer?.phone}
                     </td>
-                    <td className="col-5 tableFontSize">
+                    <td className="col-5 tableFontSize" id="id5action">
                       {act.information?.slice(0, 100)}{" "}
                     </td>
-                    <td className="col-1 getCenter">
+                    <td className="col-1 getCenter" id="id6action">
                       <OverlayTrig
                         imagePath="https://img.icons8.com/external-flatart-icons-outline-flatarticons/35/null/external-user-cv-resume-flatart-icons-outline-flatarticons.png"
-                        toltip="Zobacz szczegóły zadania"
+                        toltip="Zobacz szczegóły zadania - zadania nadchodzące"
                         onClick={(e) => {
                           getDataAction(act);
                         }}
@@ -311,20 +308,20 @@ const Home = (props) => {
                 })
                 .map((act, index) => (
                   <tr key={index}>
-                    <td className="col-1 tableFontSize">
+                    <td className="col-1 tableFontSize" id="id1action">
                       {act.nextContactData?.slice(0, 10)}
                     </td>
-                    <td className="col-2 tableFontSize">{act.user?.name}</td>
-                    <td className="col-2 tableFontSize">
+                    {/* <td className="col-2 tableFontSize" id="id2action">{act.user?.name}</td>  */}
+                    <td className="col-2 tableFontSize" id="id3action">
                       {act.customer?.name}
                     </td>
-                    <td className="col-1 tableFontSize">
+                    <td className="col-1 tableFontSize" id="id4action">
                       {act.customer?.phone}
                     </td>
-                    <td className="col-5 tableFontSize">
+                    <td className="col-5 tableFontSize" id="id5action">
                       {act.information?.slice(0, 100)}{" "}
                     </td>
-                    <td className="col-1 getCenter">
+                    <td className="col-1 getCenter" id="id6action">
                       <OverlayTrig
                         imagePath="https://img.icons8.com/external-flatart-icons-outline-flatarticons/35/null/external-user-cv-resume-flatart-icons-outline-flatarticons.png"
                         toltip="Zobacz szczegóły zadania - zadania nadchodzące"

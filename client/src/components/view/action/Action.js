@@ -50,16 +50,16 @@ const Action = (props) => {
 
   const handleSubmit = async (e) => {
     const messageDirection = document.getElementById("directionAdd").value;
-    const messageContactWay = document.getElementById("contactWayAdd").value;
+    //const messageContactWay = document.getElementById("contactWayAdd").value;
     const messageInformation = document.getElementById("informationAdd").value;
     const messageDob = document.getElementById("dob").value;
 
     if (messageDirection === "") {
       setShow(true);
       return;
-    } else if (messageContactWay === "") {
+ /*    } else if (messageContactWay === "") {
       setShowContact(true);
-      return;
+      return; */
     } else if (messageInformation === "") {
       setShowInformation(true);
       return;
@@ -82,7 +82,7 @@ const Action = (props) => {
         contactData: tomorrow,
         nextContactData: dataPicker,
         information: selectData.information,
-        conatactWay: selectData.conatactWay,
+        //conatactWay: selectData.conatactWay,
         direction: selectData.direction,
         fileName: file?.name,
         status: "open",
@@ -174,10 +174,8 @@ const Action = (props) => {
                 <option value="Firma-klient" name="fkt">
                   Firma - Klient
                 </option>
-             
               </select>
-            </div>
-            <div className="inputBlock">
+              {/* <div className="inputBlock">
               <p className="tittle">Sposób kontaktu :</p>
 
               <select
@@ -201,30 +199,15 @@ const Action = (props) => {
                   Telefon
                 </option>
               </select>
-            </div>
-          </div>
-          <div className="inputFlex">
-            <div className="inputBlock">
-              <p className="tittle">Informacje :</p>
-
-              <textarea
-                className="inputAction"
-                aria-label="With textarea"
-                id="informationAdd"
-                name="information"
-                onChange={getValue}
-              ></textarea>
-            </div>
-            <div className="inputBlock">
-              {" "}
+            </div> */}{" "}
               <p className="tittle">Dodaj załącznik</p>
-              <hr />
+           
               <div>
                 <input id="file-field" type="file" name="customerFiles" />
               </div>
-              <hr />
+        
               <p className="tittle">Wybierz datę nastepnego kontaktu</p>
-              <hr />
+         
               <div>
                 <Form.Group>
                   <Form.Control
@@ -236,6 +219,18 @@ const Action = (props) => {
                   />
                 </Form.Group>
               </div>
+
+            </div>
+            <div className="inputBlock">
+              <p className="tittle">Informacje :</p>
+
+              <textarea
+                className="inputAction"
+                aria-label="With textarea"
+                id="informationAdd"
+                name="information"
+                onChange={getValue}
+              ></textarea>
             </div>
           </div>
 

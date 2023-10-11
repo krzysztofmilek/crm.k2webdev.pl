@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import {
-  Form,
-  Row,
-  Col,
-  Button,
-  ButtonGroup,
-} from "react-bootstrap";
+import { Form, Row, Col, Button, ButtonGroup } from "react-bootstrap";
 import axios from "axios";
 import "./CustomerCard.css";
 import { Link } from "react-router-dom";
@@ -28,10 +22,8 @@ const CustomerCard = (props) => {
   const [token, setToken] = useState({});
   const chance = props.state?.customer;
 
-
   const checkChance = () => {
     if (chance === undefined || " ") {
-
     } else {
       setAddCustomer(chance);
     }
@@ -48,11 +40,12 @@ const CustomerCard = (props) => {
   const getNextDay = getDay;
   const preGetMonth = getFullDate.getMonth();
   const preGetMonthAddOne = preGetMonth + 1;
-  const getMonth = preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : preGetMonthAddOne ;
+  const getMonth =
+    preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : preGetMonthAddOne;
   const getYear = getFullDate.getFullYear();
   const dateSubString = getYear + "-" + getMonth + "-" + getNextDay;
   const getDate = dateSubString.toString();
-console.log(getDate)
+
   const getIdUser = JSON.parse(localStorage.getItem("user"));
 
   const add = async () => {
@@ -62,7 +55,7 @@ console.log(getDate)
     const messageEmail = document.getElementById("email").value;
     const messagePhone = document.getElementById("phone").value;
     if (messageName === "") {
-        setShowToastAlertName(true);
+      setShowToastAlertName(true);
       return;
     } else if (messagePhone === "") {
       setShowToastAlertPhone(true);
@@ -84,22 +77,22 @@ console.log(getDate)
         city: addCustomer.city,
       };
       const newCustomerRes = await axios.post(
-        process.env.REACT_APP_LOCALHOST+"customer/add",
+        process.env.REACT_APP_LOCALHOST + "customer/add",
         pos
       );
-      console.log("POS", pos)
+      console.log("POS", pos);
 
-   if (newCustomerRes.data.error) {
-        console.log(newCustomerRes.data)
+      if (newCustomerRes.data.error) {
+        console.log(newCustomerRes.data);
         setShowToastAlert(true);
         return;
       } else {
         setNewCustomer(newCustomerRes.data);
         setCustomer(newCustomerRes.data);
-        console.log("Pos2", newCustomerRes.data)
+        console.log("Pos2", newCustomerRes.data);
         setShowToast(true);
         setShow(false);
-      } 
+      }
     }
   };
 
@@ -123,8 +116,6 @@ console.log(getDate)
     checkChance();
     // eslint-disable-next-line
   }, []);
-
-
 
   return (
     <div className="getLeft">
@@ -223,7 +214,6 @@ console.log(getDate)
             </Form.Floating>
           </Form.Group>
 
-
           <Form.Group as={Col} md="4">
             <Form.Floating className="mb-1">
               <Form.Control
@@ -235,7 +225,9 @@ console.log(getDate)
                 value={addCustomer.NIP || props.getCustomer?.NIP || ""}
                 onChange={getCustomer}
               />
-              <label htmlFor="NIP" className="labelPadding">NIP</label>
+              <label htmlFor="NIP" className="labelPadding">
+                NIP
+              </label>
             </Form.Floating>
           </Form.Group>
         </Row>
@@ -267,29 +259,29 @@ console.log(getDate)
             </Form.Floating>
           </Form.Group>
           <Form.Group as={Col} md="4">
-
-              <Form.Floating className="mb-1" >
-                <Form.Control
-                  type="text"
-                  className="inputField"
-                  autoComplete="on"
-                  placeholder="Adres e-mail"
-                  name="email"
-                  id="email"
-                  value={
-                    addCustomer.email ||
-                    props.getCustomer?.email ||
-                    chance?.C ||
-                    ""
-                  }
-                  onChange={getCustomer}
-                />
-                <label htmlFor="email" className="labelPadding">Adres email</label>
-              </Form.Floating>
-           
+            <Form.Floating className="mb-1">
+              <Form.Control
+                type="text"
+                className="inputField"
+                autoComplete="on"
+                placeholder="Adres e-mail"
+                name="email"
+                id="email"
+                value={
+                  addCustomer.email ||
+                  props.getCustomer?.email ||
+                  chance?.C ||
+                  ""
+                }
+                onChange={getCustomer}
+              />
+              <label htmlFor="email" className="labelPadding">
+                Adres email
+              </label>
+            </Form.Floating>
           </Form.Group>
           <Form.Group as={Col} md="4">
-            <Form.Floating className="mb-1" >
+            <Form.Floating className="mb-1">
               <Form.Control
                 //className="tw-hidden"
                 type="text"
@@ -305,15 +297,14 @@ console.log(getDate)
                 }
                 onChange={getCustomer}
               />
-              <label htmlFor="street" className="labelPadding">Ulica, nr</label>
+              <label htmlFor="street" className="labelPadding">
+                Ulica, nr
+              </label>
             </Form.Floating>
           </Form.Group>
         </Row>
         <Row className="mb-3">
-          <Form.Group
-            as={Col}
-            md="4" 
-          >
+          <Form.Group as={Col} md="4">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
@@ -324,13 +315,12 @@ console.log(getDate)
                 value={addCustomer.zip || props.getCustomer?.zip || ""}
                 onChange={getCustomer}
               />
-              <label htmlFor="zip" className="labelPadding">Kod pocztowy</label>
+              <label htmlFor="zip" className="labelPadding">
+                Kod pocztowy
+              </label>
             </Form.Floating>
           </Form.Group>
-          <Form.Group
-            as={Col}
-            md="4" 
-          >
+          <Form.Group as={Col} md="4">
             <Form.Floating>
               <Form.Control
                 type="text"
@@ -350,18 +340,18 @@ console.log(getDate)
         <Row className="mb-1">
           <Form.Group as={Col} md="5">
             <Form.Check
-            type="switch"
-            label="Wyrażam zgodę na przetwarzanie marketingowe"
+              type="switch"
+              label="Wyrażam zgodę na przetwarzanie marketingowe"
               className="textCustomer"
               required
-             name="agreement1"
-             id="agreement1"
+              name="agreement1"
+              id="agreement1"
               onChange={getCustomer}
               value={
                 addCustomer.agreement_1 || props.getCustomer?.agreement_1 || ""
               }
             />
- {/*          <label htmlFor="agreement_1" className="">Wyrażam zgodę na przetwarzanie marketingowe</label> */}
+            {/*          <label htmlFor="agreement_1" className="">Wyrażam zgodę na przetwarzanie marketingowe</label> */}
           </Form.Group>
           <Form.Group as={Col} md="3" className="top">
             <Button
@@ -414,7 +404,6 @@ console.log(getDate)
           </Form.Group>
         </Row>
       </Form>
-  
     </div>
   );
 };

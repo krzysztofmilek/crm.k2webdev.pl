@@ -12,7 +12,7 @@ function ResetPassword() {
 
    const resetPassword = async () => {
 
-    console.log(parms.token)
+  
      try {
     toast.loading(" Zmiana w trakcie.");
       const response = await axios.post(

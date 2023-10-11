@@ -28,6 +28,7 @@ textarea {
 
   .formAction{
     margin-top: 25px;
+    border-radius: 1px solid red;
   }
   .inputAction {
     width: 90%;
@@ -51,7 +52,7 @@ textarea {
 .inputBlock{
     display: block;
     width:100%;
-    border: 0px solid yellow;
+    border:0px solid yellow;
 }
   .selectAction {
     width: 90%;
@@ -83,6 +84,10 @@ textarea {
     margin-bottom: 0px;
     padding-bottom: 0px;
     font-weight: 700;
+  }
+
+  .form-control{
+    max-width: 90% !important;
   }
 
   .titleInputActionInfo{
@@ -119,6 +124,9 @@ display:block;
   } */
   .inputAction {
     width: 100%;
+  }
+  .form-control{
+   max-width: 100% !important;
   }
   .selectAction {
     width: 100%;}

@@ -33,22 +33,26 @@
     text-align:right;
   }
    
-   
-    
-      tr td:nth-of-type(2) {
-        display: none;
-      }
-      tr td:nth-of-type(3) {
-        display: true;
-      }
-      tr td:nth-of-type(5) {
-        display: none;
-      }
-      tr td:nth-of-type(4) {
-        display: none;
-      }
     
    
-    
+      #id1action {
+        display: none !important;
+      }
+      #id2action {
+        display: none !important;
+      }
+      #id3action {
+        display: revert !important;
+      }
+      #id4action {
+        display:none!important;
+      }
+      #id5action {
+        display: none !important;
+      }
+      #id6action {
+        display: revert !important;
+      }
+     
     
     }

@@ -13,7 +13,7 @@ const Calculation = (props) => {
 
 
  
-console.log(props.car)
+
   const getPrice = (e) =>
     setPriceCar((prevState) => ({
       ...prevState,

@@ -65,7 +65,6 @@ function Login() {
       );
       toast.dismiss();
       if (response.data.success) {
-        console.log(response);
         toast.success(response.data.message);
         setShowForgotPassword(false);
       } else {

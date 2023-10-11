@@ -28,7 +28,7 @@ const ActionInfo = (props) => {
         <div className="inputFlex">
           <div className="inputBlock">
             <div className="titleInputActionInfo">
-              Imię i nazwisko os. kontaktowej:
+            Imię nazwisko
             </div>
             <input
               className="inputAction"
@@ -78,7 +78,7 @@ const ActionInfo = (props) => {
         <div className="inputFlex">
           <div className="inputBlock getCenterActionInfo"></div>
           <div className="inputBlock getCenterActionInfo">
-            <Button
+            { props.idAction.fileName?      <Button
               variant="outline-success"
               disabled={props.showAttachment}
               as={Link}
@@ -91,8 +91,9 @@ const ActionInfo = (props) => {
               target="_blank"
             >
               Pokaż załącznik
-            </Button>
+            </Button>: ""}
             &nbsp;
+            {props.idAction.offer?.fileName ?  
             <Button
               variant="outline-success"
               disabled={props.showOffer}
@@ -106,7 +107,7 @@ const ActionInfo = (props) => {
               target="_blank"
             >
               Pokaż ofertę
-            </Button>
+            </Button> :""}
             {/*  <Button variant="outline-success" disabled={props.showOffer}>
               Pokaż ofertę
             </Button> */}
@@ -125,7 +126,7 @@ const ActionInfo = (props) => {
           </div>
         </div>
         <div className="inputFlex">
-          <div className="inputBlock getCenterActionInfo">12 </div>
+          <div className="inputBlock getCenterActionInfo"> </div>
           <div className="inputBlock getCenterActionInfo">
             <Button
               variant="outline-success"

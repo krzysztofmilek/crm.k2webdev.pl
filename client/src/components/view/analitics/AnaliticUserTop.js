@@ -33,7 +33,7 @@ const AnaliticUserTop = (props) => {
     const solds = action.filter(
       (act) =>
         act.status === "sold" &&
-        props.getIdUser._id === act.user._id &&
+        props.getIdUser._id === act.user?._id &&
         act.nextContactData.slice(5, 7) === props.dataSelect?.monthSelect
     );
     setSoldData(solds.length);
@@ -41,25 +41,29 @@ const AnaliticUserTop = (props) => {
 
   const actionAll = action.filter(
     (act) =>
-      props.getIdUser._id === act.user._id &&
+      props.getIdUser._id === act.user?._id &&
       act.nextContactData.slice(5, 7) === props.dataSelect?.monthSelect
   ).length;
 
   const offerAll = offer.filter(
     (act) =>
-      props.getIdUser._id === act.user._id &&
+      props.getIdUser._id === act.user?._id &&
       act.data.slice(5, 7) === props.dataSelect?.monthSelect
   ).length;
 
-  const effectiveness = ((props.sold / actionAll) * 100).toFixed(0);
+ const effectiveness = ((props.sold / actionAll) * 100).toFixed(0);
   const kpiContactOffer = ((offerAll / actionAll) * 100).toFixed(0);
   const kpiOfferSold = ((props.sold / offerAll) * 100).toFixed(0);
   const kpiRecomdationData = ((props.recomendations / actionAll) * 100).toFixed(0);
   const kpiInitiativeData = ((props.initiative / actionAll) * 100).toFixed(0);
   const kpiStockMarketData = ((props.stockMarket / actionAll) * 100).toFixed(0);
   const kpiLostChanceData = ((props.lostChance / actionAll) * 100).toFixed(0);
-console.log("in", props.routeIn)
-console.log("out", props.routeOut)
+const effectivenessToInt = parseInt(effectiveness) || 0;
+
+
+
+const salespersonInitiative = (props.recomendations + props.initiative + props.stockMarket+ props.routeIn) 
+const companyInitiative = (props.routeOut)
   useEffect(() => {
     getData();
 
@@ -80,11 +84,11 @@ console.log("out", props.routeOut)
               <hr />
 
               <ul>
-                <li> ilość kontaktów: {actionAll}</li>
-                <li> ilość ofert: {offerAll}</li>
+                  <li className="marginLeft"> ilość kontaktów: {actionAll}</li>
+                  <li className="marginLeft"> ilość ofert: {offerAll}</li>
 
-                <li>ilość sprzedaży: {props.sold}</li>
-                <li> Skuteczność: {props.sold ? effectiveness : 0} %</li>
+                  <li className="marginLeft">ilość sprzedaży: {props.sold}</li>
+                  <li className="marginLeft"> Skuteczność: {props.sold ? effectivenessToInt : 0} %</li>
               </ul>
             </div>
           </Col>
@@ -94,7 +98,7 @@ console.log("out", props.routeOut)
               <hr />
 
               <ul>
-                <li>
+                  <li className="marginLeft">
                   Sprzedaż :
                   {data
                     .filter((act) => {
@@ -103,12 +107,13 @@ console.log("out", props.routeOut)
                     .map((act, index) => (
                       <span key={index} className="tw-p-2">
                         {props.dataSelect?.monthSelect === props.now
-                          ? act[props.month]
-                          : act[props.monthPrev]}
+                          ? act[props.month]<props.sold ? <span className="green bold">{act[props.month]}</span>:<span className="red bold">{act[props.month]}</span>
+                          : act[props.monthPrev]<props.sold ? <span className="green bold">{act[props.monthPrev]}</span>:<span className="red bold">{act[props.monthPrev]}</span>
+                        }
                       </span>
                     ))}
                 </li>
-                <li>Skuteczność: 25%</li>
+                  <li className="marginLeft">Skuteczność: {(effectivenessToInt < 25)? <span className="red bold"> 25%</span>: <span className="green bold"> 25%</span>}</li>
               </ul>
             </div>
           </Col>
@@ -117,10 +122,10 @@ console.log("out", props.routeOut)
               <h4>Wskaźniki KPI</h4>
               <hr />
               <ul>
-                <li>Kontakty/Oferty: {actionAll ? kpiContactOffer : 0} %</li>
-                <li>Kontakty/Sprzedaż: {actionAll ? effectiveness : 0} %</li>
-                <li>Oferty/Sprzedaż: {props.sold ? kpiOfferSold : 0} %</li>
-                <li>Utracone szanse: {actionAll ? kpiLostChanceData : 0} %</li>
+                  <li className="marginLeft">Kontakty/Oferty: {actionAll ? kpiContactOffer : 0} %</li>
+                  <li className="marginLeft">Kontakty/Sprzedaż: {actionAll ? effectiveness : 0} %</li>
+                  <li className="marginLeft">Oferty/Sprzedaż: {props.sold ? kpiOfferSold : 0} %</li>
+                  <li className="marginLeft">Utracone szanse: {actionAll ? kpiLostChanceData : 0} %</li>
               </ul>
             </div>
           </Col>{" "}
@@ -129,14 +134,14 @@ console.log("out", props.routeOut)
               <h4>Inicjatywa</h4>
               <hr />
               <ul>
-                <li>
+                  <li className="marginLeft">
                   Inicjatywa własna: {actionAll ? kpiInitiativeData : 0}%{" "}
                 </li>
-                <li>Rekomendacje: {actionAll ? kpiRecomdationData : 0}%</li>
-                <li>Giełda: {actionAll ? kpiStockMarketData : 0}% </li>
-                <li>
-                  Kierunek kontaktu:{" "}
-                  {/* {actionAll ? kpiRecomdationData : 0}% */}
+                  <li className="marginLeft">Rekomendacje: {actionAll ? kpiRecomdationData : 0}%</li>
+                  <li className="marginLeft">Giełda: {actionAll ? kpiStockMarketData : 0}% </li>
+                <li className="marginLeft">
+                  Inicjatywa po stronie:{" "}
+                  {(companyInitiative === 0 && salespersonInitiative ===0 )? " Brak Danych" :((salespersonInitiative > companyInitiative) ?<span className="green">Handlowca</span> : <span className="red bold">Klienta</span>)}
                 </li>
               </ul>
             </div>

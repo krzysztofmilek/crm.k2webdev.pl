@@ -8,7 +8,7 @@
   pointer-events: none;
 }
 .bg {
-  background: url("./components/img/bg.png");
+  background: url("./components/img/bg.jpeg");
  
   background-size: cover; 
 
@@ -426,15 +426,7 @@ h3 {
   li {
     text-align: left !important;
   }
-   tr td:nth-of-type(2) {
-    display: none;
-  }
-  tr td:nth-of-type(3) {
-    display: none;
-  }
-  tr td:nth-of-type(4) {
-    display: none;
-  }
+
   .inputLogin {
     width: 180px !important;
   }
@@ -482,6 +474,8 @@ h3 {
   #id6chance {
     display: revert !important;
   }
+
+
 }
 @keyframes App-logo-spin {
   from {
