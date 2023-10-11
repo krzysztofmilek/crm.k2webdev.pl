@@ -68,4 +68,9 @@ module.exports = {
       }
     );
   },
+
+
+  generatePDF: (req, res) => {
+   console.log("Jebać pis:", req.body)
+  },
 };

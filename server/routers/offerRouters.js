@@ -12,4 +12,5 @@ router.delete(
 router.get("/", indexViewControllerOffer.allOffer);
 router.put("/edit/:id",  indexViewControllerOffer.offerUpdate);
 router.put("/find/:id",  indexViewControllerOffer.findOffer);
+router.post("/geneatePDF/",  indexViewControllerOffer.generatePDF);
 module.exports = router;

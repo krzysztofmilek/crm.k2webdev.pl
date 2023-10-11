@@ -18,16 +18,16 @@ const Home = (props) => {
   const [showOffer, setShowOffer] = useState(true);
   const [showWindow, setShowWindow] = useState("hidden");
   const [offer, setOffer] = useState([]);
-
+  const [users, setUsers] = useState([]);
+  const getIdUser = JSON.parse(localStorage.getItem("user"));
+  const [userSelect, setUserSelect] = useState({salesMenSelect: getIdUser._id});
   const start = new Date().toISOString().substring(0, 10);
   const propsMonth = start.slice(5, 7);
   const now = propsMonth.toString();
 
   const [dataSelect, setDataSelect] = useState({ monthSelect: now });
-  const getIdUser = JSON.parse(localStorage.getItem("user"));
 
   const getDataAction = (act) => {
-    //    console.log("Act",act)
     setIdAction(act);
     setShowAction(false);
     setShowWindow("show");
@@ -50,6 +50,13 @@ const Home = (props) => {
       process.env.REACT_APP_LOCALHOST + "action/"
     );
     setActions(getAction.data);
+  };
+
+  const getUsers = async () => {
+    const viewUsers = await axios.get(
+      process.env.REACT_APP_LOCALHOST + "user/allUser/"
+    );
+    setUsers(viewUsers.data);
   };
 
   const months = [
@@ -87,56 +94,65 @@ const Home = (props) => {
       [e.target.name]: e.target.value,
     }));
 
-  const sold = actions.filter(
-    (act) =>
-      act.status === "sold" &&
-      getIdUser?._id === act.user?._id &&
-      act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
+  const getSalesMenSelected = (e) =>
+    setUserSelect((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+console.log(userSelect)
+
+
+  const sold = actions.filter((act) =>
+     userSelect.salesMenSelect === act.user?._id &&
+        act.status === "sold" &&
+        act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
+
+  console.log("SOLD", sold);
 
   const stockMarket = actions.filter(
     (act) =>
       act.direction === "gielda" &&
-      getIdUser._id === act.user._id &&
+      userSelect.salesMenSelect  === act.user._id &&
       act.nextContactData.slice(5, 7) === dataSelect.monthSelect
   ).length;
 
   const initiative = actions.filter(
     (act) =>
       act.direction === "inicjatywa" &&
-      getIdUser._id === act.user?._id &&
+      userSelect.salesMenSelect === act.user?._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
 
   const routeIn = actions.filter(
     (act) =>
       act.direction === "Klient-firma" &&
-      getIdUser._id === act.user._id &&
+      userSelect.salesMenSelect  === act.user._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
 
   const routeOut = actions.filter(
     (act) =>
       act.direction === "Firma-klient" &&
-      getIdUser._id === act.user._id &&
+      userSelect.salesMenSelect === act.user._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
 
   const recomendations = actions.filter(
     (act) =>
       act.direction === "rekomendacje" &&
-      getIdUser._id === act.user._id &&
+      userSelect.salesMenSelect === act.user._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
   const recomendationsInt = parseInt(recomendations);
 
-  const lostChance = actions.filter(
-    (act) =>
-      (act.status === "other" ||
-        act.status === "resignation" ||
-        act.status === "competition") &&
-      getIdUser._id === act.user._id &&
-      act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
+  const lostChance = actions.filter((act) =>
+    (act.status === "other" ||
+      act.status === "resignation" ||
+      act.status === "competition") &&
+    userSelect.salesMenSelect === act.user?._id &&
+        /*  getIdUser._id === act.user._id && */
+        act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
 
   const closeAction = async () => {
@@ -146,6 +162,7 @@ const Home = (props) => {
   useEffect(() => {
     getAct();
     getOffer();
+    getUsers();
 
     // eslint-disable-next-line
   }, []);
@@ -155,21 +172,32 @@ const Home = (props) => {
       <Container className="">
         <Menu />
         <span className="showUsers conatinerDataCompany">
-          <div className="tw-pb-3">
-            <Form.Floating className="mb-1">
+          <div className="twoSelectBoxFlex">
+            <Form.Floating className="twoSelectBox">
               <Form.Select
                 id="monthSelect"
                 defaultValue={nowMonth}
                 name="monthSelect"
                 onChange={getMonthSelected}
-                style={{
-                  borderRadius: "5px",
-                  border: "1px solid #ccc ",
-                }}
               >
-                <option value={nowMonth}>Wybierz ... </option>
+                <option value={nowMonth}>Wybierz miesiąc </option>
                 <option value={nowMonth}>Miesiąc bieżący</option>
                 <option value={prevMonth}>Miesiąc poprzedni</option>
+              </Form.Select>
+            </Form.Floating>
+            <Form.Floating className="twoSelectBox">
+              <Form.Select
+                id="slaesMenSelect"
+                defaultValue={getIdUser._id}
+                name="salesMenSelect"
+                onChange={getSalesMenSelected}
+              >
+                <option value={getIdUser._id}>Wybierz handlowca </option>
+                {users.map((user, index) => (
+                  <option key={index} value={user._id}>
+                    {user.name}{" "}
+                  </option>
+                ))}
               </Form.Select>
             </Form.Floating>
           </div>
@@ -182,6 +210,7 @@ const Home = (props) => {
               month={month}
               now={now}
               dataSelect={dataSelect}
+              userSelect={userSelect.salesMenSelect}
               getAct={getAct}
               sold={sold}
               recomendations={recomendationsInt}

@@ -31,13 +31,14 @@ module.exports = {
   },
 
   create: (req, res) => {
-    console.log(req.body)
+  
     let newUser = new User(req.body);
     newUser.save((err) => {
       if (err) {
         res.send("Błąd dodawania użytkownika");
       } else {
         res.json(newUser);
+        console.log("dodano")
       }
     });
   },

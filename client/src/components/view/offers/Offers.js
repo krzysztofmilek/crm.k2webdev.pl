@@ -109,7 +109,7 @@ const Offers = (props) => {
 
                     <td className="tableFontSize tw-items-center tw-justify-center">
                       <a
-                        href={`http://localhost:8081/offers/${use.fileName}`}
+                        href={process.env.REACT_APP_LOCALHOST+`/offers/${use.fileName}`}
                         target="_blank"
                         rel="noreferrer"
                       >

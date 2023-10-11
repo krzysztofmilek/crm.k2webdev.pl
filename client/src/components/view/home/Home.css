@@ -15,12 +15,23 @@
   padding-bottom: 0px;
   font-weight: 700;
 }
+.twoSelectBoxFlex{
+  display: flex;
+}
+.twoSelectBox{
+  margin:5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
 @media all and (max-width:992px) {
   .taskButtons{
     padding-top:5px;
     padding-bottom:5px;
     text-align:center;
+  }
+  .twoSelectBoxFlex{
+    display: block;
   }
   .android{
     width:100%;

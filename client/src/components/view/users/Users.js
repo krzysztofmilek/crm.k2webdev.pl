@@ -20,9 +20,32 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
 
+
   const [showToastAddUser, setShowToastAddUser] = useState(false);
   //eslint-disable-next-line
   const [showToastAddPlain, setShowToastAddPlain] = useState(false);
+  const addPlain  =  (id) => {
+  const plain = {
+    name: user.name,
+    id_user: id,
+    january: 0,
+    february: 0,
+    march: 0,
+    april: 0,
+    may: 0,
+    june: 0,
+    july: 0,
+    august: 0,
+    september: 0,
+    october: 0,
+    november: 0,
+    december: 0,
+  };
+
+ axios.post(process.env.REACT_APP_LOCALHOST + "plain/add", plain);
+  setShowToastAddPlain(true);
+}
+
 
   const addUser = async () => {
     const post = {
@@ -36,30 +59,16 @@ const Users = () => {
       isVerifed: "true",
     };
 
-    await axios.post(process.env.REACT_APP_LOCALHOST + "/user/addUser/", post);
+   const userAdd =  await axios.post(process.env.REACT_APP_LOCALHOST + "user/addUser/", post);
+   setUser(userAdd.data);
 
-    const plain = {
-      name: user.name,
-      id_user: user._id,
-      january: 0,
-      february: 0,
-      march: 0,
-      april: 0,
-      may: 0,
-      june: 0,
-      july: 0,
-      august: 0,
-      september: 0,
-      october: 0,
-      november: 0,
-      december: 0,
-    };
-
-    await axios.post(process.env.REACT_APP_LOCALHOST + "plain/add", plain);
-    getUsers();
-    setShowToastAddUser(true);
-    setShowToastAddPlain(true);
+   getUsers();
+   setShowToastAddUser(true);
+   addPlain(userAdd.data._id)
   };
+
+
+
 
   const getUser = (e) =>
     setUser((prevState) => ({
@@ -74,7 +83,7 @@ const Users = () => {
 
   const getUsers = async () => {
     const viewUsers = await axios.get(
-      process.env.REACT_APP_LOCALHOST + "user/allUser/"
+      process.env.REACT_APP_LOCALHOST + "user/allUser"
     );
     setUsers(viewUsers.data);
   };

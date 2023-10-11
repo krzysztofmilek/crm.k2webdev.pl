@@ -18,13 +18,6 @@ router.post("/register", async (req, res) => {
       return res
         .status(200)
         .send({ success: false, message: "Użytkownik istnieje" });
-    /*  const password = req.body.password;
-    console.log(password)
-    const salt = await bcrypt.genSalt(10);
-console.log(password)
-    const hashedPassword = await bcrypt.hash(password, salt);
-    req.body.password = hashedPassword;
-console.log(req.body.password) */
     const newuser = new User(req.body);
     const result = await newuser.save();
     await sendMail(result, "verify");
@@ -44,13 +37,10 @@ router.post("/login", async (req, res) => {
     console.log(user);
 
     if (user) {
-      console.log(req.body.password);
-      console.log(user.password);
-      const passwordsMached = await bcrypt.compare(
+        const passwordsMached = await bcrypt.compare(
         req.body.password,
         user.password
       );
-      console.log(passwordsMached);
       if (passwordsMached) {
         if (user.isVerifed) {
           const dataToFrontEnd = {

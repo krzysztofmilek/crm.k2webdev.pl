@@ -8,8 +8,8 @@ const app = express();
 app.use(cors());
 
 
- mongoose.connect("mongodb://127.0.0.1:27017/MERN-AUTH");  
-/* mongoose.connect("mongodb://mo1059_mern_auth:Jabadaba12@mongo57.mydevil.net:27017/mo1059_mern_auth"); */
+/*  mongoose.connect("mongodb://127.0.0.1:27017/MERN-AUTH");  */ 
+ mongoose.connect("mongodb://mo1059_mern_auth:Jabadaba12@mongo57.mydevil.net:27017/mo1059_mern_auth"); 
 
 const port = 8081;
 

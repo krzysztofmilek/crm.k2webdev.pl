@@ -35,20 +35,47 @@ const OffertCarPrint = (props) => {
     documentTitle: documentName,
 
     onAfterPrint: () => {
-      addOffer();
+    addOffer();
+//      generatePDF()
 
     },
   });
 
 
   const getUser = async () => {
-    // const user_jwt = JSON.parse(localStorage.getItem("user"));
     const getUserData = await axios.get(
       process.env.REACT_APP_LOCALHOST + "user/findData/" + props.user._id
     );
 
     setUser(getUserData.data);
   };
+
+  const generatePDF = async () => {
+    const pos = {
+      data: getFullDate,
+      addEquipOneName: props.state.addEquipOneName,
+      addEquipOnePrice: props.state.addEquipOnePrice,
+      addEquipTwoName: props.state.addEquipTwoName,
+      addEquipTwoPrice: props.state.addEquipTwoPrice,
+      addEquipThreeName: props.state.addEquipThreeName,
+      addEquipThreePrice: props.state.addEquipThreePrice,
+      scontoCash: props.state.scontoCash,
+      addInfo: props.state.addInfo,
+      fileName: documentName,
+      status: "open",
+      user: props.user._id,
+      customer: props.state.customer?._id,
+      car: props.state.car._id,
+      action: props.state.action?._id,
+    };
+   
+    axios.post(
+      process.env.REACT_APP_LOCALHOST + "offer/geneatePDF/",
+      pos
+  
+       );console.log(pos)
+  };
+
   const addOffer = async () => {
     const pos = {
       data: getFullDate,
@@ -72,6 +99,11 @@ const OffertCarPrint = (props) => {
       process.env.REACT_APP_LOCALHOST + "offer/add",
       pos
     );
+    axios.post(
+      process.env.REACT_APP_LOCALHOST + "offer/geneatePDF/",
+      pos
+    )
+
   };
 
   const pageStyles = () => {

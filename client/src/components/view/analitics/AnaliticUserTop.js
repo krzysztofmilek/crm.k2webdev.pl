@@ -11,8 +11,8 @@ const AnaliticUserTop = (props) => {
   //eslint-disable-next-line
   const [soldData, setSoldData] = useState([]);
 
-  const getName = JSON.parse(localStorage.getItem("user"));
-  const userName = getName.name;
+  const getUSerLogIn = JSON.parse(localStorage.getItem("user"));
+  const user_id = getUSerLogIn._id;
 
   const getData = async () => {
     const viewOffer = await axios.get(
@@ -30,24 +30,18 @@ const AnaliticUserTop = (props) => {
     );
     setAction(getAction.data);
 
-    const solds = action.filter(
-      (act) =>
-        act.status === "sold" &&
-        props.getIdUser._id === act.user?._id &&
-        act.nextContactData.slice(5, 7) === props.dataSelect?.monthSelect
-    );
-    setSoldData(solds.length);
+  
   };
 
   const actionAll = action.filter(
     (act) =>
-      props.getIdUser._id === act.user?._id &&
+    (props.userSelect === undefined)? ( props.getIdUser._id === act.user?._id) : (props.userSelect=== act.user?._id) &&
       act.nextContactData.slice(5, 7) === props.dataSelect?.monthSelect
   ).length;
 
   const offerAll = offer.filter(
     (act) =>
-      props.getIdUser._id === act.user?._id &&
+     (props.userSelect === undefined)? ( props.getIdUser._id === act.user?._id) : (props.userSelect=== act.user?._id) &&
       act.data.slice(5, 7) === props.dataSelect?.monthSelect
   ).length;
 
@@ -61,9 +55,10 @@ const AnaliticUserTop = (props) => {
 const effectivenessToInt = parseInt(effectiveness) || 0;
 
 
-
 const salespersonInitiative = (props.recomendations + props.initiative + props.stockMarket+ props.routeIn) 
 const companyInitiative = (props.routeOut)
+console.log(salespersonInitiative)
+console.log(companyInitiative)
   useEffect(() => {
     getData();
 
@@ -102,13 +97,14 @@ const companyInitiative = (props.routeOut)
                   Sprzedaż :
                   {data
                     .filter((act) => {
-                      return act.name === userName;
+                      return (props.userSelect === undefined)?  act.id_user === user_id  : act.id_user === props.userSelect
                     })
                     .map((act, index) => (
                       <span key={index} className="tw-p-2">
-                        {props.dataSelect?.monthSelect === props.now
-                          ? act[props.month]<props.sold ? <span className="green bold">{act[props.month]}</span>:<span className="red bold">{act[props.month]}</span>
-                          : act[props.monthPrev]<props.sold ? <span className="green bold">{act[props.monthPrev]}</span>:<span className="red bold">{act[props.monthPrev]}</span>
+                        {props.dataSelect?.monthSelect === props.now 
+                        
+                          ? act[props.month]<=props.sold ? <span className="green bold">{act[props.month]}</span>:<span className="red bold">{act[props.month]}</span>
+                          : act[props.monthPrev] <= props.sold ? <span className="green bold">{act[props.monthPrev]}</span>:<span className="red bold">{act[props.monthPrev]}</span>
                         }
                       </span>
                     ))}
