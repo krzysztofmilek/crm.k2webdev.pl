@@ -21,6 +21,7 @@ const CustomerCard = (props) => {
   const [showToastAlertEmail, setShowToastAlertEmail] = useState(false);
   const [token, setToken] = useState({});
   const chance = props.state?.customer;
+  
 
   const checkChance = () => {
     if (chance === undefined || " ") {
@@ -197,6 +198,7 @@ const CustomerCard = (props) => {
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
+
                 className="inputField"
                 placeholder="Nazwa firmy"
                 name="nameCompany"

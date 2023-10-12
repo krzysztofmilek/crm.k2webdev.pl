@@ -5,7 +5,6 @@ import "./Print.css";
 import { FooterPrint } from "./FooterPrint";
 import axios from "axios";
 
-
 const OffertCarPrint = (props) => {
   const [showAdd, setShowAdd] = useState({});
   const [showSconto, setShowSconto] = useState({});
@@ -20,7 +19,8 @@ const OffertCarPrint = (props) => {
 
   const preGetMonth = getFullDate.getMonth();
   const preGetMonthAddOne = preGetMonth + 1;
-  const getMonth = preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : "";
+  const getMonth =
+    preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : preGetMonthAddOne;
   const getYear = getFullDate.getFullYear();
   const dateSubString = getYear + "-" + getMonth + "-" + getDay;
   const getDate = dateSubString.toString();
@@ -35,12 +35,10 @@ const OffertCarPrint = (props) => {
     documentTitle: documentName,
 
     onAfterPrint: () => {
-    addOffer();
-//      generatePDF()
-
+      addOffer();
+      generateAndSavePDF();
     },
   });
-
 
   const getUser = async () => {
     const getUserData = await axios.get(
@@ -50,30 +48,38 @@ const OffertCarPrint = (props) => {
     setUser(getUserData.data);
   };
 
-  const generatePDF = async () => {
-    const pos = {
-      data: getFullDate,
-      addEquipOneName: props.state.addEquipOneName,
-      addEquipOnePrice: props.state.addEquipOnePrice,
-      addEquipTwoName: props.state.addEquipTwoName,
-      addEquipTwoPrice: props.state.addEquipTwoPrice,
-      addEquipThreeName: props.state.addEquipThreeName,
-      addEquipThreePrice: props.state.addEquipThreePrice,
-      scontoCash: props.state.scontoCash,
-      addInfo: props.state.addInfo,
-      fileName: documentName,
-      status: "open",
-      user: props.user._id,
-      customer: props.state.customer?._id,
-      car: props.state.car._id,
-      action: props.state.action?._id,
-    };
-   
-    axios.post(
-      process.env.REACT_APP_LOCALHOST + "offer/geneatePDF/",
-      pos
-  
-       );console.log(pos)
+  const generateAndSavePDF = async () => {
+
+    setTimeout(() => {
+      const pdfBlob = new Blob(
+        [document.getElementById("getElementToPdf").innerHTML],
+        { type: "application/pdf" }
+      );
+      const formData = new FormData();
+      formData.append("pdfFile", pdfBlob, documentName);
+      formData.append("fileName", documentName); // Dodaj nazwę pliku jako część danych
+      
+
+      axios
+        .post(
+          process.env.REACT_APP_LOCALHOST + "upload/generatePDF",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((response) => {
+          console.log("Plik PDF został zapisany na serwerze:", response.data);
+        })
+        .catch((error) => {
+          console.error(
+            "Błąd podczas zapisywania pliku PDF na serwerze:",
+            error
+          );
+        });
+    }, 1000);
   };
 
   const addOffer = async () => {
@@ -94,16 +100,8 @@ const OffertCarPrint = (props) => {
       car: props.state.car._id,
       action: props.state.action?._id,
     };
-   
-    axios.post(
-      process.env.REACT_APP_LOCALHOST + "offer/add",
-      pos
-    );
-    axios.post(
-      process.env.REACT_APP_LOCALHOST + "offer/geneatePDF/",
-      pos
-    )
 
+    axios.post(process.env.REACT_APP_LOCALHOST + "offer/add", pos);
   };
 
   const pageStyles = () => {

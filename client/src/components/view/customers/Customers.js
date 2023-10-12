@@ -51,7 +51,7 @@ const Customers = (props) => {
 
       <div className="tw-w-full tw-min-h-[90%] ">
       <div className="conatinerDataCompany">
-        <p className="tittle">Dodaj nowego Klienta</p>
+        <p className="tittle">Pobierz istniejącego Klienta</p>
         <hr />
         <CustomerCard
           getCustomers={props.getCustomers}
@@ -61,7 +61,7 @@ const Customers = (props) => {
           setShow={setShow}
           showClass="hidden"
           showClassButton="show"
-        />
+          diasbled="diasabled"       />
            </div>
       </div>
       <div className="down">
@@ -82,39 +82,7 @@ const Customers = (props) => {
                       </Button>
                     </div>
                   </form>
-        <Table variant="light" striped bordered hover>
-          <thead>
-            <tr>
-              <td>
-                <div className="inputGroup">
-                  <form id="formSearch" className="formSearch">
-                    <span className="imgSearchBackground">
-                      
-                      <img
-                        className="imgSearch"
-                        src="https://img.icons8.com/small/null/find-user-male.png"
-                        alt="znajdz"
-                      />
-                    </span>
-                    <input
-                      type="text"
-                      className="input_Search"
-                      name="inputSearch"
-                      id="inputSearch"
-                      onChange={findCustomer}
-                    />
-
-                    <div className="getCenterReset">
-                      <Button variant="outline-success" onClick={clear}>
-                        Reset
-                      </Button>
-                    </div>
-                  </form>
-                </div>
-              </td>
-            </tr>
-          </thead>
-        </Table>
+  
 
         <p className="tittle">Lista Klientów</p>
         <hr />

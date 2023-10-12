@@ -24,7 +24,6 @@ const Home = (props) => {
   const start = new Date().toISOString().substring(0, 10);
   const propsMonth = start.slice(5, 7);
   const now = propsMonth.toString();
-
   const [dataSelect, setDataSelect] = useState({ monthSelect: now });
 
   const getDataAction = (act) => {
@@ -185,6 +184,8 @@ console.log(userSelect)
                 <option value={prevMonth}>Miesiąc poprzedni</option>
               </Form.Select>
             </Form.Floating>
+
+            {getIdUser.access ? (
             <Form.Floating className="twoSelectBox">
               <Form.Select
                 id="slaesMenSelect"
@@ -199,7 +200,7 @@ console.log(userSelect)
                   </option>
                 ))}
               </Form.Select>
-            </Form.Floating>
+            </Form.Floating>): null}
           </div>
           <div className="">
             <AnaliticUserTop

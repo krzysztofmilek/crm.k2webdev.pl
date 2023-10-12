@@ -44,6 +44,7 @@ const uploadImage = multer({ storage: storage });
 
 const uploadCustomerFile = multer({ dest: "public/import/importCustomerFile" });
 const upload = multer({ dest: "public/import/importExcelChance/" });
+const uploadPdf =  multer({ dest: "public/offers" });
 const nameFile = "data.xlsx";
 /* fs.readdirSync(__dirname).forEach(file => {
   console.log(file)});  wyświtlanie zawartośi bieżącego katalogu */
@@ -78,7 +79,7 @@ router.post(
         res.status(200).json(excelData);
     
        axios.post("http://scooter.k2webdev.pl/temp/add",excelData)
-       console.log("dodano")
+      
       }
     } catch (error) {
       res.status(500);
@@ -108,5 +109,17 @@ router.post(
     }
   }
 );
+
+
+router.post("/generatePDF", uploadPdf.single("pdfFile"), (req, res) => {
+  const fileName = req.body.fileName; // Pobierz nazwę pliku z przesłanych danych
+  const pdfFile = req.file;
+  console.log(req.body)
+
+  // Zapisz plik używając prawidłowej nazwy (zawartej w fileName) i rozszerzenia .pdf
+  fs.renameSync(pdfFile.path, `public/offers/${fileName}.pdf`);
+
+  res.status(200).send("Plik PDF został pomyślnie zapisany.");
+});
 
 module.exports = router;

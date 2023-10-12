@@ -162,6 +162,31 @@ const Offers = (props) => {
                         />
                       </Button>
                     </td>
+                    <td>
+                      <Button
+                        variant="link"
+                        size="sm"
+                        className="btn-small"
+                        as={Link}
+                        to="/jspdf"
+                        state={{
+                          car: use.car,
+                          customer: use.customer,
+                          user: props.user,
+                          addEquipOnePrice: use.addEquipOnePrice,
+                          scontoCash: use.scontoCash,
+                          addEquipOneName: use.addEquipOneName,
+                          addEquipThreeName: use.addEquipThreeName,
+                          addEquipThreePrice: use.addEquipThreePrice,
+                          addEquipTwoName: use.addEquipTwoName,
+                          addEquipTwoPrice: use.addEquipTwoPrice,
+                          addInfo: use.addInfo,
+            
+                        }}
+                      >
+                       JSPDF
+                      </Button>
+                    </td>
                   </tr>
                 ))}
             </tbody>

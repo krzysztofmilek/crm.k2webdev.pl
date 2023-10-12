@@ -38,7 +38,7 @@ module.exports = {
         res.send("Błąd dodawania użytkownika");
       } else {
         res.json(newUser);
-        console.log("dodano")
+    
       }
     });
   },

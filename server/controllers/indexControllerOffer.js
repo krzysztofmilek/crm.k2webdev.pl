@@ -1,6 +1,8 @@
 const Offer = require("../models/OfferModel");
 const Action = require("../models/ActionModel");
 
+
+
 module.exports = {
   allOffer: (req, res) => {
     Offer.find(req.query)
@@ -70,7 +72,5 @@ module.exports = {
   },
 
 
-  generatePDF: (req, res) => {
-   console.log("Jebać pis:", req.body)
-  },
+
 };

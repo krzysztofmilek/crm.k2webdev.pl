@@ -18,6 +18,7 @@ import Warehouse from "../view/warehouse/Warehouse";
 import AddCar from "../view/warehouse/car/AddCar";
 import Offers from "../view/offers/Offers";
 
+
 import { useLocation } from "react-router-dom";
 import OffertCarPrint from "../view/print/OffertCarPrint";
 
@@ -86,6 +87,7 @@ function AppR(props) {
             </ProtectorRouts>
           }
         />
+ 
         <Route
           path="/addcar"
           element={

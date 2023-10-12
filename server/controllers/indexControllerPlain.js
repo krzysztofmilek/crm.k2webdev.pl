@@ -16,7 +16,6 @@ module.exports = {
     let newPlain = new Plain(req.body);
     newPlain.save();
     res.json(newPlain);
-    console.log(newPlain)
   },
 
   plainDelete: (req, res) => {
