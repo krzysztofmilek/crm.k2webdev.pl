@@ -117,7 +117,7 @@ router.post("/generatePDF", uploadPdf.single("pdfFile"), (req, res) => {
   console.log(req.body)
 
   // Zapisz plik używając prawidłowej nazwy (zawartej w fileName) i rozszerzenia .pdf
-  fs.renameSync(pdfFile.path, `public/offers/${fileName}.pdf`);
+  fs.renameSync(pdfFile.path, `public/offers/${fileName}`);
 
   res.status(200).send("Plik PDF został pomyślnie zapisany.");
 });

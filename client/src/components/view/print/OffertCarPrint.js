@@ -4,6 +4,9 @@ import { Button, Row, Col } from "react-bootstrap";
 import "./Print.css";
 import { FooterPrint } from "./FooterPrint";
 import axios from "axios";
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import Html2Pdf from 'js-html2pdf';
 
 const OffertCarPrint = (props) => {
   const [showAdd, setShowAdd] = useState({});
@@ -33,10 +36,19 @@ const OffertCarPrint = (props) => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: documentName,
-
+    print: async (printIframe) => {
+      const document = printIframe.contentDocument;
+      if (document) {
+        const html = document.getElementById("getElementToPdf");
+        console.log(html);
+        const exporter = new Html2Pdf(html,{filename:documentName});
+        exporter.getPdf(true);
+      }
+    },
     onAfterPrint: () => {
       addOffer();
       generateAndSavePDF();
+    
     },
   });
 
@@ -48,8 +60,9 @@ const OffertCarPrint = (props) => {
     setUser(getUserData.data);
   };
 
-  const generateAndSavePDF = async () => {
+ 
 
+  const generateAndSavePDF = async () => {
     setTimeout(() => {
       const pdfBlob = new Blob(
         [document.getElementById("getElementToPdf").innerHTML],
@@ -57,9 +70,7 @@ const OffertCarPrint = (props) => {
       );
       const formData = new FormData();
       formData.append("pdfFile", pdfBlob, documentName);
-      formData.append("fileName", documentName); // Dodaj nazwę pliku jako część danych
-      
-
+      formData.append("fileName", documentName); // Dodaj nazwę pliku jako część danych     
       axios
         .post(
           process.env.REACT_APP_LOCALHOST + "upload/generatePDF",
@@ -80,7 +91,7 @@ const OffertCarPrint = (props) => {
           );
         });
     }, 1000);
-  };
+  }; 
 
   const addOffer = async () => {
     const pos = {

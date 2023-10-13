@@ -17,6 +17,7 @@ import Chance from "../view/chance/Chance";
 import Warehouse from "../view/warehouse/Warehouse";
 import AddCar from "../view/warehouse/car/AddCar";
 import Offers from "../view/offers/Offers";
+import JsPdf from "../view/print/JsPdf";
 
 
 import { useLocation } from "react-router-dom";
@@ -87,6 +88,14 @@ function AppR(props) {
             </ProtectorRouts>
           }
         />
+          <Route
+          path="/jspdf"
+          element={
+            <ProtectorRouts>
+              <JsPdf state={location.state} user={user} />
+            </ProtectorRouts>
+          }
+        />
  
         <Route
           path="/addcar"
@@ -136,6 +145,7 @@ function AppR(props) {
             </ProtectorRouts>
           }
         />
+
         <Route
           path="/chance"
           element={
