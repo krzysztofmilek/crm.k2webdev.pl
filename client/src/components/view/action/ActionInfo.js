@@ -11,7 +11,7 @@ const ActionInfo = (props) => {
   const [token, setToken] = useState({});
 
   const getIdUser = JSON.parse(localStorage.getItem("user"));
-
+console.log((props))
 
   useEffect(() => {
     setToken(getIdUser);

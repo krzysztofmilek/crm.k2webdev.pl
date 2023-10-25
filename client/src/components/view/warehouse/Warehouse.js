@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Container, Button, Tab, Tabs, Table } from "react-bootstrap";
 import Menu from "../menu/Menu";
-import Footer from "../footer/Footer";
+import UserLogin from "../auth/UserLogin";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import OverlayTrig from "../../overLay/OverlayTrig";
@@ -30,6 +30,7 @@ const Warehouse = (props) => {
   // eslint-disable-next-line
   const [action, setAction] = useState([props.state?.idAction]);
   const [search, setSearch] = useState([]);
+  const getIdUser = JSON.parse(localStorage.getItem("user"));
 
   const clear = () => {
     setSearch("");
@@ -117,10 +118,17 @@ const Warehouse = (props) => {
   }, []);
 
   return (
-    <span className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-      <Container>
-        <Menu />
-        <div className="conatinerDataCompany">
+    <span className="tw-flex tw-w-full">
+    <div className="colNav">
+      <Menu />
+    </div>
+
+    <Container>
+      <div className="textTopUser">
+        <UserLogin getIdUser={getIdUser} />
+      </div>
+      <div className="customerBoxPadding">
+
           <p className="tittle">Magazyn</p>
           <hr />
           <Tabs
@@ -273,11 +281,12 @@ const Warehouse = (props) => {
               </div>
             </Tab>
           </Tabs>
+        
         </div>
-      </Container>
-
-      <Footer />
-    </span>
+   
+   </Container>
+ {/*   <div className="tw-w-[200px]">TEST</div> */}
+ </span>
   );
 };
 

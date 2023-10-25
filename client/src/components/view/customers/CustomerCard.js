@@ -21,7 +21,6 @@ const CustomerCard = (props) => {
   const [showToastAlertEmail, setShowToastAlertEmail] = useState(false);
   const [token, setToken] = useState({});
   const chance = props.state?.customer;
-  
 
   const checkChance = () => {
     if (chance === undefined || " ") {
@@ -111,7 +110,7 @@ const CustomerCard = (props) => {
       [e.target.NIP]: e.target.value,
       [e.target.nameCompany]: e.target.value,
     }));
-
+  console.log(props);
   useEffect(() => {
     setToken(getIdUser);
     checkChance();
@@ -119,7 +118,7 @@ const CustomerCard = (props) => {
   }, []);
 
   return (
-    <div className="getLeft">
+    <div className="getCenter">
       <Toasts
         bodyBackground="success"
         className="text-white"
@@ -164,10 +163,7 @@ const CustomerCard = (props) => {
 
       <Form>
         <Row className="mb-0">
-          <Form.Group
-            as={Col}
-            md="4" // controlId="validationCustom01"
-          >
+        <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 required
@@ -191,14 +187,10 @@ const CustomerCard = (props) => {
             </Form.Floating>
           </Form.Group>
 
-          <Form.Group
-            as={Col}
-            md="4" //controlId="validationCustom02"
-          >
+          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
-
                 className="inputField"
                 placeholder="Nazwa firmy"
                 name="nameCompany"
@@ -216,7 +208,7 @@ const CustomerCard = (props) => {
             </Form.Floating>
           </Form.Group>
 
-          <Form.Group as={Col} md="4">
+          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
@@ -232,12 +224,8 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-        </Row>
-        <Row className="mb-0">
-          <Form.Group
-            as={Col}
-            md="4" //controlId="validationCustom04"
-          >
+      
+          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 className="inputField"
@@ -260,7 +248,9 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-          <Form.Group as={Col} md="4">
+          </Row>
+        <Row className="mb-0">
+        <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
@@ -282,7 +272,7 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-          <Form.Group as={Col} md="4">
+          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 //className="tw-hidden"
@@ -304,9 +294,8 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-        </Row>
-        <Row className="mb-3">
-          <Form.Group as={Col} md="4">
+  
+          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
@@ -322,7 +311,7 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-          <Form.Group as={Col} md="4">
+          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
             <Form.Floating>
               <Form.Control
                 type="text"
@@ -340,11 +329,13 @@ const CustomerCard = (props) => {
           </Form.Group>
         </Row>
         <Row className="mb-1">
-          <Form.Group as={Col} md="5">
+          <Form.Group as={Col} md="12">
             <Form.Check
               type="switch"
               label="Wyrażam zgodę na przetwarzanie marketingowe"
               className="textCustomer"
+              style={{textAlign: "left",
+            fontSize:"0.9em"}}
               required
               name="agreement1"
               id="agreement1"
@@ -353,32 +344,11 @@ const CustomerCard = (props) => {
                 addCustomer.agreement_1 || props.getCustomer?.agreement_1 || ""
               }
             />
-            {/*          <label htmlFor="agreement_1" className="">Wyrażam zgodę na przetwarzanie marketingowe</label> */}
           </Form.Group>
-          <Form.Group as={Col} md="3" className="top">
-            <Button
-              variant="outline-success"
-              onClick={add}
-              className={props.showClass}
-            >
-              Zapisz
-            </Button>
-            <ButtonGroup></ButtonGroup>
-          </Form.Group>
-          <Form.Group as={Col} md="4" className="top">
+          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3" className="top">
             <Button
               className={props.showClass}
-              variant="outline-success"
-              as={Link}
-              disabled={show}
-              to="/action"
-              state={{ customer: newCustomer, token: token, getDate: getDate }}
-              style={{ pointerEvents: show ? "none" : "auto" }}
-            >
-              Dalej
-            </Button>
-            <Button
-              className={props.showClassButton}
+              //className="show"
               variant="outline-success"
               as={Link}
               disabled={!props.showButton}
@@ -389,13 +359,13 @@ const CustomerCard = (props) => {
                 getDate: getDate,
               }}
               style={{
-                pointerEvents: props.show ? "none" : "auto",
+                pointerEvents: props.showButton ? "auto" : "none",
                 background: props.showButton ? "green" : "white",
                 color: props.showButton ? "white" : "green",
               }}
             >
               {props.showButton ? (
-                "Dalej"
+                "Pierwszy Dalej"
               ) : (
                 <OverlayTrigText
                   toltip="Aby uaktywnić przycisk :  Pobierz dane Klienta"
@@ -405,6 +375,7 @@ const CustomerCard = (props) => {
             </Button>
           </Form.Group>
         </Row>
+        
       </Form>
     </div>
   );

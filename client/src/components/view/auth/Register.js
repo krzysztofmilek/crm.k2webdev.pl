@@ -27,20 +27,20 @@ function Register() {
     e.preventDefault();
 
     if (!name || !email || !password || !position) {
-      return toast.error("All fields are required");
+      return toast.error("Wszystkie pola są wymagane");
     }
     if (password.length < 6) {
-      return toast.error("Password must be up to 6 characters");
+      return toast.error("Hasło musi zawierać minimum 6 znaków");
     }
     if (!validateEmail(email)) {
       setEmailTrue(false);
-      return toast.error("Please enter a valid email");
+      return toast.error("Proszę wprowadzić prawidłowy email");
     } else {
       setEmailTrue(true);
     }
 
     if (password !== confirmPassword) {
-      return toast.error("Passwords do not match");
+      return toast.error("Hasła nie są takie same");
     }
 
     if (password === confirmPassword) {
@@ -67,10 +67,10 @@ function Register() {
         }
       } catch (error) {
         toast.dismiss();
-        toast.error("Somtingh went wrong...");
+        toast.error("Błąd logowania...");
       }
     } else {
-      toast.error("Password not match");
+      toast.error("Hasła nie zgadzają się");
     }
   };
 
@@ -103,76 +103,131 @@ function Register() {
   }, [password]);
   return (
     <div className="tw-flex tw-w-full tw-flex-row tw-justify-center tw-items-center tw-h-screen bg">
-      <div className="tw-w-[400px] tw-flex tw-space-y-5 tw-flex-col tw-p-5 borderTurkuse tw-rounded-lg">
-        <lottie-player
-          src=" https://assets3.lottiefiles.com/temp/lf20_ODCUyx.json"
-          background="transparent"
-          speed="1"
-          loop
-          style={{ hight: 250 + "px" }}
-          autoplay
-        ></lottie-player>
+      <div className="tw-w-[330px] tw-flex tw-space-y-5 tw-flex-col tw-p-5 borderTurkuse tw-rounded-lg">
+   
 
         <h1 className="tw-font-semibold tw-text-2xl tw-uppercase turkuse tw-text-center">
           Formularz rejestracji
         </h1>
-        <input
-          type="text"
-          className="tw-py-2 tw-px-3 tw-border tw-border-secondary focus:tw-outline-none tw-w-full tw-rounded-3xl focus:tw-ring-0  focus:tw-border-secondary"
-          placeholder="imię nazwisko"
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        />
-        <input
-          type="text"
-          className="tw-py-2 tw-px-3 tw-border tw-border-secondary focus:tw-outline-none tw-w-full tw-rounded-3xl focus:tw-ring-0  focus:tw-border-secondary"
-          placeholder="stanowisko"
-          onChange={(e) => setPosition(e.target.value)}
-          value={position}
-        />
+  
+ <div className="tw-flex tw-w-full tw-flex-row ">
+                   <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0 tw-bg-white ">
+                <img
+                  className="imgLoginUser"
+                  src="https://img.icons8.com/pastel-glyph/32/person-male--v1.png"
+                  alt="Hasło"
+                />
+              </span>
 
-        <input
-          type="text"
-          className="tw-py-2 tw-px-3 tw-border tw-border-secondary focus:tw-outline-none tw-w-full tw-rounded-3xl focus:tw-ring-0  focus:tw-border-secondary"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-        <input
-          type="password"
-         /*  className=" borderTurkuse border-radius: 25px" */
-          className="tw-py-2 tw-px-3  tw-border tw-border-secondary focus:tw-outline-none tw-w-full tw-rounded-3xl focus:tw-ring-0  focus:tw-border-secondary"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-        <input
-          type="password"
-          className="tw-py-2 tw-px-3 tw-border tw-border-secondary focus:tw-outline-none tw-w-full tw-rounded-3xl focus:tw-ring-0  focus:tw-border-secondary"
-          placeholder="confirm password"
+
+
+              <input
+                type="text"
+                className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary"
+                placeholder="imię nazwisko"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+              />
+            </div>
+
+
+            <div className="tw-flex tw-w-full tw-flex-row ">
+                   <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0 tw-bg-white ">
+                <img
+                  className="imgLoginUser"
+                  src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/32/external-users-cv-resume-flatart-icons-outline-flatarticons.png"
+                  alt="position"
+                />
+              </span>
+
+            <input
+                type="text"
+                className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary"
+                placeholder="stanowisko"
+                onChange={(e) => setPosition(e.target.value)}
+                value={position}
+              />
+            </div>
+
+            <div className="tw-flex tw-w-full tw-flex-row ">
+                   <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0 tw-bg-white ">
+                <img
+                  className="imgLoginUser"
+                  src="https://img.icons8.com/pastel-glyph/32/email--v2.png"
+                  alt="Hasło"
+                />
+              </span>
+
+
+
+
+              <input
+                type="text"
+                className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary"
+                placeholder="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </div>
+
+            <div className="tw-flex tw-w-full tw-flex-row ">
+                   <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0 tw-bg-white ">
+                <img
+                  className="imgLoginUser"
+                  src="https://img.icons8.com/windows/32/null/user-lock--v1.png"
+                  alt="Hasło"
+                />
+              </span>
+
+              <input
+                type="password"
+                className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary"
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </div>
+
+            
+            <div className="tw-flex tw-w-full tw-flex-row ">
+                   <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0 tw-bg-white ">
+                <img
+                  className="imgLoginUser"
+                  src="https://img.icons8.com/windows/32/null/user-lock--v1.png"
+                  alt="Hasło"
+                />
+              </span>
+
+              <input
+                type="password"
+                className="tw-py-2  tw-px-2 tw-border tw-border-secondary   tw-rounded-r-3xl tw-w-full  tw-border-l-white tw-border-l-0 focus:tw-ring-0  focus:tw-border-secondary"
+                placeholder="confirm password"
           onChange={(e) => setConfirmPassword(e.target.value)}
           value={confirmPassword}
-        />
+              />
+            </div>
+
+
 
         <div className="tw-flex tw-text-xs tw-flex-col tw-w-full tw-border-0 tw-ps-3">
          
           <span className=" tw-text-white"> weryfikacja hasła</span>
-          <span className="form-list tw-flex tw-flex-row ">
+          <span className="form-list tw-flex tw-flex-col tw-p-0  tw-b-0">
            
-            <span className={`${uCase} tw-flex tw-flex-col tw-text-secondary`}>
-              &nbsp;duże i małe •
+            <span className={`${uCase}  tw-text-secondary`}>
+              &nbsp;duże i małe litery
             </span>
 
-            <span className={`${num} tw-flex tw-flex-col tw-text-secondary`}>
-              &nbsp;cyfra •
+            <span className={`${num}   tw-text-secondary`}>
+              &nbsp;cyfra 
             </span>
 
-            <span className={`${sChar} tw-flex tw-flex-row tw-text-secondary`}>
-              &nbsp;znak specjalny •
+            <span className={`${sChar}   tw-text-secondary`}>
+              &nbsp;znak specjalny
             </span>
 
             <span
-              className={`${passLength} tw-flex tw-flex-row tw-text-secondary`}
+              className={`${passLength}  tw-text-secondary`}
             >
               &nbsp;min. 6 znaków
             </span>
@@ -187,7 +242,7 @@ function Register() {
             Zaloguj się
           </Link>
           <button
-              className="tw-py-1 tw-px-5 tw-text-white tw-bg-primary  tw-uppercase tw-rounded-3xl"
+              className="tw-text-white  tw-uppercase  tw-text-xs hover:tw-underline"
             onClick={registerUser}
           >
             Zarejestruj się

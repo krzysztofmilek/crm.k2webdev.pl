@@ -15,9 +15,7 @@
  
  
   }
-  .btn{
-    width:50px;
-  }
+
   .settingsInlineBox{
     display: inline-flex;
   }
@@ -57,14 +55,7 @@ display: block;
   text-transform: uppercase;
 }
 
-.conatinerDataCompany {
-  border: 1px solid #CCC;
-  border-radius: 10px;
-  padding: 25px;
-  margin-top: 35px;
-  width: 100%;
-  
-}
+
 .custom-file-input:focus~.custom-file-label {
   border-color: none;
   box-shadow: none;
@@ -81,11 +72,11 @@ h1{
 
 
   @media all and (max-width:992px) {
-    .conatinerDataCompany{
+ /*    .conatinerDataCompany{
       border:0px;
       padding: 0px;
       margin-top: 5px;
-    }
+    } */
     .inputUser{
       margin: 0px 0px 0px 0px;
     }

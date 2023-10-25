@@ -59,6 +59,9 @@
 .input_Search:focus {
     outline: none;
   }
+  .show{
+    display: block!important;
+  }
 
   
   .getCenterReset {

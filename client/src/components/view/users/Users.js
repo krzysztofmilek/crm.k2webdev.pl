@@ -12,8 +12,7 @@ import ModalEditUserPremission from "../../modals/ModalEditUserPremission";
 import Menu from "../menu/Menu";
 import UserTable from "./UserTable";
 import "./Users.css";
-import Footer from "../footer/Footer";
-
+import UserLogin from "../auth/UserLogin";
 import Toasts from "../../toasts/Toasts";
 
 const Users = () => {
@@ -24,6 +23,7 @@ const Users = () => {
   const [showToastAddUser, setShowToastAddUser] = useState(false);
   //eslint-disable-next-line
   const [showToastAddPlain, setShowToastAddPlain] = useState(false);
+  const getIdUser = JSON.parse(localStorage.getItem("user"));
   const addPlain  =  (id) => {
   const plain = {
     name: user.name,
@@ -95,7 +95,7 @@ const Users = () => {
   }, []);
 
   return (
-    <span className="tw-block">
+    <span className="tw-flex tw-w-full">
       <Toasts
         bodyBackground="success"
         className="text-white"
@@ -105,19 +105,25 @@ const Users = () => {
         setShowWindow={setShowToastAddUser}
       />
 
-      <Container className="">
+
+      <div className="colNav">
         <Menu />
-        <div className="conatinerDataCompany">
-          <div className="tableFontSize">
-            <div className="hiddenMobile">
+      </div>
+
+      <Container>
+        <div className="textTopUser">
+          <UserLogin getIdUser={getIdUser} />
+        </div>
+        <div className="customerBoxPadding hiddenPlain">
+          <div className="">
               <p className="tittle">ustal plan</p>
               <hr />
 
               <UserTable getUsers={getUsers} />
             </div>
           </div>
-        </div>
-        <div className="conatinerDataCompany">
+      
+        <div className="conatinerDataCompany conatinerDataCompanyPaddingMedia">
           <p className="tittle">Dodaj nowego użytkownika</p>
           <hr />
           <Form>
@@ -274,10 +280,12 @@ const Users = () => {
                   ))}
               </tbody>
             </Table>
-          </div>
+           </div>
         </div>
+   
+        
       </Container>
-      <Footer />
+    
     </span>
   );
 };

@@ -25,13 +25,18 @@ textarea {
     margin-top:25px;
     margin-bottom: 0px;
 }
+.buttonAction{
+  text-align: center;
+  margin-top:10px;
+  margin-bottom: 10px;
 
+}
   .formAction{
-    margin-top: 25px;
-    border-radius: 1px solid red;
+    margin: 20px;
+
   }
   .inputAction {
-    width: 90%;
+    width: 100%;
     padding: .35rem 0.75rem;
      display: flex;
     border: 1px solid #ccc;
@@ -91,7 +96,7 @@ textarea {
   }
 
   .titleInputActionInfo{
-    font-size: 0.9em !important;
+    font-size: 0.6em !important;
     text-transform: uppercase;
     margin-top: 5px !important;
     margin-bottom: 0px;

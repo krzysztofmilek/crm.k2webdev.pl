@@ -6,13 +6,18 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Toasts from "../../toasts/Toasts";
 import OverlayTrig from "../../overLay/OverlayTrig";
- import  "./Offers.css" 
+import "./Offers.css";
+import { PDFDownloadLink, ReactPDF, PDFViewer } from "@react-pdf/renderer";
+
+import UserLogin from "../auth/UserLogin";
+
+import JsPdf from "../print/JsPdf";
 
 const Offers = (props) => {
   const [offer, setOffer] = useState([]);
   const [search, setSearch] = useState([]);
   const [showToastSend, setShowToastSend] = useState(false);
-
+  const getIdUser = JSON.parse(localStorage.getItem("user"));
   const clear = () => {
     setSearch("");
     document.getElementById("formSearch").reset();
@@ -38,8 +43,10 @@ const Offers = (props) => {
     getOffer();
   }, []);
 
+  console.log(offer)
+
   return (
-    <span className="tw-flex tw-flex-col tw-justify-center tw-items-center">
+    <span className="tw-flex tw-w-full">
       <Toasts
         bodyBackground="success"
         className="text-white"
@@ -48,9 +55,16 @@ const Offers = (props) => {
         showWindow={showToastSend}
         setShowWindow={setShowToastSend}
       />
-      <Container>
+      <div className="colNav">
         <Menu />
-        <div className="conatinerDataCompany">
+      </div>
+
+      <Container>
+        <div className="textTopUser">
+          <UserLogin getIdUser={getIdUser} />
+        </div>
+        <div className="customerBoxPadding">
+          <div>
           <p className="tittle">Przeglądaj ofery</p>
           <hr />
           <form id="formSearch" className="">
@@ -96,9 +110,9 @@ const Offers = (props) => {
                     </td>
                     <td className="tableFontSize">{use.customer?.name}</td>
                     <td className="tableFontSize tw-items-center tw-justify-center">
-                      {use.car.make} {use.car.model} {use.car.version}{" "}
-                      {use.car.engine_capacity}ccm {use.car.engine_power}KM{" "}
-                      {use.car.fuel_type}
+                      {use.car?.make} {use.car?.model} {use.car?.version}{" "}
+                      {use.car?.engine_capacity}ccm {use.car?.engine_power}KM{" "}
+                      {use.car?.fuel_type}
                     </td>
                     <td className="tableFontSize tw-items-center tw-justify-center">
                       {use.customer?.email}
@@ -109,7 +123,10 @@ const Offers = (props) => {
 
                     <td className="tableFontSize tw-items-center tw-justify-center">
                       <a
-                        href={process.env.REACT_APP_LOCALHOST+`/offers/${use.fileName}`}
+                        href={
+                          process.env.REACT_APP_LOCALHOST +
+                          `/offers/${use.fileName}`
+                        }
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -124,8 +141,8 @@ const Offers = (props) => {
                         variant="link"
                         size="sm"
                         className="btn-small smallSize"
-                                   >
-                        <OverlayTrig 
+                      >
+                        <OverlayTrig
                           imagePath="https://img.icons8.com/pastel-glyph/64/send.png"
                           toltip="Wyslij ofertę"
                           onClick={(e) => {
@@ -153,7 +170,6 @@ const Offers = (props) => {
                           addEquipTwoName: use.addEquipTwoName,
                           addEquipTwoPrice: use.addEquipTwoPrice,
                           addInfo: use.addInfo,
-            
                         }}
                       >
                         <OverlayTrig
@@ -162,14 +178,11 @@ const Offers = (props) => {
                         />
                       </Button>
                     </td>
-                    <td>
-                      <Button
-                        variant="link"
-                        size="sm"
-                        className="btn-small"
-                        as={Link}
-                        to="/jspdf"
-                        state={{
+                   {/*  <td>
+                     
+                
+                      <div>
+    <PDFDownloadLink document={<JsPdf    state={{
                           car: use.car,
                           customer: use.customer,
                           user: props.user,
@@ -181,19 +194,24 @@ const Offers = (props) => {
                           addEquipTwoName: use.addEquipTwoName,
                           addEquipTwoPrice: use.addEquipTwoPrice,
                           addInfo: use.addInfo,
-            
-                        }}
-                      >
-                       JSPDF
-                      </Button>
-                    </td>
+                        }}/>} fileName="somename.pdf">
+      {({ blob, url, loading, error }) =>
+        loading ? 'Loading document...' : 'Download now!'
+      }
+    </PDFDownloadLink>
+  </div>
+
+
+  
+                    </td> */}
                   </tr>
                 ))}
             </tbody>
           </Table>
         </div>
+        </div>
       </Container>
-      <Footer />
+  
     </span>
   );
 };

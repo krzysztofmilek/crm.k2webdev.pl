@@ -1,6 +1,6 @@
 
 import "./MobileBar.css";
-import NavBar from "./NavBar";
+import NavBar2 from "./NavBar2";
 import MobileBar from "./MobileBar";
 
 
@@ -8,9 +8,9 @@ const Menu = (props) => {
 
 
   return (
-    <div>
+    <div >
       <div className="visibleMenu">
-        <NavBar />
+        <NavBar2 />
       </div>
       <div className="hiddenMenu">
         <MobileBar  />

@@ -49,7 +49,9 @@ router.post("/login", async (req, res) => {
             name: user.name,
             access: user.admin,
           };
-          const token = jwt.sign(dataToFrontEnd, "jebacPis");
+          const token = jwt.sign(dataToFrontEnd, "jebacPis",  {
+            expiresIn: '5s'
+          });
 
           res.status(200).send({
             success: true,

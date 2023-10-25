@@ -4,9 +4,12 @@ import { Button, Row, Col } from "react-bootstrap";
 import "./Print.css";
 import { FooterPrint } from "./FooterPrint";
 import axios from "axios";
-import jsPDF from 'jspdf';
+import { PDFDownloadLink, ReactPDF, PDFViewer } from "@react-pdf/renderer";
+
+import JsPdf from "./JsPdf";
 import 'jspdf-autotable';
 import Html2Pdf from 'js-html2pdf';
+import { saveAs } from "file-saver";
 
 const OffertCarPrint = (props) => {
   const [showAdd, setShowAdd] = useState({});
@@ -33,6 +36,7 @@ const OffertCarPrint = (props) => {
   const documentName = `Oferta_${props.state.customer?.name}_${getDate}_${getHours}.${getMinutes}.pdf`;
 
   const componentRef = useRef();
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: documentName,
@@ -52,6 +56,7 @@ const OffertCarPrint = (props) => {
     },
   });
 
+
   const getUser = async () => {
     const getUserData = await axios.get(
       process.env.REACT_APP_LOCALHOST + "user/findData/" + props.user._id
@@ -62,7 +67,7 @@ const OffertCarPrint = (props) => {
 
  
 
-  const generateAndSavePDF = async () => {
+   const generateAndSavePDF = async () => {
     setTimeout(() => {
       const pdfBlob = new Blob(
         [document.getElementById("getElementToPdf").innerHTML],
@@ -91,7 +96,11 @@ const OffertCarPrint = (props) => {
           );
         });
     }, 1000);
-  }; 
+  };  
+
+
+
+  
 
   const addOffer = async () => {
     const pos = {
@@ -372,6 +381,8 @@ const OffertCarPrint = (props) => {
           <div className="getRight">
             <Button variant="outline-success" onClick={handlePrint}>
               Wydrukuj PDF
+
+           
             </Button>
           </div>
           {props.state.car.imagesFilesName.map((item, i) => (

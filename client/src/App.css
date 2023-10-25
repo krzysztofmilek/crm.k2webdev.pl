@@ -1,6 +1,10 @@
 .App {
-  text-align: center;
+
   font-size: 0.9em;
+
+    text-align: left;
+    display: flex;
+
 }
 
 .App-logo {
@@ -11,12 +15,6 @@
   background: url("./components/img/bg.jpeg");
  
   background-size: cover; 
-
-  /*   background-color: rgba(89, 131, 252, 1);
-background-image: linear-gradient(90deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 100%);  */
-
-  /* /* background-color: rgba(89, 131, 252, 1);
-background-image: linear-gradient(185deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 100%); */
 }
 
 .buttonLogin {
@@ -25,6 +23,8 @@ background-image: linear-gradient(185deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53,
   align-items: center;
   min-width: 100% !important;
   height: 40px;
+  font-size:1.2em !important  ;
+  margin-right: 25px !important;
 }
 .corner {
   border-radius: 10px;
@@ -35,13 +35,22 @@ background-image: linear-gradient(185deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53,
 .k2 {
   color: #ccc;
 }
+.inputBlock{
+  display: block;
+  width:100%;
+  border:0px solid yellow;
+  padding-top: 10px;
+}
 
 .form-control:focus {
   --tw-ring-shadow: 0 0 #ccc !important;
   --tw-box-shadow: 0 0 #ccc !important;
 }
-input {
+input, textarea {
   --tw-ring-shadow: 0 0 #ccc !important;
+  font-size: 1em !important;
+  width:100%;
+
 }
 input:focus {
   --tw-ring-shadow: 0 0 #ccc !important;
@@ -89,7 +98,7 @@ input:focus {
 }
 
 .k2webdevLink {
-  color: #808080;
+  color: #ffffff;
   text-decoration: none;
   font-size: 0.898;
   text-transform: uppercase;
@@ -97,17 +106,14 @@ input:focus {
 }
 
 .k2webdevLink:hover {
-  color: black;
+  color: #ccc;
 }
 
 .orange {
   color: orange;
 }
 
-.App {
-  text-align: left;
-  display: flex;
-}
+
 
 .showTask {
   display: none;
@@ -153,37 +159,45 @@ hr {
   color: #01e1e9;
 }
 
+.ModalContainer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+.customerBoxPadding{
+  padding:25px;
+}
+
 .container {
-  border: 0px solid grey;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border: 0px solid red;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
   margin-bottom: 0px;
-  margin-top: 10px;
-  padding: 25px;
+  margin: 0px;
+  padding: 0px;
   background-color: white;
-  /*   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2),
-    0px 4px 6px 0px rgba(0, 0, 0, 0.19); */
   min-height: 85vh;
   border-bottom-width: 0px;
-  width: 100%;
+  max-width: 100% !important;
 }
 .containerFooter {
   border: 0px solid grey;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   margin-bottom: 10px;
-  border-top-color: white;
+
   margin-top: 0px;
   padding-top: 10px;
   padding-bottom: 10px;
-  text-align: right;
-  justify-content: end;
+  text-align: center;
+  justify-content:center;
   padding: 25px;
   border-top-width: 0px;
-  background-color: white;
+
   width: 100%;
-  /*   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2),
-    0px 4px 6px 0px rgba(0, 0, 0, 0.19); */
 }
 .containerBody {
   border: 1px solid grey;
@@ -197,6 +211,7 @@ hr {
   padding-right: 20px;
   font-weight: 500;
   text-align: end;
+  color:#fff;
 }
 
 .down {
@@ -212,6 +227,7 @@ hr {
 
 h4 {
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 .getCenter {
@@ -352,6 +368,7 @@ h3 {
 .btn {
   border-radius: 50px;
   min-width: 200px;
+  font-size:0.9em;
 }
 .input-search:focus {
   outline: none;
@@ -389,7 +406,17 @@ h3 {
     min-height: 100vh;
     background-color: #ffffff;
   }
-
+  .customerBoxPadding{
+    padding:15px;
+  }
+  .loginNavBar {
+    width: 100% !important;
+    border: 0px solid red;
+    padding-right: 20px;
+    text-align: end;
+font-size: 0.9em;
+    color:#fff;
+  }
   .intro {
     display: none;
   }

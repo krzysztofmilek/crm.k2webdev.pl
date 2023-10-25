@@ -143,7 +143,7 @@ const SettingsInfo = () => {
         setShowWindow={setShow}
       />
       {user.admin ? (
-        <div className="conatinerDataCompany">
+        <div className="conatinerDataCompany conatinerDataCompanyPaddingMedia">
           <div>
             <AddLeadFromExcel lengthCollection={lengthCollection} />
           </div>
@@ -152,7 +152,7 @@ const SettingsInfo = () => {
         ""
       )}
 {user.admin ? (
-      <div className="conatinerDataCompany">
+      <div className="conatinerDataCompany conatinerDataCompanyPaddingMedia">
         <h1>Dane firmy</h1>
         <hr />
         <Row className="tw-pt-0">
@@ -371,7 +371,7 @@ const SettingsInfo = () => {
           ""
         )}
       </div>): ""}
-      <div className="conatinerDataCompany">
+      <div className="conatinerDataCompany conatinerDataCompanyPaddingMedia">
         <h1>Dane użytkownika</h1>
         <hr />
         <Row>

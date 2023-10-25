@@ -148,11 +148,11 @@ function Login() {
             <div className="">
               <Button
                 type="submit"
-                className="buttonLogin "
+                className="buttonLogin"
                 variant="success"
                 onClick={loginUser}
               >
-                Zaloguj{" "}
+                Zaloguj
                 <img
                   className="imgLogin"
                   src="https://img.icons8.com/ios-filled/50/null/login-rounded-right.png"

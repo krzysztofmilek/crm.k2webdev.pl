@@ -35,5 +35,8 @@ table{
       margin-right: 0px;
       margin-top:0px
     }
-  
+    .hiddenPlain{
+        display: none !important;
+      }
+ 
   }

@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 import Menu from "../menu/Menu";
-import Footer from "../footer/Footer";
 import Toasts from "../../toasts/Toasts";
+import UserLogin from "../auth/UserLogin";
+
 
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -22,6 +23,8 @@ const Action = (props) => {
   const customer = props.state.customer;
   const token = props.state.token;
   const tomorrow = props.state.getDate;
+
+  const getIdUser = JSON.parse(localStorage.getItem("user"));
 
   const getDatePicker = (e) => {
     let dat = e.target.value;
@@ -102,7 +105,7 @@ const Action = (props) => {
   };
 
   return (
-    <span className="tw-flex  tw-flex-col  tw-justify-center tw-items-center">
+    <span className="">
       <Toasts
         bodyBackground="danger"
         className="text-white"
@@ -143,8 +146,14 @@ const Action = (props) => {
         showWindow={showSuccess}
         setShowWindow={setShowSuccess}
       />
-      <Container>
-        <Menu />
+   
+      <span className="tw-flex">
+        <div className="colNav">
+          <Menu />
+        </div>
+
+        <Container className="">
+          <div className="textTopUser"><UserLogin getIdUser={getIdUser} /></div>
 
         <div className="formAction">
           <div className="inputFlex">
@@ -262,7 +271,7 @@ const Action = (props) => {
           </span>
         </div>
       </Container>
-      <Footer />
+   </span>
     </span>
   );
 };

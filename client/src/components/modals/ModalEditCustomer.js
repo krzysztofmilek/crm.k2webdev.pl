@@ -11,7 +11,7 @@ function ModalEditCustomer(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+console.log(props)
   const getCustomer = (e) =>
     setEditCustomer((prevState) => ({
       ...prevState,
@@ -56,7 +56,8 @@ function ModalEditCustomer(props) {
         imagePath="https://img.icons8.com/windows/30/000000/edit-user.png"
         toltip="Edytuj Klienta"
         onClick={(e) => {
-          handleShow(false);
+        props.getCustomers()
+        handleShow(false);
         }}
       />
 

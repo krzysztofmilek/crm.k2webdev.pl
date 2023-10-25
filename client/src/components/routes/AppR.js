@@ -20,6 +20,7 @@ import Offers from "../view/offers/Offers";
 import JsPdf from "../view/print/JsPdf";
 
 
+
 import { useLocation } from "react-router-dom";
 import OffertCarPrint from "../view/print/OffertCarPrint";
 
@@ -29,7 +30,7 @@ function AppR(props) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   return (
-    <div className="tw-flex tw-justify-center tw-items-center tw-w-full ">
+    <div >
       <Toaster position="top-center" reversOrder={false} />
       <Routes>
         <Route

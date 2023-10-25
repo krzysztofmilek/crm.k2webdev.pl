@@ -134,7 +134,6 @@ function NavBar() {
             <div>Użytkownicy</div>{" "}
           </Link>
         ) : null}
-
         <Link to="/settings" className="btnFull">
           <div>
             <img

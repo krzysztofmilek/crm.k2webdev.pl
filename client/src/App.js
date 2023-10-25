@@ -20,10 +20,10 @@ function App() {
 
 
   return (
-   <span className="App tw-flex tw-w-full  tw-flex-col  tw-items-center tw-h-screen  " >
-   {/*   <span className="App tw-flex tw-w-full  tw-flex-col  tw-items-center tw-h-screen  " > */}
+   <span className="App" >
+      <span className="App tw-flex tw-w-full  tw-flex-col  tw-h-screen  " > 
       <AppR getCustomers={getCustomers} customers={customers} userToken={userToken} />
-
+</span>
     </span>
   );
 }
