@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -10,10 +10,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [position, setPosition] = useState("");
-  const [uCase, setUCase] = useState("orangeBag");
-  const [num, setNum] = useState("orangeBag");
-  const [sChar, setSChar] = useState("orangeBag");
-  const [passLength, setPassLength] = useState("orangeBag");
+
   // eslint-disable-next-line
   const [emailTrue, setEmailTrue] = useState(false);
 
@@ -74,33 +71,7 @@ function Register() {
     }
   };
 
-  useEffect(() => {
-    // Check Lower and Uppercase
-    if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
-      setUCase("green");
-    } else {
-      setUCase("orangeBag");
-      return;
-    }
-    // Check for numbers
-    if (password.match(/([0-9])/)) {
-      setNum("green");
-    } else {
-      setNum("orangeBag");
-    }
-    // Check for special character
-    if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
-      setSChar("green");
-    } else {
-      setSChar("orangeBag");
-    }
-    // Check for PASSWORD LENGTH
-    if (password.length > 5) {
-      setPassLength("green");
-    } else {
-      setPassLength("red");
-    }
-  }, [password]);
+
   return (
     <div className="tw-flex tw-w-full tw-flex-row tw-justify-center tw-items-center tw-h-screen bg">
       <div className="tw-w-[330px] tw-flex tw-space-y-5 tw-flex-col tw-p-5 borderTurkuse tw-rounded-lg">
@@ -209,30 +180,6 @@ function Register() {
 
 
 
-        <div className="tw-flex tw-text-xs tw-flex-col tw-w-full tw-border-0 tw-ps-3">
-         
-          <span className=" tw-text-white"> weryfikacja hasła</span>
-          <span className="form-list tw-flex tw-flex-col tw-p-0  tw-b-0">
-           
-            <span className={`${uCase}  tw-text-secondary`}>
-              &nbsp;duże i małe litery
-            </span>
-
-            <span className={`${num}   tw-text-secondary`}>
-              &nbsp;cyfra 
-            </span>
-
-            <span className={`${sChar}   tw-text-secondary`}>
-              &nbsp;znak specjalny
-            </span>
-
-            <span
-              className={`${passLength}  tw-text-secondary`}
-            >
-              &nbsp;min. 6 znaków
-            </span>
-          </span>
-        </div>
 
         <div className="tw-flex tw-justify-between tw-items-end">
           <Link

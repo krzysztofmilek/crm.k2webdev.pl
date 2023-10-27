@@ -2,7 +2,6 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Funnel } from "@nivo/funnel";
 
-
 import {
   Chart as ChartJS,
   ArcElement,
@@ -11,12 +10,13 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
-  
 } from "chart.js";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Doughnut, Bar } from "react-chartjs-2";
+import MyDonut from "./MyDonut";
+import FunnelChart from "./FunnelChart";
 
 ChartJS.register(
   ArcElement,
@@ -28,15 +28,11 @@ ChartJS.register(
 );
 
 const AnaliticUserTop = (props) => {
-
-  
   const [data, setData] = useState([]);
   const [action, setAction] = useState([]);
   const [offer, setOffer] = useState([]);
   //eslint-disable-next-line
   const [soldData, setSoldData] = useState([]);
-
-  const [soldMonth, setSoldMonth] = useState();
 
   const getUSerLogIn = JSON.parse(localStorage.getItem("user"));
   const user_id = getUSerLogIn._id;
@@ -73,14 +69,14 @@ const AnaliticUserTop = (props) => {
   ).length;
 
   const effectiveness = ((props.sold / actionAll) * 100).toFixed(0);
-  const kpiContactOffer = ((offerAll / actionAll) * 100).toFixed(0);
+  /*   const kpiContactOffer = ((offerAll / actionAll) * 100).toFixed(0);
   const kpiOfferSold = ((props.sold / offerAll) * 100).toFixed(0);
   const kpiRecomdationData = ((props.recomendations / actionAll) * 100).toFixed(
     0
   );
   const kpiInitiativeData = ((props.initiative / actionAll) * 100).toFixed(0);
   const kpiStockMarketData = ((props.stockMarket / actionAll) * 100).toFixed(0);
-  const kpiLostChanceData = ((props.lostChance / actionAll) * 100).toFixed(0);
+  const kpiLostChanceData = ((props.lostChance / actionAll) * 100).toFixed(0); */
   const effectivenessToInt = parseInt(effectiveness) || 0;
 
   const salespersonInitiative =
@@ -121,49 +117,20 @@ const AnaliticUserTop = (props) => {
         backgroundColor: ["red", "green"],
         borderColor: ["white", "white"],
         borderWidth: 4,
-
       },
     ],
   };
-  const  dataEffectiveness= {
-    labels: [  "Skuteczność"],
+  const dataEffectiveness = {
+    labels: ["Skuteczność"],
     datasets: [
       {
         label: "",
-        data: [ effectivenessToInt, (100-effectivenessToInt ), ],
-        backgroundColor: ["green", "orange",],
-        borderColor: [ "white"],
+        data: [effectivenessToInt, 100 - effectivenessToInt],
+        backgroundColor: ["green", "orange"],
+        borderColor: ["white"],
         borderWidth: 4,
-
       },
     ],
-  };
-
-  const optionsEffectivenes = {
-    layout: {
-      padding: 0,
-    },
-
-    responsive: true,
-    plugins: {
-      doughnutlabel: {
-        labels: [
-          {
-            text: "80%",
-            font: { size: "40" },
-            color: "black"
-          }
-        ]
-      },
-      legend: {
-        display: true,
-        position: "right",
-        title: {
-          display: true,
-          text: "",
-        },
-      },
-    },
   };
 
   const optionsInitiative = {
@@ -178,9 +145,9 @@ const AnaliticUserTop = (props) => {
           {
             text: "80%",
             font: { size: "40" },
-            color: "black"
-          }
-        ]
+            color: "black",
+          },
+        ],
       },
       legend: {
         display: true,
@@ -211,7 +178,6 @@ const AnaliticUserTop = (props) => {
     },
   };
 
-
   const MyFunnel = () => {
     const data = [
       {
@@ -239,24 +205,94 @@ const AnaliticUserTop = (props) => {
         data={data}
         padding={{ top: 0, right: 20, bottom: 0, left: 20 }}
         margin={{ top: 0, right: 20, bottom: 0, left: 20 }}
-        width={80}
+        width={150}
         height={150}
         // valueFormat=">-.4s"
         colors={{ scheme: "spectral" }}
         borderColor={"yellow"}
-        labelColor={"white"}       
+        labelColor={"white"}
         beforeSeparatorLength={100}
         beforeSeparatorOffset={20}
         afterSeparatorLength={100}
         afterSeparatorOffset={20}
         currentBorderWidth={40}
-            />
+      />
     );
   };
+  const sales = data
+    .filter((act) => {
+      return props.userSelect === undefined
+        ? act.id_user === user_id
+        : act.id_user === props.userSelect;
+    })
+    .map((act) =>
+      props.dataSelect?.monthSelect === props.now
+        ? act[props.month]
+        : act[props.monthPrev]
+    );
+  const totalSales = sales.reduce((acc, curr) => acc + curr, 0);
 
+  const chartData = {
+    labels: ["Twój cel", "Twój wynik"],
 
+    datasets: [
+      {
+        label: "",
+        data: [totalSales, props.sold],
+        backgroundColor: ["orange", sales <= props.sold ? "green" : "red"],
+        borderWidth: 0,
+        borderRadius: {
+          topLeft: 0,
+          topRight: 50,
+          bottomLeft: 0,
+          bottomRight: 50
+      },
+        borderSkipped: false,
+        barPercentage: 0.4,
+        categoryPercentage: 0.9,
+       
+      },
+    ],
+  };
+  const optionsSolds = {
+    layout: {
+      padding: 0,
+    },
+    indexAxis: "y",
+    scales: {
+      x: {
+        ticks: {
+          display: false, // ukrywa opisy ticków na osi X
+        },
+        grid: {
+          display: false, // ukrywa linie siatki dla osi X
+          drawBorder: false, // ukrywa linię osi
+          drawOnChartArea: false,
+        },
+      },
+      y: {
+        ticks: {
+     /*      display: false, // ukrywa opisy ticków na osi X */
+        },
+        grid: {
+          display: false, // ukrywa linie siatki dla osi Y
+          drawBorder: false, // ukrywa linię osi
+          drawOnChartArea: false,
+        },
+      },
+    },
 
-  
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+
+      /*  tooltip: {
+        enabled: false,
+      }, */
+    },
+  };
 
   useEffect(() => {
     getData();
@@ -264,86 +300,9 @@ const AnaliticUserTop = (props) => {
   }, []);
 
   return (
-    <span className="analiticUserBox tw-w-full">
-   
-
-      <Row className="tw-w-full ">
-        
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
-          <div className="analiticUserContainer">
-            <h4>Lejek sprzedaży</h4>
-            <hr /><br /><br />
-            <div className="tw-flex">
-              <div>
-                <ul>
-                  <li className="marginLeft tw-me-5"> ilość kontaktów: {actionAll}</li>
-                  <li className="marginLeft"> ilość ofert: {offerAll}</li>
-
-                  <li className="marginLeft">ilość sprzedaży: {props.sold}</li>
-                  {/* <li className="marginLeft">
-                  
-                    Skuteczność: {props.sold ? effectivenessToInt : 0} %
-                  </li> */}
-                </ul>
-              </div>
-              <div>
-                <MyFunnel />
-              </div>
-            </div>
-            {/*   <Bar data={dataBar}  options={optionsBar} ></Bar> */}
-          </div>
-        </Col>
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
-          <div className="analiticUserContainer">
-            <h4>
-              {" "}
-              {companyInitiative === 0 && salespersonInitiative === 0 ? (
-                "Skuteczność"
-              ) : effectivenessToInt >=  25 ? (
-                <span className="green">Skuteczność</span>
-              ) : (
-                <span className="orange bold"> Skuteczność </span>
-              )}
-            </h4>
-            
-
-            <Doughnut
-              data={dataEffectiveness}
-              options={optionsEffectivenes}
-            ></Doughnut>
-          </div>
-        </Col>
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
-          <div className="analiticUserContainer">
-            <h4>
-              {" "}
-              {companyInitiative === 0 && salespersonInitiative === 0 ? (
-                "Inicjatywa "
-              ) : salespersonInitiative > companyInitiative ? (
-                <span className="green">Inicjatywa </span>
-              ) : (
-                <span className="red bold">Inicjatywa </span>
-              )}
-            </h4>
-
-            <Doughnut
-              data={dataInitiative}
-              options={optionsInitiative}
-            ></Doughnut>
-          </div>
-        </Col>
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
-          <div id="chart"></div>
-          <div className="analiticUserContainer">
-            <h4>Struktura leadów</h4>
-            <Doughnut
-              data={dataSourceLead}
-              options={optionsSourceLead}
-            ></Doughnut>
-          </div>
-        </Col>
-       
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+    <span className="analiticUserBox fullSize">
+      <Row className="tw-w-full jcenter">
+      <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
           <div className="analiticUserContainer">
             <h4>PLan miesięczny</h4>
             <hr />
@@ -384,10 +343,91 @@ const AnaliticUserTop = (props) => {
                 )}
               </li>
             </ul>
+            <span style={{ height: "100px", width: "150px" }}>
+              <Bar data={chartData} options={optionsSolds} />
+            </span>
+          </div>
+        </Col>
+        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+          <div className="analiticUserContainer">
+            <h4>Lejek sprzedaży</h4>
+            <hr />
+            <br />
+            <br />
+            <div className="tw-flex">
+              <div>
+                <ul>
+                  <li className="marginLeft tw-me-5">
+                    {" "}
+                   Kontakty: {actionAll}
+                  </li>
+                  <li className="marginLeft">Oferty: {offerAll}</li>
+
+                  <li className="marginLeft">Sprzedaż: {props.sold}</li>
+                  {/* <li className="marginLeft">
+                  
+                    Skuteczność: {props.sold ? effectivenessToInt : 0} %
+                  </li> */}
+                </ul>
+              </div>
+              <div>
+              {/*   <FunnelChart /> */}
+                
+                < MyFunnel />
+              </div>
+            </div>
+            {/*   <Bar data={dataBar}  options={optionsBar} ></Bar> */}
+          </div>
+        </Col>
+        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+          <div className="analiticUserContainer">
+            <h4>
+              {" "}
+              {companyInitiative === 0 && salespersonInitiative === 0 ? (
+                "Skuteczność"
+              ) : effectivenessToInt >= 25 ? (
+                <span className="green">Skuteczność</span>
+              ) : (
+                <span className="orange bold"> Skuteczność </span>
+              )}
+            </h4>
+
+            <MyDonut data={dataEffectiveness} value={effectivenessToInt} />
+          </div>
+        </Col>
+        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+          <div className="analiticUserContainer">
+            <h4>
+              {" "}
+              {companyInitiative === 0 && salespersonInitiative === 0 ? (
+                "Inicjatywa "
+              ) : salespersonInitiative > companyInitiative ? (
+                <span className="green">Inicjatywa </span>
+              ) : (
+                <span className="red bold">Inicjatywa </span>
+              )}
+            </h4>
+
+            <Doughnut
+              data={dataInitiative}
+              options={optionsInitiative}
+            ></Doughnut>
+          </div>
+        </Col>
+        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+          <div id="chart"></div>
+          <div className="analiticUserContainer">
+            <h4>Struktura leadów</h4>
+            <Doughnut
+              data={dataSourceLead}
+              options={optionsSourceLead}
+            ></Doughnut>
           </div>
         </Col>
 
-     {/*    <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+    
+
+        {/*    <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
             <div className="analiticUserContainer">
               <h4>Wskaźniki KPI</h4>
               <hr />
@@ -400,7 +440,6 @@ const AnaliticUserTop = (props) => {
             </div>
           </Col> */}
       </Row>
-   
     </span>
   );
 };

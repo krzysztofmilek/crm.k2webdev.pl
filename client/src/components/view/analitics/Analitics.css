@@ -51,15 +51,25 @@ margin: 15px;
   justify-content: center;
 }
 
+.fullSize{
+  width:100%;
+}
+
 @media all and (max-width: 992px) {
 
   .analiticUserBox {
     display: block;
     justify-content: center;
     text-align: center;
-
   }
-
+  .jcenter{
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .fullSize{
+    width:95%;
+    justify-content: center;
+  }
   .marginLeft{
     margin-left:0px !important
   }
