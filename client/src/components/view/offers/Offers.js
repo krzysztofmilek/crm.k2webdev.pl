@@ -122,6 +122,11 @@ const Offers = (props) => {
                     </td>
 
                     <td className="tableFontSize tw-items-center tw-justify-center">
+                    <Button
+                        variant="link"
+                        size="sm"
+                        className="btn-small smallSize"
+                      >
                       <a
                         href={
                           process.env.REACT_APP_LOCALHOST +
@@ -131,10 +136,13 @@ const Offers = (props) => {
                         rel="noreferrer"
                       >
                         <OverlayTrig
-                          imagePath="https://img.icons8.com/officel/40/pdf.png"
+                        
+                          imagePath="https://img.icons8.com/ios/30/pdf--v1.png" 
+                         
                           toltip="Podgląd pdf"
                         />
                       </a>
+                      </Button>
                     </td>
                     <td className="tableFontSize tw-items-center tw-justify-center">
                       <Button
@@ -143,7 +151,7 @@ const Offers = (props) => {
                         className="btn-small smallSize"
                       >
                         <OverlayTrig
-                          imagePath="https://img.icons8.com/pastel-glyph/64/send.png"
+                          imagePath="https://img.icons8.com/pastel-glyph/30/send.png"
                           toltip="Wyslij ofertę"
                           onClick={(e) => {
                             sednOffer(use);
@@ -173,7 +181,7 @@ const Offers = (props) => {
                         }}
                       >
                         <OverlayTrig
-                          imagePath="https://img.icons8.com/pulsar-line/48/preview-pane.png"
+                          imagePath="https://img.icons8.com/pulsar-line/30/preview-pane.png"
                           toltip="Podgląd oferty"
                         />
                       </Button>

@@ -23,6 +23,7 @@
   margin-top: 0px;
   height: 95px;
   cursor: pointer;
+ 
 
 }
 
@@ -34,27 +35,28 @@
 }
 
 .imgMenuLeft {
-  height: 45px;
+  height: 35px;
   cursor: pointer;
   border: 0px solid red;
   padding: 5px;
-  background: #2473da;
+ 
 
 
 }
 
-.show {
-  display: none;
-}
+/* .show {
+  display: flex;
+} */
 
 .getCenterInPion {
   display: flex;
-  align-items: flex-end;
-  background: #2473da;
+  padding-left: 30px;
+  padding-top: 50px;
+  align-items:center;
   border: 0px solid orangered;
   height: 45px;
   width: 250px;
-  border-bottom: 1px solid #ccc;
+
 }
 
 hr {
@@ -112,15 +114,16 @@ li {
 }
 
 @media all and (max-width:992px) {
-  .show {
+/*   .show {
     display: none;
-  }
+  } */
   .getCenterInPion {
     display: flex;
     align-items: flex-end;
-    background: #2473da;
+    padding: 3px;
+  
     border: 0px solid orangered;
-    height: 45px;
+   
     width: 45px;
     border-bottom: 0px solid #ccc;
   }

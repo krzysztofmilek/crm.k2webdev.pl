@@ -431,11 +431,14 @@ const SettingsInfo = () => {
               </Form.Group>
             </Row>
             <Row>
+
+        
+
               <Form.Group as={Col} md="4">
                 <Form.Floating>
                   <Form.Control
                     required
-                    className="inputUser"
+                    className="inputField"
                     type="text"
                     placeholder="Wpisz E-mail"
                     name="email"

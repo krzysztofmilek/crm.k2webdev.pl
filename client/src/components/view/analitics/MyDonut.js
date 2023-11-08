@@ -2,17 +2,19 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
 const MyDonut= ({ data, value }) => {
+
     const options = {
+
         layout: {
-            padding: 0,
+            padding : 0,
           },
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: false,
         plugins: {
 
             
             legend: {
-                display: true,
+                display: false,
                 position: "right",
                 title: {
                   display: true,
@@ -48,7 +50,8 @@ const MyDonut= ({ data, value }) => {
 
 
 
-  return <Doughnut data={data} options={options} />;
+  return<div className="tw-w-full tw-flex tw-h-full centerBox"> <Doughnut data={data} options={options}   width={150}
+  height={150} /></div>
 };
 
 export default MyDonut;

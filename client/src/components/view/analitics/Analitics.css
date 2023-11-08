@@ -3,21 +3,16 @@
   text-align: center;
   vertical-align: top;
   justify-content: center;
-  margin-left: 15px;
-  margin-right: 15px;
-
 }
 
 li {
   font-size: 1em;
   font-weight: 300 !important;
-
-
 }
-.marginLeft{
-  margin-left:10px !important
+.marginLeft {
+  margin-left: 10px !important;
 }
-.bold{
+.bold {
   font-weight: 700;
 }
 
@@ -27,17 +22,16 @@ li {
 
 .analiticUserContainer {
   border: 0px solid gray;
-margin: 15px;
-  padding: 15px;
-  border-radius: 15px;
-  height: 290px;
+  margin: 15px;
+  padding: 15px; /*  */
+  border-radius: 5px;
+  background-color: white;
+  height: 260px;
   width: 292px;
   -webkit-box-shadow: -2px 6px 42px -9px rgba(66, 68, 90, 0.59);
   -moz-box-shadow: -2px 6px 42px -9px rgba(66, 68, 90, 0.59);
   box-shadow: -2px 6px 42px -9px rgba(66, 68, 90, 0.59);
 }
-
-
 
 .up {
   padding-top: 10px;
@@ -51,40 +45,38 @@ margin: 15px;
   justify-content: center;
 }
 
-.fullSize{
-  width:100%;
+.fullSize {
+  width: 100%;
 }
 
 @media all and (max-width: 992px) {
-
   .analiticUserBox {
     display: block;
     justify-content: center;
     text-align: center;
+    margin: 15px;
   }
-  .jcenter{
+  .jcenter {
     justify-content: center;
     margin-top: 20px;
   }
-  .fullSize{
-    width:95%;
+  .fullSize {
+    width: 95%;
     justify-content: center;
   }
-  .marginLeft{
-    margin-left:0px !important
+  .marginLeft {
+    margin-left: 0px !important;
   }
 
   .analiticUserContainer {
-    width: 100%;
+    width: 282px;
     margin: 0px;
     min-height: auto;
     margin-bottom: 15px;
-
   }
 
   .analiticUserContainerChat {
     width: 100%;
     display: none;
   }
-
 }

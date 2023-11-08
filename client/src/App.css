@@ -178,27 +178,31 @@ hr {
   margin-bottom: 0px;
   margin: 0px;
   padding: 0px;
-  background-color: white;
+  background-color: rgba(245, 247, 251, 1);
+  background-image: radial-gradient(circle, rgba(245, 247, 251, 1) 0%, rgba(231, 231, 231, 1) 100%);
   min-height: 85vh;
   border-bottom-width: 0px;
   max-width: 100% !important;
 }
 .containerFooter {
   border: 0px solid grey;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  margin-bottom: 10px;
-
-  margin-top: 0px;
+left:80px;
+bottom: 15px;
+  position: fixed;
+ 
+/*   margin-top: 0px;
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
   justify-content:center;
   padding: 25px;
-  border-top-width: 0px;
+  border-top-width: 0px; */
 
   width: 100%;
 }
+
+
+
 .containerBody {
   border: 1px solid grey;
   border-radius: 10px;
@@ -211,7 +215,6 @@ hr {
   padding-right: 20px;
   font-weight: 500;
   text-align: end;
-  color:#fff;
 }
 
 .down {
@@ -271,6 +274,12 @@ h4 {
 .tableFontSize {
   font-size: 1em;
 }
+
+.modal-header {
+  width: 100%;}
+
+.modal-body {
+  width: 100%;}
 
 .input-group {
   display: flex;
@@ -415,7 +424,7 @@ h3 {
     padding-right: 20px;
     text-align: end;
 font-size: 0.9em;
-    color:#fff;
+
   }
   .intro {
     display: none;
@@ -438,7 +447,7 @@ font-size: 0.9em;
   }
   .input-group {
   
-    width: 320px !important;
+   /*  width: 320px !important; */
   }
   .container {
     border: 0px !important;

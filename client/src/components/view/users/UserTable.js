@@ -79,7 +79,7 @@ const UserTable = (props) => {
           <Toast.Body> Uaktualniono plan</Toast.Body>
         </Toast>
       </ToastContainer>
-      <Table>
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Imię Nazwisko</th>

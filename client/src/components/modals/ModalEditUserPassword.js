@@ -2,8 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
+import { Form, Button } from "react-bootstrap";
 import OverlayTrig from "../overLay/OverlayTrig";
 import Toasts from "../toasts/Toasts";
 
@@ -26,7 +25,7 @@ function ModalEditUserPassowrd(props) {
 
   const changeUserPassword = async (use) => {
     const userPass = await axios.put(
-      process.env.REACT_APP_LOCALHOST+"user/changePassword/" + props.use._id,
+      process.env.REACT_APP_LOCALHOST + "user/changePassword/" + props.use._id,
 
       {
         _id: use._id,
@@ -36,13 +35,13 @@ function ModalEditUserPassowrd(props) {
 
     setUserPassword(userPass.data);
     setShow(false);
-    setShowToast(true)
+    setShowToast(true);
     props.getUsers();
   };
 
   return (
     <div className="tw-flex tw-w-full  tw-flex-col tw-items-end ">
-           <Toasts
+      <Toasts
         bodyBackground="success"
         className="text-white"
         title="Zmiana hasła"
@@ -60,7 +59,6 @@ function ModalEditUserPassowrd(props) {
           {props.changePasswordLabel}
         </Button>
       ) : (
-      
         <OverlayTrig
           imagePath="https://img.icons8.com/ios/30/private2.png"
           toltip="Zmień hasło"
@@ -74,30 +72,39 @@ function ModalEditUserPassowrd(props) {
         <Modal.Header closeButton className="modalHeaderColor">
           <Modal.Title>Edycja hasła użytkownika {props.use.name}</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="modalBodyColor">
-          <Form>
-            <Form.Label>
-              <b>Wpisz hasło</b>
-            </Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              id="password"
-              defaultValue=""
-              onChange={getPassword}
-            />
-
-            <Form.Label>
-              <b>Wpisz ponownie hasło</b>
-            </Form.Label>
-            <Form.Control
-              type="password"
-              name="second-Password"
-              id="second-Password"
-              defaultValue=""
-              onChange={getPassword}
-            />
-          </Form>
+        <Modal.Body>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+                type="password"
+                name="password"
+                id="password"
+                className="inputAction"
+                defaultValue=""
+                onChange={getPassword}
+                placeholder="Wpisz hasło"
+              />
+              <label htmlFor="name" className="labelPadding">
+                wpisz hasło
+              </label>
+            </Form.Floating>
+          </Form.Group>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+                type="password"
+                name="second-Password"
+                className="inputAction"
+                id="second-Password"
+                placeholder="Wpisz ponownie hasło"
+                defaultValue=""
+                onChange={getPassword}
+              />
+              <label htmlFor="name" className="labelPadding">
+                Wpisz ponownie hasło
+              </label>
+            </Form.Floating>
+          </Form.Group>
         </Modal.Body>
         <Modal.Footer className="modal-footer">
           <Button variant="outline-secondary" onClick={handleClose}>

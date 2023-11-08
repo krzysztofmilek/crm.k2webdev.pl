@@ -106,7 +106,11 @@ function Register() {
                    <span className="tw-border tw-px-2  tw-py-2 tw-border-secondary tw-rounded-l-3xl tw-border-r-white tw-border-r-0 tw-bg-white ">
                 <img
                   className="imgLoginUser"
-                  src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/32/external-users-cv-resume-flatart-icons-outline-flatarticons.png"
+                  src="https://img.icons8.com/cotton/32/conference-call.png"
+                 /*  src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/32/external-users-cv-resume-flatart-icons-outline-flatarticons.png"
+                  */
+                 
+                 
                   alt="position"
                 />
               </span>

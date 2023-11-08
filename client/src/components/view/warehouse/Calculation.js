@@ -10,9 +10,7 @@ const Calculation = (props) => {
   const [data, setData] = useState([]);
   const [addEquip, setAddEquip] = useState([]);
   const [action, setAction] = useState([]);
-
-
- 
+  const [newCustomerAdd, setNewCustomerAdd] = useState(props.newCust);
 
   const getPrice = (e) =>
     setPriceCar((prevState) => ({
@@ -89,7 +87,7 @@ const Calculation = (props) => {
             <label htmlFor="summary">Cena brutto po rabacie</label>
           </Form.Floating>
         </div>
-       {/*  <div className="conatinerDataCompany tw-text-left tw-m-1 ">
+        {/*  <div className="conatinerDataCompany tw-text-left tw-m-1 ">
           <p className="tittle">Doposażenie</p>
           <hr />
           <div className="tw-flex">
@@ -172,7 +170,6 @@ const Calculation = (props) => {
             name="addInfo"
             onChange={getAddEquip}
             placeholder="name@example.com"
-          
             style={{
               borderRadius: "5px",
               border: "1px solid #ccc ",
@@ -187,10 +184,10 @@ const Calculation = (props) => {
             variant="outline-success"
             as={Link}
             to="/offertscar"
-         
             state={{
               car: props.car,
               customer: props?.cust,
+              newCustomer: newCustomerAdd,
               addEquipOneName: addEquip.addEquipOneName,
               addEquipOnePrice: addEquip.addEquipOnePrice,
               addEquipThreeName: addEquip.addEquipThreeName,

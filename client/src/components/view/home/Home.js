@@ -10,6 +10,7 @@ import UserLogin from "../auth/UserLogin";
 
 import ModalEditAction from "../../modals/ModalEditAction"
 
+
 const Home = (props) => {
   const [actions, setActions] = useState([]);
   const [idAction, setIdAction] = useState({});
@@ -89,15 +90,16 @@ const Home = (props) => {
   const preGetMonthAddOne = preGetMonth + 1;
   const getMonth =
     preGetMonthAddOne < 10 ? "0" + preGetMonthAddOne : preGetMonthAddOne;
-  const getMonthPrev = preGetMonth < 10 ? "0" + preGetMonth : "";
+  const getMonthPrev = preGetMonth < 10 ? "0" + preGetMonth : preGetMonth;
   const nowMonth = getMonth.toString();
   const prevMonth = getMonthPrev.toString();
-
+console.log(preGetMonth)
   const getMonthSelected = (e) =>
     setDataSelect((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+console.log(dataSelect);
 
   const getSalesMenSelected = (e) =>
     setUserSelect((prevState) => ({
@@ -178,6 +180,7 @@ const Home = (props) => {
       <span className="tw-flex">
         <div className="colNav">
           <Menu />
+        
         </div>
 
         <Container className="">

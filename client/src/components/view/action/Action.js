@@ -5,7 +5,6 @@ import Menu from "../menu/Menu";
 import Toasts from "../../toasts/Toasts";
 import UserLogin from "../auth/UserLogin";
 
-
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -21,6 +20,8 @@ const Action = (props) => {
   const [idAction, setIdAction] = useState([]);
 
   const customer = props.state.customer;
+  const newCustomer = props.state.newCustomer;
+
   const token = props.state.token;
   const tomorrow = props.state.getDate;
 
@@ -60,7 +61,7 @@ const Action = (props) => {
     if (messageDirection === "") {
       setShow(true);
       return;
- /*    } else if (messageContactWay === "") {
+      /*    } else if (messageContactWay === "") {
       setShowContact(true);
       return; */
     } else if (messageInformation === "") {
@@ -85,12 +86,11 @@ const Action = (props) => {
         contactData: tomorrow,
         nextContactData: dataPicker,
         information: selectData.information,
-        //conatactWay: selectData.conatactWay,
         direction: selectData.direction,
         fileName: file?.name,
         status: "open",
         user: token._id,
-        customer: customer._id,
+        customer: newCustomer._id || customer._id,
       };
 
       const newAction = await axios.post(
@@ -146,45 +146,47 @@ const Action = (props) => {
         showWindow={showSuccess}
         setShowWindow={setShowSuccess}
       />
-   
+
       <span className="tw-flex">
         <div className="colNav">
           <Menu />
         </div>
 
         <Container className="">
-          <div className="textTopUser"><UserLogin getIdUser={getIdUser} /></div>
+          <div className="textTopUser">
+            <UserLogin getIdUser={getIdUser} />
+          </div>
 
-        <div className="formAction">
-          <div className="inputFlex">
-            <div className="inputBlock">
-              <p className="tittle">Kierunek kontaktu :</p>
-              <select
-                className="selectAction"
-                name="direction"
-                as="select"
-                id="directionAdd"
-                onChange={getValue}
-                required
-              >
-                <option></option>
-                <option value="rekomendacje" name="rekomendacje">
-                  Rekomendacje
-                </option>
-                <option value="inicjatywa" name="inicjatywa">
-                  Inicjatywa własna
-                </option>
-                <option value="gielda" name="gielda">
-                  Giełda
-                </option>
-                <option value="Klient-firma" name="kft">
-                  Klient - Firma
-                </option>
-                <option value="Firma-klient" name="fkt">
-                  Firma - Klient
-                </option>
-              </select>
-              {/* <div className="inputBlock">
+          <div className="formAction">
+            <div className="inputFlex">
+              <div className="inputBlock">
+                <p className="tittle">Kierunek kontaktu :</p>
+                <select
+                  className="selectAction"
+                  name="direction"
+                  as="select"
+                  id="directionAdd"
+                  onChange={getValue}
+                  required
+                >
+                  <option></option>
+                  <option value="rekomendacje" name="rekomendacje">
+                    Rekomendacje
+                  </option>
+                  <option value="inicjatywa" name="inicjatywa">
+                    Inicjatywa własna
+                  </option>
+                  <option value="gielda" name="gielda">
+                    Giełda
+                  </option>
+                  <option value="Klient-firma" name="kft">
+                    Klient - Firma
+                  </option>
+                  <option value="Firma-klient" name="fkt">
+                    Firma - Klient
+                  </option>
+                </select>
+                {/* <div className="inputBlock">
               <p className="tittle">Sposób kontaktu :</p>
 
               <select
@@ -209,69 +211,66 @@ const Action = (props) => {
                 </option>
               </select>
             </div> */}{" "}
-              <p className="tittle">Dodaj załącznik</p>
-           
-              <div>
-                <input id="file-field" type="file" name="customerFiles" />
+                <p className="tittle">Dodaj załącznik</p>
+                <div>
+                  <input id="file-field" type="file" name="customerFiles" />
+                </div>
+                <p className="tittle">Wybierz datę nastepnego kontaktu</p>
+                <div>
+                  <Form.Group>
+                    <Form.Control
+                      type="date"
+                      name="dob"
+                      id="dob"
+                      placeholder="Date"
+                      onChange={getDatePicker}
+                    />
+                  </Form.Group>
+                </div>
               </div>
-        
-              <p className="tittle">Wybierz datę nastepnego kontaktu</p>
-         
-              <div>
-                <Form.Group>
-                  <Form.Control
-                    type="date"
-                    name="dob"
-                    id="dob"
-                    placeholder="Date"
-                    onChange={getDatePicker}
-                  />
-                </Form.Group>
+              <div className="inputBlock">
+                <p className="tittle">Informacje :</p>
+
+                <textarea
+                  className="inputAction"
+                  aria-label="With textarea"
+                  id="informationAdd"
+                  name="information"
+                  onChange={getValue}
+                ></textarea>
               </div>
-
             </div>
-            <div className="inputBlock">
-              <p className="tittle">Informacje :</p>
 
-              <textarea
-                className="inputAction"
-                aria-label="With textarea"
-                id="informationAdd"
-                name="information"
-                onChange={getValue}
-              ></textarea>
-            </div>
-          </div>
-
-          <Button
-            variant="outline-success"
-            className="btn m-3"
-            onClick={() => {
-              handleSubmit();
-            }}
-            /*  as={Link}
-            to="/warehouse" */
-          >
-            Zapisz
-          </Button>
-          <span className={showNext}>
             <Button
               variant="outline-success"
               className="btn m-3"
-              as={Link}
-              to="/warehouse"
-              state={{
-                customer: props.state.customer,
-                token: props.state.token,
-                idAction: idAction,
+              onClick={() => {
+                handleSubmit();
               }}
+              /*  as={Link}
+            to="/warehouse" */
             >
-              Dalej
+              Zapisz
             </Button>
-          </span>
-        </div>
-      </Container>
-   </span>
+            <span className={showNext}>
+              <Button
+                variant="outline-success"
+                className="btn m-3"
+                as={Link}
+                to="/warehouse"
+                state={{
+                  customer: props.state.customer,
+                  newCustomer: newCustomer,
+                  token: props.state.token,
+                  idAction: idAction,
+                }}
+              >
+                Dalej
+              </Button>
+            </span>
+          </div>
+        </Container>
+      </span>
     </span>
   );
 };

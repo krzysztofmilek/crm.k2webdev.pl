@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import { Form, Row, Col, Button, ButtonGroup } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
 import "./CustomerCard.css";
 import { Link } from "react-router-dom";
 import Toasts from "../../toasts/Toasts";
-import OverlayTrigText from "../../overLay/OverlayTrigText";
 
 const CustomerCard = (props) => {
   const [addCustomer, setAddCustomer] = useState({});
@@ -13,19 +12,23 @@ const CustomerCard = (props) => {
   // eslint-disable-next-line
   const [customer, setCustomer] = useState("");
 
-  const [show, setShow] = useState(true);
+  const [showButtonAdd, setShowButtonAdd] = useState(props.showButtonAdd);
+const [showNext, setShowNext] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [showToastAlert, setShowToastAlert] = useState(false);
   const [showToastAlertName, setShowToastAlertName] = useState(false);
   const [showToastAlertPhone, setShowToastAlertPhone] = useState(false);
   const [showToastAlertEmail, setShowToastAlertEmail] = useState(false);
   const [token, setToken] = useState({});
-  const chance = props.state?.customer;
+
+  console.log("Buttons: ", props);
+  const customerFromChance = props.state?.customer;
 
   const checkChance = () => {
-    if (chance === undefined || " ") {
+    if (customerFromChance === undefined || " ") {
+      console.log("no chance");
     } else {
-      setAddCustomer(chance);
+      setAddCustomer(customerFromChance);
     }
   };
 
@@ -65,9 +68,16 @@ const CustomerCard = (props) => {
       return;
     } else {
       const pos = {
-        name: addCustomer?.name || chance?.A || props.getCustomer?.name,
-        phone: addCustomer?.phone || chance?.B || props.getCustomer?.phone,
-        email: addCustomer?.email || chance?.C || props.getCustomer?.email,
+        name:
+          addCustomer?.name || customerFromChance?.A || props.getCustomer?.name,
+        phone:
+          addCustomer?.phone ||
+          customerFromChance?.B ||
+          props.getCustomer?.phone,
+        email:
+          addCustomer?.email ||
+          customerFromChance?.C ||
+          props.getCustomer?.email,
         nameCompany: addCustomer.nameCompany,
         NIP: addCustomer.NIP,
         data: getDate,
@@ -80,40 +90,40 @@ const CustomerCard = (props) => {
         process.env.REACT_APP_LOCALHOST + "customer/add",
         pos
       );
-      console.log("POS", pos);
 
       if (newCustomerRes.data.error) {
-        console.log(newCustomerRes.data);
         setShowToastAlert(true);
+
         return;
       } else {
         setNewCustomer(newCustomerRes.data);
         setCustomer(newCustomerRes.data);
-        console.log("Pos2", newCustomerRes.data);
         setShowToast(true);
-        setShow(false);
+        setShowNext(true)
+        if (props?.getCustomers) {
+          props?.getCustomers();
+        }
+   
+console.log("NowyKliet", newCustomer)
+   
+        // setShow("show");
       }
     }
   };
 
-  const getCustomer = (e) =>
+  const getCustomer = (e) => {
     setAddCustomer((prevState) => ({
       ...prevState,
-      [e.target.city]: e.target.value,
-      [e.target.agreement_1]: e.target.value,
-      [e.target.data]: getDate,
-      [e.target.email]: e.target.value,
       [e.target.name]: e.target.value,
-      [e.target.phone]: e.target.value,
-      [e.target.street]: e.target.value,
-      [e.target.zip]: e.target.value,
-      [e.target.NIP]: e.target.value,
-      [e.target.nameCompany]: e.target.value,
     }));
-  console.log(props);
+
+    setShowButtonAdd(false);
+  };
+
   useEffect(() => {
     setToken(getIdUser);
     checkChance();
+
     // eslint-disable-next-line
   }, []);
 
@@ -163,7 +173,7 @@ const CustomerCard = (props) => {
 
       <Form>
         <Row className="mb-0">
-        <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
+          <Form.Group as={Col} xs="12" sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 required
@@ -176,7 +186,7 @@ const CustomerCard = (props) => {
                 value={
                   addCustomer?.name ||
                   props.getCustomer?.name ||
-                  chance?.A ||
+                  customerFromChance?.A ||
                   ""
                 }
                 onChange={getCustomer}
@@ -187,7 +197,7 @@ const CustomerCard = (props) => {
             </Form.Floating>
           </Form.Group>
 
-          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
+          <Form.Group as={Col} xs="12" sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
@@ -208,7 +218,7 @@ const CustomerCard = (props) => {
             </Form.Floating>
           </Form.Group>
 
-          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
+          <Form.Group as={Col} xs="12" sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
@@ -224,8 +234,8 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-      
-          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
+
+          <Form.Group as={Col} xs="12" sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 className="inputField"
@@ -238,7 +248,7 @@ const CustomerCard = (props) => {
                 value={
                   addCustomer.phone ||
                   props.getCustomer?.phone ||
-                  chance?.B ||
+                  customerFromChance?.B ||
                   ""
                 }
                 onChange={getCustomer}
@@ -248,9 +258,9 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-          </Row>
+        </Row>
         <Row className="mb-0">
-        <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
+          <Form.Group as={Col} xs="12" sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
@@ -262,7 +272,7 @@ const CustomerCard = (props) => {
                 value={
                   addCustomer.email ||
                   props.getCustomer?.email ||
-                  chance?.C ||
+                  customerFromChance?.C ||
                   ""
                 }
                 onChange={getCustomer}
@@ -272,7 +282,7 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
+          <Form.Group as={Col} xs="12" sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 //className="tw-hidden"
@@ -284,7 +294,7 @@ const CustomerCard = (props) => {
                 value={
                   addCustomer.street ||
                   props.getCustomer?.street ||
-                  chance?.D ||
+                  customerFromChance?.D ||
                   ""
                 }
                 onChange={getCustomer}
@@ -294,8 +304,8 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-  
-          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
+
+          <Form.Group as={Col} xs="12" sm="12" md="6" lg="6" xl="3">
             <Form.Floating className="mb-1">
               <Form.Control
                 type="text"
@@ -311,7 +321,7 @@ const CustomerCard = (props) => {
               </label>
             </Form.Floating>
           </Form.Group>
-          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3">
+          <Form.Group as={Col} xs="12" sm="12" md="6" lg="6" xl="3">
             <Form.Floating>
               <Form.Control
                 type="text"
@@ -334,8 +344,7 @@ const CustomerCard = (props) => {
               type="switch"
               label="Wyrażam zgodę na przetwarzanie marketingowe"
               className="textCustomer"
-              style={{textAlign: "left",
-            fontSize:"0.9em"}}
+              style={{ textAlign: "left", fontSize: "0.9em" }}
               required
               name="agreement1"
               id="agreement1"
@@ -345,37 +354,49 @@ const CustomerCard = (props) => {
               }
             />
           </Form.Group>
-          <Form.Group as={Col} xs="12"  sm="12" md="6" lg="6" xl="3" className="top">
+          <Form.Group
+            as={Col}
+            xs="12"
+            sm="12"
+            md="12"
+            lg="12"
+            xl="12"
+            className="top tw-text-left"
+          >
             <Button
-              className={props.showClass}
-              //className="show"
+              variant="outline-success"
+              onClick={add}
+              className={(props.showButtonAdd || !showNext)? "show btn  tw-m-5" : "hidden btn  tw-m-5"}
+              style={{
+                 pointerEvents: showNext  ? "none" : "auto",
+        
+         
+              }} 
+            >Zapisz
+            </Button>
+
+            <Button
+              className={ (props.showButtonNext || showNext)  ? "show" : "hidden"}
               variant="outline-success"
               as={Link}
-              disabled={!props.showButton}
               to="/action"
               state={{
                 customer: props.getCustomer,
+                newCustomer: newCustomer,
                 token: token,
                 getDate: getDate,
               }}
-              style={{
-                pointerEvents: props.showButton ? "auto" : "none",
-                background: props.showButton ? "green" : "white",
-                color: props.showButton ? "white" : "green",
-              }}
+         /*      style={{
+                 pointerEvents: showNext ? "auto" : "none", 
+                background: showNext? "green" : "white",
+                color: showNext ? "white" : "green",
+              
+              }} */
             >
-              {props.showButton ? (
-                "Pierwszy Dalej"
-              ) : (
-                <OverlayTrigText
-                  toltip="Aby uaktywnić przycisk :  Pobierz dane Klienta"
-                  text="Dalej"
-                />
-              )}
+              Dalej
             </Button>
           </Form.Group>
         </Row>
-        
       </Form>
     </div>
   );

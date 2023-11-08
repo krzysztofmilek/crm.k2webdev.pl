@@ -33,11 +33,12 @@ const AnaliticUserTop = (props) => {
   const [offer, setOffer] = useState([]);
   //eslint-disable-next-line
   const [soldData, setSoldData] = useState([]);
-
   const getUSerLogIn = JSON.parse(localStorage.getItem("user"));
   const user_id = getUSerLogIn._id;
 
   const getData = async () => {
+
+console.log(props)
     const viewOffer = await axios.get(
       process.env.REACT_APP_LOCALHOST + "offer/"
     );
@@ -166,6 +167,7 @@ const AnaliticUserTop = (props) => {
     },
 
     responsive: true,
+
     plugins: {
       legend: {
         display: true,
@@ -245,12 +247,11 @@ const AnaliticUserTop = (props) => {
           topLeft: 0,
           topRight: 50,
           bottomLeft: 0,
-          bottomRight: 50
-      },
+          bottomRight: 50,
+        },
         borderSkipped: false,
         barPercentage: 0.4,
         categoryPercentage: 0.9,
-       
       },
     ],
   };
@@ -272,7 +273,7 @@ const AnaliticUserTop = (props) => {
       },
       y: {
         ticks: {
-     /*      display: false, // ukrywa opisy ticków na osi X */
+          /*      display: false, // ukrywa opisy ticków na osi X */
         },
         grid: {
           display: false, // ukrywa linie siatki dla osi Y
@@ -301,8 +302,8 @@ const AnaliticUserTop = (props) => {
 
   return (
     <span className="analiticUserBox fullSize">
-      <Row className="tw-w-full jcenter">
-      <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+      <Row className="tw-w-full ">
+        <Col xxl={3} xl={6} lg={6} md={6} sm={12}>
           <div className="analiticUserContainer">
             <h4>PLan miesięczny</h4>
             <hr />
@@ -348,7 +349,7 @@ const AnaliticUserTop = (props) => {
             </span>
           </div>
         </Col>
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+        <Col xxl={3} xl={6} lg={6} md={6} sm={12}>
           <div className="analiticUserContainer">
             <h4>Lejek sprzedaży</h4>
             <hr />
@@ -357,29 +358,21 @@ const AnaliticUserTop = (props) => {
             <div className="tw-flex">
               <div>
                 <ul>
-                  <li className="marginLeft tw-me-5">
-                    {" "}
-                   Kontakty: {actionAll}
-                  </li>
+                  <li className="marginLeft tw-me-5"> Kontakty: {actionAll}</li>
                   <li className="marginLeft">Oferty: {offerAll}</li>
 
                   <li className="marginLeft">Sprzedaż: {props.sold}</li>
-                  {/* <li className="marginLeft">
-                  
-                    Skuteczność: {props.sold ? effectivenessToInt : 0} %
-                  </li> */}
                 </ul>
               </div>
               <div>
-              {/*   <FunnelChart /> */}
-                
-                < MyFunnel />
+                {/*   < FunnelChart  offer={ offerAll} action={actionAll} /> */}
+                <MyFunnel />
               </div>
             </div>
             {/*   <Bar data={dataBar}  options={optionsBar} ></Bar> */}
           </div>
         </Col>
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+        <Col xxl={3} xl={6} lg={6} md={6} sm={12}>
           <div className="analiticUserContainer">
             <h4>
               {" "}
@@ -395,7 +388,7 @@ const AnaliticUserTop = (props) => {
             <MyDonut data={dataEffectiveness} value={effectivenessToInt} />
           </div>
         </Col>
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+        {/*        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
           <div className="analiticUserContainer">
             <h4>
               {" "}
@@ -413,19 +406,19 @@ const AnaliticUserTop = (props) => {
               options={optionsInitiative}
             ></Doughnut>
           </div>
-        </Col>
-        <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
+        </Col> */}
+        <Col xxl={3} xl={6} lg={6} md={6} sm={12}>
           <div id="chart"></div>
           <div className="analiticUserContainer">
             <h4>Struktura leadów</h4>
             <Doughnut
               data={dataSourceLead}
               options={optionsSourceLead}
+              width={150}
+              height={150}
             ></Doughnut>
           </div>
         </Col>
-
-    
 
         {/*    <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
             <div className="analiticUserContainer">

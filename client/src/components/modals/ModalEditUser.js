@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import OverlayTrig from "../overLay/OverlayTrig";
-
+import './../view/users/Users.css'
 function ModalEditUser(props) {
   const [show, setShow] = useState(false);
   const [editUser, setEditUser] = useState(null);
@@ -25,7 +25,7 @@ function ModalEditUser(props) {
 
   const saveEditUser = async (use) => {
     const user = await axios.put(
-      process.env.REACT_APP_LOCALHOST+"user/edit/" + props.use._id,
+      process.env.REACT_APP_LOCALHOST + "user/edit/" + props.use._id,
 
       {
         _id: use._id,
@@ -57,57 +57,78 @@ function ModalEditUser(props) {
         <Modal.Header closeButton className="modalHeaderColor">
           <Modal.Title>Edycja użytkownika</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="modalBodyColor">
-          <Form>
-            <Form.Label>
-              <b>Imię nazwisko</b>
-            </Form.Label>
-            <Form.Control
-              type="text"
-              name="name"
-              id="name"
-              defaultValue={props.use.name}
-              onChange={getUser}
-            />
-
-            <Form.Label>
-              <b>Stanowisko</b>
-            </Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Stanowisko"
-              name="position"
-              id="position"
-              defaultValue={props.use.position}
-              onChange={getUser}
-            />
-
-            <Form.Label>
-              <b>Telefon</b>
-            </Form.Label>
-            <Form.Control
-              name="phone"
-              id="phone"
-              defaultValue={props.use.phone}
-              onChange={getUser}
-            />
-
-            <Form.Label>
-              <b>E-mail</b>
-            </Form.Label>
-            <Form.Control
-              name="email"
-              id="email"
-              defaultValue={props.use.email}
-              onChange={getUser}
-            />
-          </Form>
+        <Modal.Body>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+                type="text"
+                className="inputUser"
+                name="name"
+                placeholder="Imię Nazwisko"
+                id="name"
+                defaultValue={props.use.name}
+                onChange={getUser}
+              />
+              <label htmlFor="name" className="labelPadding">
+                imię nazwisko
+              </label>
+            </Form.Floating>
+          </Form.Group>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+               className="inputUser"
+                type="text"
+                placeholder="Stanowisko"
+                name="position"
+                id="position"
+                defaultValue={props.use.position}
+                onChange={getUser}
+              />
+              <label htmlFor="name" className="labelPadding">
+                Stanowisko
+              </label>
+            </Form.Floating>
+          </Form.Group>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+              className="inputUser"
+               type="text"
+                name="phone"
+                placeholder="Telefon"
+                id="phone"
+                defaultValue={props.use.phone}
+                onChange={getUser}
+              />
+              <label htmlFor="name" className="labelPadding">
+                Telefon
+              </label>
+            </Form.Floating>
+          </Form.Group>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+               className="inputUser"
+                 type="text"
+                name="email"
+                id="email"
+                placeholder="Email"
+                defaultValue={props.use.email}
+                onChange={getUser}
+              />
+              <label htmlFor="name" className="labelPadding">
+                E-mail
+              </label>
+            </Form.Floating>
+          </Form.Group>
         </Modal.Body>
         <Modal.Footer className="modal-footer">
           <Button variant="outline-secondary" onClick={handleClose}>
             Anuluj
           </Button>
           <Button
+          
             type="submit"
             variant="outline-success"
             onClick={(e) => {

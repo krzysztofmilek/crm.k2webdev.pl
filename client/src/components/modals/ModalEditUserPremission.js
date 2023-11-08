@@ -71,7 +71,7 @@ function ModalEditUserPremission (props) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton className="modalHeaderColor">
-          <Modal.Title>Edycja hasła użytkownika {props.use.name}</Modal.Title>
+          <Modal.Title>Edycja uprawnień {props.use.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="modalBodyColor">
           <Form>

@@ -3,9 +3,9 @@ import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import OverlayTrig from "../overLay/OverlayTrig";
-import { Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import ModalCloseActions from "./ModalCloseActions";
-import "../view/action/Action.css"
+import "../view/action/Action.css";
 
 function ModalEditActions(props) {
   const [show, setShow] = useState(false);
@@ -14,8 +14,6 @@ function ModalEditActions(props) {
   const getIdUser = JSON.parse(localStorage.getItem("user"));
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  console.log(props);
 
   useEffect(() => {
     setToken(getIdUser);
@@ -33,148 +31,178 @@ function ModalEditActions(props) {
       />
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header  >
+        <Modal.Header>
           <Modal.Title>Szczegóły zadania</Modal.Title>
-          <button type="button" className="btn-close"
-                         onClick={handleClose}>
-                     <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/delete-sign.png" alt="delete-sign"/> 
-                    </button>
+          <button type="button" className="btn-close" onClick={handleClose}>
+            <img
+              width="30"
+              height="30"
+              src="https://img.icons8.com/ios-glyphs/30/delete-sign.png"
+              alt="delete-sign"
+            />
+          </button>
         </Modal.Header>
- 
+
         <Modal.Body>
-          <div className="">
+          {/*   <div className="">
             <div className="formAction ">
-              <div className="">
-                <div className="inputBlock">
-                  <p className=" titleInputActionInfo">Imię nazwisko</p>
-                  <input
-                  className="inputAction"
-                    type="text"
-                    id="nameCustomer"
-                    name="nameCustomer"
-                    readOnly
-                    defaultValue={props.idAction?.customer?.name}
-                  />
-                </div>
-                <div className="inputBlock">
-                  <p className="titleInputActionInfo">Nazwa firmy: </p>
-                  <input
+              <div className=""> */}
+
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+                required
                 className="inputAction"
-                    type="text"
-                    name="status"
-                    id="status"
-                    readOnly
-                    defaultValue={props.idAction?.customer?.nameCompany}
-                  />
-                </div>
+                type="text"
+                id="nameCustomer"
+                name="nameCustomer"
+                readOnly
+                defaultValue={props.idAction?.customer?.name}
+              />
+              <label htmlFor="name" className="labelPadding">
+                imię nazwisko
+              </label>
+            </Form.Floating>
+          </Form.Group>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+                className="inputAction"
+                type="text"
+                name="status"
+                id="status"
+                readOnly
+                defaultValue={props.idAction?.customer?.nameCompany}
+              />
+              <label htmlFor="name" className="labelPadding">
+                Nazwa firmy
+              </label>
+            </Form.Floating>
+          </Form.Group>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+                className="inputAction"
+                type="text"
+                id="phoneCustomer"
+                readOnly
+                name="phoneCustomer"
+                defaultValue={props.idAction?.customer?.phone}
+              />
+              <label htmlFor="name" className="labelPadding">
+                Telefon
+              </label>
+            </Form.Floating>
+          </Form.Group>
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+                className="inputAction"
+                type="text"
+                name="emailCustomer"
+                id="emailCustomer"
+                readOnly
+                defaultValue={props.idAction?.customer?.email}
+              />
+              <label htmlFor="name" className="labelPadding">
+                Email
+              </label>
+            </Form.Floating>
+          </Form.Group>
 
-                <div className="inputBlock">
-                  <p className="titleInputActionInfo">Telefon:</p>
-                  <input
-                    className="inputAction"
-                    type="text"
-                    id="phoneCustomer"
-                    readOnly
-                    name="phoneCustomer"
-                    defaultValue={props.idAction?.customer?.phone}
-                  />
-                </div>
+          {/*   <div className="inputBlock"> */}
 
-                <div className="inputBlock">
-                  <p className="titleInputActionInfo">Email:</p>
-                  <input
-                    className="inputAction"
-                    type="text"
-                    name="emailCustomer"
-                    id="emailCustomer"
-                    readOnly
-                    defaultValue={props.idAction?.customer?.email}
-                  />
-                </div>
-              </div>
-              <div className="buttonAction tw-pt-3">
-                {props?.idAction.fileName ? (
-                  <Button
-                    variant="outline-success"
-             
-                    as={Link}
-                    to={
-                      process.env.REACT_APP_LOCALHOST +
-                      `import/importCustomerFile/` +
-                      props.idAction.fileName
-                    }
-                    target="_blank"
-                  >
-                    Pokaż załącznik
-                  </Button>
-                ) : (
-                  ""
-                )}
-                &nbsp;
-                {props.idAction?.offer?.fileName ? (
-                  <Button
-                    variant="outline-success"
-                  
-                    as={Link}
-                    to={
-                      process.env.REACT_APP_LOCALHOST +
-                      `offers/` +
-                      props.idAction.offer.fileName
-                    }
-                    target="_blank"
-                  >
-                    Pokaż ofertę
-                  </Button>
-                ) : (
-                  ""
-                )}
-                {/*  <Button variant="outline-success" disabled={props.showOffer}>
+          <div className="buttonAction tw-pt-3">
+            {props?.idAction.fileName ? (
+              <Button
+                variant="outline-success"
+                as={Link}
+                to={
+                  process.env.REACT_APP_LOCALHOST +
+                  `import/importCustomerFile/` +
+                  props.idAction.fileName
+                }
+                target="_blank"
+              >
+                Pokaż załącznik
+              </Button>
+            ) : (
+              ""
+            )}
+            &nbsp;
+            {props.idAction?.offer?.fileName ? (
+              <Button
+                variant="outline-success"
+                as={Link}
+                to={
+                  process.env.REACT_APP_LOCALHOST +
+                  `offers/` +
+                  props.idAction.offer.fileName
+                }
+                target="_blank"
+              >
+                Pokaż ofertę
+              </Button>
+            ) : (
+              ""
+            )}
+            {/*  <Button variant="outline-success" disabled={props.showOffer}>
               Pokaż ofertę
             </Button> */}
-              </div>
-              <div className="inputFlex">
-                <div className="inputBlock">
-                  <p className="titleInputActionInfo">Informacje dodatkowe:</p>
-                  <textarea
-                    className="inputAction"
-                    name="inputArea"
-                    id="inputArea"
-                    readOnly
-                    defaultValue={props.idAction?.information}
-                  ></textarea>
-                </div>
-              </div>
-              <div className="buttonAction">
-                <Button
-                  variant="outline-success"
-                  as={Link}
-              
-                  to="/action"
-                  state={{
-                    customer: props.idAction.customer,
-                    token: token,
-                    idAction: props.idAction._id,
-                  }}
-                  onClick={(e) => {}}
-                >
-                  Nowa Akcja
-                </Button>
-                <span>&nbsp;</span>
-                <ModalCloseActions
-                 getAct={props.getAct}
-                  post={props.idAction}
-                  closeAction={props.closeAction}
-             /*      showAction={props.showAction}
+          </div>
+
+          <Form.Group>
+            <Form.Floating className="mb-1 ">
+              <Form.Control
+                as="textarea"
+                type="textarea"
+                className="inputAction"
+                name="inputArea"
+                id="inputArea"
+                readOnly
+                defaultValue={props.idAction?.information}
+                style={{ height: "150px" }}
+              />
+              <label htmlFor="name" className="labelPadding">
+                Informacje dodatkowe
+              </label>
+            </Form.Floating>
+          </Form.Group>
+
+          <div className="buttonAction">
+            <Button
+              variant="outline-success"
+              as={Link}
+              to="/action"
+              state={{
+                customer: props.idAction.customer,
+                token: token,
+                idAction: props.idAction._id,
+              }}
+              onClick={(e) => {}}
+            >
+              Nowa Akcja
+            </Button>
+            <span>&nbsp;</span>
+            <ModalCloseActions
+              getAct={props.getAct}
+              post={props.idAction}
+              closeAction={props.closeAction}
+              /*      showAction={props.showAction}
                  
                 */
-                />
-              </div>
-            </div>
+            />
           </div>
+          {/*  </div>
+            </div>
+          </div> */}
         </Modal.Body>
-        <Modal.Footer>  <Button variant="outline-secondary" onClick={handleClose}>
+        <Modal.Footer>
+          {" "}
+          <Button variant="outline-secondary" onClick={handleClose}>
             Anuluj
-          </Button></Modal.Footer>
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );

@@ -31,7 +31,7 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-          src="https://img.icons8.com/windows/32/home.png" 
+            src="https://img.icons8.com/windows/32/e9e6df/home-page.png"
 
             alt="analitics"
           />
@@ -45,7 +45,7 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/ios/50/get-revenue.png"
+            src="https://img.icons8.com/ios/50/e9e6df/get-revenue.png"
             alt="analitics"
           />
 
@@ -56,7 +56,7 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/99/external-Users-business-smashingstocks-hand-drawn-black-smashing-stocks.png"
+            src="https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/99/e9e6df/external-Users-business-smashingstocks-hand-drawn-black-smashing-stocks.png"
             alt="analitics"
           />
 
@@ -70,7 +70,7 @@ function NavBar() {
             </span> */}
           <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/external-outline-geotatah/64/null/external-chance-talent-management-outline-geotatah.png"
+            src="https://img.icons8.com/external-outline-geotatah/64/e9e6df/external-chance-talent-management-outline-geotatah.png"
             alt="analitics"
           />
  
@@ -82,7 +82,7 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/pastel-glyph/64/box--v3.png"
+            src="https://img.icons8.com/pastel-glyph/64/e9e6df/box--v3.png"
             alt="analitics"
           />
 
@@ -94,7 +94,7 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/hatch/64/discount--v1.png"
+            src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/e9e6df/external-discount-business-royyan-wijaya-detailed-outline-royyan-wijaya-2.png"
             alt="analitics"
           />
 
@@ -107,7 +107,7 @@ function NavBar() {
           <div className="getCenterInPion">
             <img
               className="imgMenuLeft"
-              src="https://img.icons8.com/windows/64/null/gender-neutral-user.png"
+              src="https://img.icons8.com/windows/64/e9e6df/gender-neutral-user.png"
               alt="analitics"
             />
 
@@ -120,7 +120,7 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/pulsar-line/48/null/settings.png"
+            src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/e9e6df/external-setting-social-media-ui-tanah-basah-basic-outline-tanah-basah.png"
             alt="analitics"
           />
 
@@ -131,7 +131,7 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/ios-glyphs/60/null/logout-rounded--v1.png"
+            src="https://img.icons8.com/ios-glyphs/60/e9e6df/logout-rounded--v1.png"
             alt="analitics"
           />
 

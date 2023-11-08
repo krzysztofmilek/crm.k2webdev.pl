@@ -4,12 +4,9 @@ import { Button, Row, Col } from "react-bootstrap";
 import "./Print.css";
 import { FooterPrint } from "./FooterPrint";
 import axios from "axios";
-import { PDFDownloadLink, ReactPDF, PDFViewer } from "@react-pdf/renderer";
 
-import JsPdf from "./JsPdf";
-import 'jspdf-autotable';
-import Html2Pdf from 'js-html2pdf';
-import { saveAs } from "file-saver";
+import "jspdf-autotable";
+import Html2Pdf from "js-html2pdf";
 
 const OffertCarPrint = (props) => {
   const [showAdd, setShowAdd] = useState({});
@@ -33,7 +30,9 @@ const OffertCarPrint = (props) => {
   const getHours = getFullDate.getHours();
   const getMinutes = getFullDate.getMinutes();
   let priceAllAddEquip = 0;
-  const documentName = `Oferta_${props.state.customer?.name}_${getDate}_${getHours}.${getMinutes}.pdf`;
+  const documentName = `Oferta_${
+    props.state.customer?.name || props.state.newCustomer?.name
+  }_${getDate}_${getHours}.${getMinutes}.pdf`;
 
   const componentRef = useRef();
 
@@ -44,18 +43,16 @@ const OffertCarPrint = (props) => {
       const document = printIframe.contentDocument;
       if (document) {
         const html = document.getElementById("getElementToPdf");
-        console.log(html);
-        const exporter = new Html2Pdf(html,{filename:documentName});
+
+        const exporter = new Html2Pdf(html, { filename: documentName });
         exporter.getPdf(true);
       }
     },
     onAfterPrint: () => {
       addOffer();
       generateAndSavePDF();
-    
     },
   });
-
 
   const getUser = async () => {
     const getUserData = await axios.get(
@@ -65,9 +62,7 @@ const OffertCarPrint = (props) => {
     setUser(getUserData.data);
   };
 
- 
-
-   const generateAndSavePDF = async () => {
+  const generateAndSavePDF = async () => {
     setTimeout(() => {
       const pdfBlob = new Blob(
         [document.getElementById("getElementToPdf").innerHTML],
@@ -75,7 +70,7 @@ const OffertCarPrint = (props) => {
       );
       const formData = new FormData();
       formData.append("pdfFile", pdfBlob, documentName);
-      formData.append("fileName", documentName); // Dodaj nazwę pliku jako część danych     
+      formData.append("fileName", documentName); // Dodaj nazwę pliku jako część danych
       axios
         .post(
           process.env.REACT_APP_LOCALHOST + "upload/generatePDF",
@@ -96,11 +91,7 @@ const OffertCarPrint = (props) => {
           );
         });
     }, 1000);
-  };  
-
-
-
-  
+  };
 
   const addOffer = async () => {
     const pos = {
@@ -116,7 +107,7 @@ const OffertCarPrint = (props) => {
       fileName: documentName,
       status: "open",
       user: props.user._id,
-      customer: props.state.customer?._id,
+      customer: props.state.customer?._id || props.state.newCustomer?._id,
       car: props.state.car._id,
       action: props.state.action?._id,
     };
@@ -169,7 +160,8 @@ const OffertCarPrint = (props) => {
           <Row>
             <Col className="titlePrint tw-uppercase getCenter " xs={12}>
               Oferta handlowa dla {props.state.customer?.name}{" "}
-              {props.state.customer?.nameCompany}
+              {props.state.customer?.nameCompany}{" "}
+              {props.state.newCustomer?.name}
             </Col>
           </Row>
           <Row>
@@ -381,8 +373,6 @@ const OffertCarPrint = (props) => {
           <div className="getRight">
             <Button variant="outline-success" onClick={handlePrint}>
               Wydrukuj PDF
-
-           
             </Button>
           </div>
           {props.state.car.imagesFilesName.map((item, i) => (

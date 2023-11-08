@@ -93,7 +93,6 @@ const Warehouse = (props) => {
 
   const getCalculation = (item) => {
     setCar(item);
-    console.log(item)
     setShow("hidden");
     setShowCalculation("show");
   };
@@ -116,7 +115,6 @@ const Warehouse = (props) => {
     getCategorys();
     // eslint-disable-next-line
   }, []);
-
   return (
     <span className="tw-flex tw-w-full">
     <div className="colNav">
@@ -155,6 +153,7 @@ const Warehouse = (props) => {
                   <Calculation
                     car={car}
                     cust={customer}
+                    newCust={props.state?.newCustomer}
                     action={props.state?.idAction}
                   />
                 </span>

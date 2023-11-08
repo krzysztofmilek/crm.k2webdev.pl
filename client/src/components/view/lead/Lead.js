@@ -26,7 +26,7 @@ const Lead = () => {
     
         <p className="tittle">Dodaj nowego Klienta</p>
         <hr />
-        <CustomerCard showClassButton="hidden" state={state}/>
+        <CustomerCard showClassButton="show" showClass="show" state={state}/>
        
 
 </div>

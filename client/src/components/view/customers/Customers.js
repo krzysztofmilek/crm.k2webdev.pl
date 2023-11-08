@@ -17,6 +17,9 @@ const Customers = (props) => {
   const [show, setShow] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [showClass, setShowClass] = useState("hidden");
+
+  const [showButtonAdd, setShowButtonAdd] = useState(true);
+  const[ showButtonNext, setShowButtonNext] = useState(false);
   const getIdUser = JSON.parse(localStorage.getItem("user"));
 
   const getCustomers = async () => {
@@ -25,6 +28,8 @@ const Customers = (props) => {
     );
     setCustomers(customer.data);
   };
+
+  console.log("tttt",customers)
 
   const clear = () => {
     setSearch("");
@@ -39,8 +44,10 @@ const Customers = (props) => {
 
   const getCustomerData = (cust) => {
     setCustomer(cust);
-
     setShowClass("show");
+    setShow("show");
+  setShowButtonNext(true)
+  setShowButtonAdd(false)
     setShowButton(true);
   };
 
@@ -60,17 +67,21 @@ const Customers = (props) => {
         </div>
         <div className="customerBoxPadding">
           <div>
-            <p className="tittle">Pobierz istniejącego Klienta</p>
+            <p className="tittle">Dodaj nowego Klienta</p>
             <hr />
             <CustomerCard
-              getCustomers={props.getCustomers}
+              getCustomers={getCustomers}
               getCustomer={customer}
-              show={show}
+              showButton={showButton}
+              showButtonAdd={showButtonAdd}
+              showButtonNext={showButtonNext}
+              
+      /*      show={"show"}
               showButton={showButton}
               setShow={setShow}
-              showClass={showClass}
+              showClass={"show"}
               showClassButton="show"
-              diasbled="diasabled"
+              diasbled="diasabled" */
             />
           </div>
 
@@ -114,7 +125,7 @@ const Customers = (props) => {
                       <td id="id3customer" className="col-2 tableFontSize">
                         {cust.email}
                       </td>
-                      <td id="id4customer" className="">
+                      <td id="id4customer" className="getCenter">
                         <div className="tw-flex tw-w-full  tw-flex-col  tw-items-center ">
                           <OverlayTrig
                             imagePath="https://img.icons8.com/windows/30/checked-user-male--v1.png"
@@ -125,7 +136,7 @@ const Customers = (props) => {
                           />
                         </div>
                       </td>
-                      <td id="id5customer" className="">
+                      <td id="id5customer" className="getCenter">
                         <ModalEditCustomer
                           cust={cust}
                           getCustomers={getCustomers}
