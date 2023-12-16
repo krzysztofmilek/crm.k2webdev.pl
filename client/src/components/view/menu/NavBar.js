@@ -1,30 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./NavBar.css";
 
 import Footer from "../footer/Footer";
 
-function NavBar() {
+function NavBar(props) {
   const userToken = JSON.parse(localStorage.getItem("user"));
-  const [lengthCollection, setLengthCollection] = useState(null);
-
-  const getLenght = async () => {
-    const viewChance = await axios.get(
-      process.env.REACT_APP_LOCALHOST + "temp"
-    );
-    const arkusz1 = viewChance.data[0]?.Arkusz1;
-    const lenghtArkusz = arkusz1?.length;
-    setLengthCollection(lenghtArkusz);
-  };
-
-  useEffect(() => {
-    getLenght();
-  }, []);
+console.log(userToken)
 
   return (
-
     <div className="getCenter border">
+      <div>
+        <img
+          className="circkleImage"
+          src={
+            process.env.REACT_APP_LOCALHOST +
+            "import/importCustomerFile/" +
+            userToken.image
+          }
+          alt=""
+        />
+      </div>
+      <div  className="textCenter">   {userToken.access? (<span><div>PANEL ADMINSTRATORA</div><div>{userToken.name}</div></span>):(<span><div>PANEL UŻYTKOWNIKA</div><div>{userToken.name}</div></span>)}</div>
       <Link to="/home" className="tw-block">
         {" "}
         <div className="getCenterInPion">
@@ -39,7 +36,6 @@ function NavBar() {
       </Link>
 
       <Link to="/lead" token={userToken}>
-        
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
@@ -54,8 +50,8 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-          /*   src="https://img.icons8.com/external-thin-kawalan-studio/24/external-users-users-thin-kawalan-studio.png" */
-          src="https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/99/e9e6df/external-Users-business-smashingstocks-hand-drawn-black-smashing-stocks.png"
+            /*   src="https://img.icons8.com/external-thin-kawalan-studio/24/external-users-users-thin-kawalan-studio.png" */
+            src="https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/99/e9e6df/external-Users-business-smashingstocks-hand-drawn-black-smashing-stocks.png"
             alt="analitics"
           />
 
@@ -67,12 +63,12 @@ function NavBar() {
           <img
             className="imgMenuLeft"
             src="https://img.icons8.com/pastel-glyph/64/e9e6df/combo-chart--v2.png"
-          /*   src="https://img.icons8.com/external-outline-geotatah/64/e9e6df/external-chance-talent-management-outline-geotatah.png"
-           */  alt="analitics"
+            /*   src="https://img.icons8.com/external-outline-geotatah/64/e9e6df/external-chance-talent-management-outline-geotatah.png"
+             */ alt="analitics"
           />
 
           <span className="textCenter ">Giełda</span>
-        {/*   <div className="  tw-flex tw-w-full tw-end-2px tw-m-1 tw-border-0 tw-justify-end tw-items-center ">
+          {/*   <div className="  tw-flex tw-w-full tw-end-2px tw-m-1 tw-border-0 tw-justify-end tw-items-center ">
             <span className="tw-border-2 tw-w-6 tw-h-6 tw-rounded-full tw-bg-red-600 tw-text-white">
               {lengthCollection ? lengthCollection : "0"}
             </span>
@@ -83,8 +79,7 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/pastel-glyph/64/e9e6df/box--v3.png" 
-          
+            src="https://img.icons8.com/pastel-glyph/64/e9e6df/box--v3.png"
             alt="analitics"
           />
 
@@ -97,7 +92,7 @@ function NavBar() {
           <img
             className="imgMenuLeft"
             src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/e9e6df/external-discount-business-royyan-wijaya-detailed-outline-royyan-wijaya-2.png"
-                alt="analitics"
+            alt="analitics"
           />
 
           <span className="textCenter ">Oferty</span>
@@ -128,7 +123,7 @@ function NavBar() {
           <span className="textCenter ">Ustawienia</span>
         </div>
       </Link>
-  {/*     <Link to="/settings">
+      {/*     <Link to="/settings">
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
@@ -154,7 +149,6 @@ function NavBar() {
         <div className="getCenterInPion">
           <img
             className="imgMenuLeft"
-            
             src="https://img.icons8.com/ios-glyphs/60/e9e6df/logout-rounded--v1.png"
             alt="analitics"
           />
@@ -164,8 +158,6 @@ function NavBar() {
       </Link>
       <Footer />
     </div>
-
-
   );
 }
 export default NavBar;

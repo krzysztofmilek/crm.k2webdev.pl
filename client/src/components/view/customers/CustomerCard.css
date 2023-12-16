@@ -44,6 +44,8 @@
   }
 
   @media all and (max-width:992px) {
+    img{
+    max-width: none;}
     .top {
         padding-top:20px;
         text-align:center

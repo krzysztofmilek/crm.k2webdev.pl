@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Table, Form } from "react-bootstrap";
-
-import { Container } from "react-bootstrap";
+import { Table, Form, Container } from "react-bootstrap";
 import Menu from "../menu/Menu";
 import "./Home.css";
 import axios from "axios";
 import AnaliticUserTop from "../analitics/AnaliticUserTop";
 import UserLogin from "../auth/UserLogin";
-
-import ModalEditAction from "../../modals/ModalEditAction"
-
+import ModalEditAction from "../../modals/ModalEditAction";
 
 const Home = (props) => {
   const [actions, setActions] = useState([]);
-  const [idAction, setIdAction] = useState({});
-  const [showAction, setShowAction] = useState(true);
-  const [showAttachment, setShowAttachment] = useState(true);
-  const [showOffer, setShowOffer] = useState(true);
+  /*   const [idAction, setIdAction] = useState({}); */
+
+  const  showAction = true;
+  const showAttachment = true;
+  const showOffer = true;
   const [showWindow, setShowWindow] = useState("hidden");
   const [offer, setOffer] = useState([]);
   const [users, setUsers] = useState([]);
   const getIdUser = JSON.parse(localStorage.getItem("user"));
-  
   const [userSelect, setUserSelect] = useState({
     salesMenSelect: getIdUser._id,
   });
@@ -30,26 +26,12 @@ const Home = (props) => {
   const now = propsMonth.toString();
   const [dataSelect, setDataSelect] = useState({ monthSelect: now });
 
-  const getDataAction = (act) => {
-    setIdAction(act);
-    setShowAction(false);
-    setShowWindow("show");
-
-    act.fileName === undefined
-      ? setShowAttachment(true)
-      : setShowAttachment(false);
-
-    act.offer?.fileName === undefined
-      ? setShowOffer(true)
-      : setShowOffer(false);
-  };
-
-
 
   const getOffer = async () => {
     const data = await axios.get(process.env.REACT_APP_LOCALHOST + "offer/");
     setOffer(data.data);
   };
+  console.log(userSelect)
 
   const getAct = async (e) => {
     const getAction = await axios.get(
@@ -93,13 +75,12 @@ const Home = (props) => {
   const getMonthPrev = preGetMonth < 10 ? "0" + preGetMonth : preGetMonth;
   const nowMonth = getMonth.toString();
   const prevMonth = getMonthPrev.toString();
-console.log(preGetMonth)
+
   const getMonthSelected = (e) =>
     setDataSelect((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-console.log(dataSelect);
 
   const getSalesMenSelected = (e) =>
     setUserSelect((prevState) => ({
@@ -107,15 +88,12 @@ console.log(dataSelect);
       [e.target.name]: e.target.value,
     }));
 
-
   const sold = actions.filter(
     (act) =>
       userSelect.salesMenSelect === act.user?._id &&
       act.status === "sold" &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
-
-
 
   const stockMarket = actions.filter(
     (act) =>
@@ -134,7 +112,7 @@ console.log(dataSelect);
   const routeIn = actions.filter(
     (act) =>
       act.direction === "Klient-firma" &&
-      userSelect.salesMenSelect === act.user._id &&
+      userSelect.salesMenSelect === act.user?._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
 
@@ -148,7 +126,7 @@ console.log(dataSelect);
   const recomendations = actions.filter(
     (act) =>
       act.direction === "rekomendacje" &&
-      userSelect.salesMenSelect === act.user._id &&
+      userSelect.salesMenSelect === act.user?._id &&
       act.nextContactData.slice(5, 7) === dataSelect?.monthSelect
   ).length;
   const recomendationsInt = parseInt(recomendations);
@@ -179,39 +157,39 @@ console.log(dataSelect);
     <span className="">
       <span className="tw-flex">
         <div className="colNav">
-          <Menu />
-        
+          <Menu    />
         </div>
 
         <Container className="">
-          <div className="textTopUser"><UserLogin getIdUser={getIdUser} /></div>
-          
-<div className="twoSelectBoxFlex twoSelectBoxBlock">
-          <div className="">
-            <Form.Floating className="twoSelectBox">
+          <div className="textTopUser">
+            <UserLogin getIdUser={getIdUser} />
+          </div>
+          <div className="analaiticsSelect">
+            <Form.Floating>
               <Form.Select
-              className="form-floating"
+                className="form-floating selectMonth"
                 id="monthSelect"
                 defaultValue={nowMonth}
                 name="monthSelect"
                 onChange={getMonthSelected}
-                style={{    fontSize: "12px"}}
+                /*   style={{ fontSize: "12px", width: "282px", marginTop: "10px"}} */
               >
                 <option value={nowMonth}>Wybierz miesiąc </option>
                 <option value={nowMonth}>Miesiąc bieżący</option>
                 <option value={prevMonth}>Miesiąc poprzedni</option>
               </Form.Select>
             </Form.Floating>
-</div><div>
+          </div>
+          <div className="analaiticsSelect">
             {getIdUser.access ? (
-              <Form.Floating className="twoSelectBox">
+              <Form.Floating>
                 <Form.Select
-                     className="form-floating"
+                  className="form-floating selectMonth"
                   id="slaesMenSelect"
                   defaultValue={getIdUser._id}
                   name="salesMenSelect"
                   onChange={getSalesMenSelected}
-                  style={{    fontSize: "12px"}}
+                  /*   style={{ fontSize: "12px", width: "282px", marginTop: "5px" , marginBottom: '10px'}} */
                 >
                   <option value={getIdUser._id}>Wybierz handlowca </option>
                   {users.map((user, index) => (
@@ -222,10 +200,8 @@ console.log(dataSelect);
                 </Form.Select>
               </Form.Floating>
             ) : null}
-          </div>
-     </div>
-     
-          <div className="">
+          </div>{" "}
+          <div className="analaiticsSelect">
             <AnaliticUserTop
               actions={actions}
               getIdUser={getIdUser}
@@ -245,22 +221,25 @@ console.log(dataSelect);
               routeOut={routeOut}
             />
           </div>
-
           <div className="tw-w-full conatinerDataCompany  conatinerDataCompanyPaddingMedia">
             <span className={showWindow}>
               <div>
                 <br />
                 <span className="title">Przeglądaj zadania</span>
                 <hr />
-
-             
               </div>
             </span>
             <hr />
 
             <span className="getLeft title">PRZETERMINOWANE ZADANIA </span>
 
-            <Table variant="light" hover bordered size="sm" className="fullWidth">
+            <Table
+              variant="light"
+              hover
+              bordered
+              size="sm"
+              className="fullWidth"
+            >
               <tbody>
                 {actions
                   .filter((act) => {
@@ -275,7 +254,7 @@ console.log(dataSelect);
                       <td className="col-1 tableFontSize" id="id1action">
                         {act.nextContactData?.slice(0, 10)}
                       </td>
-            
+
                       <td className="col-2 tableFontSize" id="id3action">
                         {act.customer?.name}
                       </td>
@@ -286,22 +265,30 @@ console.log(dataSelect);
                         {act.information?.slice(0, 100)}{" "}
                       </td>
                       <td className="col-1 getCenter" id="id6action">
-                     <ModalEditAction      
-                       idAction={act}
-                /*   showAction={showAction}
+                        <ModalEditAction
+                          idAction={act}
+                          /*   showAction={showAction}
                   showAttachment={showAttachment}
                   showOffer={showOffer} */
-                  closeAction={closeAction}
-                  getAct={getAct}
-                  getOffer={getOffer}
-                  offer={offer}
-                  actions={actions} /></td>
+                          closeAction={closeAction}
+                          getAct={getAct}
+                          getOffer={getOffer}
+                          offer={offer}
+                          actions={actions}
+                        />
+                      </td>
                     </tr>
                   ))}
               </tbody>
             </Table>
             <span className="getLeft title"> DZISIEJSZE ZADANIA</span>
-            <Table variant="light" hover bordered size="sm" className="fullWidth">
+            <Table
+              variant="light"
+              hover
+              bordered
+              size="sm"
+              className="fullWidth"
+            >
               <tbody>
                 {actions
                   .filter((act) => {
@@ -312,11 +299,11 @@ console.log(dataSelect);
                     );
                   })
                   .map((act, index) => (
-                    <tr key={index} >
-                       <td className="col-1 tableFontSize" id="id1action">
+                    <tr key={index}>
+                      <td className="col-1 tableFontSize" id="id1action">
                         {act.nextContactData?.slice(0, 10)}
                       </td>
-          
+
                       <td className="col-2 tableFontSize" id="id3action">
                         {act.customer?.name}
                       </td>
@@ -327,23 +314,35 @@ console.log(dataSelect);
                         {act.information?.slice(0, 100)}{" "}
                       </td>
                       <td className="col-1 getCenter" id="id6action">
-                     <ModalEditAction      
-                       idAction={act}
-                  showAction={showAction}
-                  showAttachment={showAttachment}
-                  showOffer={showOffer}
-                  closeAction={closeAction}
-                  getAct={getAct}
-                  getOffer={getOffer}
-                  offer={offer}
-                  actions={actions} /></td>
+                        <ModalEditAction
+                          idAction={act}
+                          showAction={showAction}
+                          showAttachment={showAttachment}
+                          showOffer={showOffer}
+                          closeAction={closeAction}
+                          getAct={getAct}
+                         getOffer={getOffer}
+                          offer={offer}
+                          actions={actions}
+
+             
+
+
+                        />
+                      </td>
                     </tr>
                   ))}
               </tbody>
             </Table>
 
             <span className="getLeft title"> NADCHODZĄCE ZADANIA</span>
-            <Table variant="light" hover bordered size="sm" className="fullWidth">
+            <Table
+              variant="light"
+              hover
+              bordered
+              size="sm"
+              className="fullWidth"
+            >
               <tbody>
                 {actions
                   .filter((act) => {
@@ -354,11 +353,11 @@ console.log(dataSelect);
                     );
                   })
                   .map((act, index) => (
-                    <tr  key={index}>
-                    <td className="col-1 tableFontSize" id="id1action">
-                      {act.nextContactData?.slice(0, 10)}
-                    </td>
-          
+                    <tr key={index}>
+                      <td className="col-1 tableFontSize" id="id1action">
+                        {act.nextContactData?.slice(0, 10)}
+                      </td>
+
                       <td className="col-2 tableFontSize" id="id3action">
                         {act.customer?.name}
                       </td>
@@ -369,22 +368,23 @@ console.log(dataSelect);
                         {act.information?.slice(0, 100)}{" "}
                       </td>
                       <td className="col-1 getCenter" id="id6action">
-                     <ModalEditAction      
-                       idAction={act}
-                  showAction={showAction}
-                  showAttachment={showAttachment}
-                  showOffer={showOffer}
-                  closeAction={closeAction}
-                  getAct={getAct}
-                  getOffer={getOffer}
-                  offer={offer}
-                  actions={actions} /></td>
+                        <ModalEditAction
+                          idAction={act}
+                          showAction={showAction}
+                          showAttachment={showAttachment}
+                          showOffer={showOffer}
+                          closeAction={closeAction}
+                          getAct={getAct}
+                          getOffer={getOffer}
+                          offer={offer}
+                          actions={actions}
+                        />
+                      </td>
                     </tr>
                   ))}
               </tbody>
             </Table>
           </div>
-          
         </Container>
       </span>
     </span>

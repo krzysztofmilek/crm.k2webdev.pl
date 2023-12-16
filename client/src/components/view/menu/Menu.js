@@ -10,7 +10,7 @@ const Menu = (props) => {
   return (
     <div >
       <div className="visibleMenu">
-        <NavBar />
+        <NavBar  />
       </div>
       <div className="hiddenMenu">
         <MobileBar  />

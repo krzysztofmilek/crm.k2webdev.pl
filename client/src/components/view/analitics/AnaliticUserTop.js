@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Table } from "react-bootstrap";
 import { Funnel } from "@nivo/funnel";
 
 import {
@@ -37,8 +37,6 @@ const AnaliticUserTop = (props) => {
   const user_id = getUSerLogIn._id;
 
   const getData = async () => {
-
-console.log(props)
     const viewOffer = await axios.get(
       process.env.REACT_APP_LOCALHOST + "offer/"
     );
@@ -301,8 +299,8 @@ console.log(props)
   }, []);
 
   return (
-    <span className="analiticUserBox fullSize">
-      <Row className="tw-w-full ">
+    <div className="flexChange">
+      <Row>
         <Col xxl={3} xl={6} lg={6} md={6} sm={12}>
           <div className="analiticUserContainer">
             <h4>PLan miesięczny</h4>
@@ -419,21 +417,8 @@ console.log(props)
             ></Doughnut>
           </div>
         </Col>
-
-        {/*    <Col xxl={2} xl={6} lg={6} md={6} sm={12} className="tw-w-[300px]">
-            <div className="analiticUserContainer">
-              <h4>Wskaźniki KPI</h4>
-              <hr />
-              <ul>
-                  <li className="marginLeft">Kontakty/Oferty: {actionAll ? kpiContactOffer : 0} %</li>
-                  <li className="marginLeft">Kontakty/Sprzedaż: {actionAll ? effectiveness : 0} %</li>
-                  <li className="marginLeft">Oferty/Sprzedaż: {props.sold ? kpiOfferSold : 0} %</li>
-                  <li className="marginLeft">Utracone szanse: {actionAll ? kpiLostChanceData : 0} %</li>
-              </ul>
-            </div>
-          </Col> */}
       </Row>
-    </span>
+    </div>
   );
 };
 

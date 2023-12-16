@@ -19,35 +19,48 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
 
-
   const [showToastAddUser, setShowToastAddUser] = useState(false);
   //eslint-disable-next-line
   const [showToastAddPlain, setShowToastAddPlain] = useState(false);
   const getIdUser = JSON.parse(localStorage.getItem("user"));
-  const addPlain  =  (id) => {
-  const plain = {
-    name: user.name,
-    id_user: id,
-    january: 0,
-    february: 0,
-    march: 0,
-    april: 0,
-    may: 0,
-    june: 0,
-    july: 0,
-    august: 0,
-    september: 0,
-    october: 0,
-    november: 0,
-    december: 0,
-  };
+  const addPlain = (id) => {
+    const plain = {
+      name: user.name,
+      id_user: id,
+      january: 0,
+      february: 0,
+      march: 0,
+      april: 0,
+      may: 0,
+      june: 0,
+      july: 0,
+      august: 0,
+      september: 0,
+      october: 0,
+      november: 0,
+      december: 0,
+    };
 
- axios.post(process.env.REACT_APP_LOCALHOST + "plain/add", plain);
-  setShowToastAddPlain(true);
-}
+    axios.post(process.env.REACT_APP_LOCALHOST + "plain/add", plain);
+    setShowToastAddPlain(true);
+  };
 
 
   const addUser = async () => {
+
+    const file = document.getElementById("file-field").files[0];
+    const url = process.env.REACT_APP_LOCALHOST + "upload/uploadCustomerFiles";
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    const data = new FormData();
+    data.append("customerFiles", file);
+    axios.post(url, data, config);
+
+console.log(file.name,)
+
     const post = {
       name: user.name,
       password: user.password,
@@ -57,18 +70,20 @@ const Users = () => {
       position: user.position,
       email: user.email,
       isVerifed: "true",
+      imageUser: file?.name,
     };
 
-   const userAdd =  await axios.post(process.env.REACT_APP_LOCALHOST + "user/addUser/", post);
-   setUser(userAdd.data);
+    const userAdd = await axios.post(
+      process.env.REACT_APP_LOCALHOST + "user/addUser/",
+      post
+    );
+    setUser(userAdd.data);
 
-   getUsers();
-   setShowToastAddUser(true);
-   addPlain(userAdd.data._id)
+    getUsers();
+    setShowToastAddUser(true);
+    addPlain(userAdd.data._id);
+    console.log(post);
   };
-
-
-
 
   const getUser = (e) =>
     setUser((prevState) => ({
@@ -105,7 +120,6 @@ const Users = () => {
         setShowWindow={setShowToastAddUser}
       />
 
-
       <div className="colNav">
         <Menu />
       </div>
@@ -116,13 +130,13 @@ const Users = () => {
         </div>
         <div className="customerBoxPadding hiddenPlain">
           <div className="">
-              <p className="tittle">ustal plan</p>
-              <hr />
+            <p className="tittle">ustal plan</p>
+            <hr />
 
-              <UserTable getUsers={getUsers} />
-            </div>
+            <UserTable getUsers={getUsers} />
           </div>
-      
+        </div>
+
         <div className="conatinerDataCompany conatinerDataCompanyPaddingMedia">
           <p className="tittle">Dodaj nowego użytkownika</p>
           <hr />
@@ -219,6 +233,10 @@ const Users = () => {
                   <label className="labelPadding">Powtórz hasło</label>
                 </Form.Floating>
               </Form.Group>
+              <p className="tittle">Dodaj zdjęcie użytkownika</p>
+              <div>
+                <input id="file-field" type="file" name="customerFiles" />
+              </div>
               <Form.Group as={Col} md="12" className="mt-4">
                 <p className="getRight">
                   <Button
@@ -250,14 +268,25 @@ const Users = () => {
                   })
                   .map((use, index) => (
                     <tr key={index}>
-                      <td className="tableFontSize" id="one">{use.name}</td>
-                      <td className="tableFontSize tw-items-center tw-justify-center" id="two">
+                      <td className="tableFontSize" id="one">
+                        {use.name}
+                      </td>
+                      <td
+                        className="tableFontSize tw-items-center tw-justify-center"
+                        id="two"
+                      >
                         {use.phone}
                       </td>
-                      <td className="tableFontSize tw-items-center tw-justify-center" id="three">
+                      <td
+                        className="tableFontSize tw-items-center tw-justify-center"
+                        id="three"
+                      >
                         {use.email}
                       </td>
-                      <td className="tableFontSize tw-items-center tw-justify-center" id="four">
+                      <td
+                        className="tableFontSize tw-items-center tw-justify-center"
+                        id="four"
+                      >
                         {use.position}
                       </td>
 
@@ -280,12 +309,9 @@ const Users = () => {
                   ))}
               </tbody>
             </Table>
-           </div>
+          </div>
         </div>
-   
-        
       </Container>
-    
     </span>
   );
 };

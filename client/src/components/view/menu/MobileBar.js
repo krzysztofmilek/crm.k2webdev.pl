@@ -65,9 +65,7 @@ function NavBar() {
       </Link>
       <Link to="/chance">
         <div className="getCenterInPion">
-    {/*     <span className="tw-border-2 tw-w-6 tw-h-6 tw-rounded-full tw-bg-red-600 tw-text-white">
-              {lengthCollection ? lengthCollection : "0"}
-            </span> */}
+
           <img
             className="imgMenuLeft"
             src="https://img.icons8.com/external-outline-geotatah/64/e9e6df/external-chance-talent-management-outline-geotatah.png"

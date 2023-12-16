@@ -9,9 +9,11 @@ li {
   font-size: 1em;
   font-weight: 300 !important;
 }
+
 .marginLeft {
   margin-left: 10px !important;
 }
+
 .bold {
   font-weight: 700;
 }
@@ -23,7 +25,8 @@ li {
 .analiticUserContainer {
   border: 0px solid gray;
   margin: 15px;
-  padding: 15px; /*  */
+  padding: 15px;
+  /*  */
   border-radius: 5px;
   background-color: white;
   height: 260px;
@@ -56,14 +59,17 @@ li {
     text-align: center;
     margin: 15px;
   }
+
   .jcenter {
     justify-content: center;
     margin-top: 20px;
   }
+
   .fullSize {
     width: 95%;
     justify-content: center;
   }
+
   .marginLeft {
     margin-left: 0px !important;
   }
@@ -71,12 +77,23 @@ li {
   .analiticUserContainer {
     width: 282px;
     margin: 0px;
-    min-height: auto;
+    min-height: 200px;
     margin-bottom: 15px;
+    display: inline-block;
+    justify-content: center;
+
+  }
+  .analaiticsSelect{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5px !important;
+
   }
 
   .analiticUserContainerChat {
     width: 100%;
     display: none;
+    margin: 0px;
   }
 }

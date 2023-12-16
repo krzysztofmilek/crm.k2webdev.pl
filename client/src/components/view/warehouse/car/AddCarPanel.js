@@ -228,8 +228,8 @@ const AddCarPanel = (props) => {
                     }}
                   >
                     <option>Wybierz</option>
-                    <option value="tak">TAK</option>
-                    <option value="nie">NIE</option>
+                    <option value="TAK">TAK</option>
+                    <option value="NIE">NIE</option>
                   </Form.Select>
                   <label htmlFor="registration">Zarejestrowany</label>
                 </Form.Floating>

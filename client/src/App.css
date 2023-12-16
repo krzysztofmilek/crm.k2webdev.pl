@@ -58,7 +58,7 @@ input:focus {
 
 .btn-small {
   border-radius: 50px;
-  min-width: 60px !important;
+  min-width: 80px !important;
 }
 
 .App-header {

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Node PDF Creator</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <style>
+      body {
+        font-size: 12px;
+        margin: 0px;
+        padding: 0px;
+        color: #000;
+      }
+
+      .textPad {
+        padding-left: 25px;
+        font-size: 10px;
+      }
+      .footerText{
+        padding-left: 25px;
+        font-size: 8px;
+        color:rgb(46, 45, 45);
+        text-align: left;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
+      .headerText{
+        padding-right: 25px;
+        width: 80%;
+        font-size: 10px;
+        color:rgb(46, 45, 45);
+        text-align: right;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
+      .addtionalOption {
+        white-space: pre-line;
+        padding-left: 25px;
+        font-size: 10px;
+        padding-top: 0px;
+        margin-top: 0px;
+      }
+      .whiteSpace {
+        white-space: pre-line;
+        padding-left: 25px;
+        font-size: 10px;
+        padding-top: 0px;
+        margin-top: 0px;
+      }
+      hr {
+        padding: 0px;
+        margin: 0px;
+      }
+      .nomargin {
+        padding: 0px;
+        margin: 0px;
+        margin-top: 30px;
+      }
+      .title {
+        padding-left: 25px;
+        padding-top:20px;
+        font-size: 12px;
+        /*     margin-bottom: 0px;
+        padding-bottom: 0px; */
+      }
+      .textUpperCase {
+        text-transform: uppercase;
+      }
+      .bordertdor {
+        border: 0px solid red;}
+        
+      .priceText {
+        font-size: 15px;
+      font-weight: 700;
+      padding: 15px;
+      padding-top:50px;
+      text-transform: uppercase;
+      color: red;
+      text-align: left;
+      }
+    </style>
+    
+    <table class="bordertdor" cellspacing="0" cellpadding="0" width="80%" >
+      <tr>
+        <td>
+          <img
+            style="width: 100%"
+            src="http://localhost:8081/import/importImages/5dcbe8c8583a0f79bf1bf294.jpg"
+            alt="Responsive image"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td class="headerText">Wrocław {{shortString this.user.data.data}}</td>
+        </tr>
+      <tr>
+        <td
+          style="
+            font-size: 15px;
+            text-transform: uppercase;
+            padding-left: 25px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            text-align: left;
+          " >
+         Informacja handlowa      
+        </td>
+      </tr>
+ 
+<tr>
+  <td  style="
+  font-size: 12px;
+  padding-left: 25px;
+  padding-right: 60px;
+  text-align: left;
+
+">
+  <span style="padding-left: 25px;">Szanowny/a Panie/Pani <b>{{this.user.data.customer.name}} {{this.user.data.customer.nameCompany}}</b></span><br /><br />
+    
+ 
+  <span style="padding-left: 25px;">W nawiązaniu</span> do naszych ustaleń dotyczących obecnych potrzeb zakupowych, mam przyjemność przedstawić Państwu 
+  informację handlową dotyczącą samochodów marki  {{this.user.data.car.make}}.<br /><br />
+
+  Niniejsza oferta zawiera informacje dotyczące wyposażenia , cen specjalnych oraz  terminów realizacji zamówienia wybranych samochodów marki
+     {{this.user.data.car.make}}. W każdej chwili może zostać uzupełniona o dodatkowe modele bądź specyfikacje.<br /><br />
+     We wszystkich kwestiach związanych z naszą ewentualną współpracą, pozostaję do Państwa dyspozycji .
+  </td>
+
+</tr>
+<tr><td  style="
+  font-size: 12px;
+   padding-left: 25px;
+
+">
+  <br /> <br /><br /><br /><br /><br />
+  Z poważaniem <br />
+<b>{{this.user.data.user.name}}</b><br />
+ <span  style="
+ font-size: 10px;
+">{{this.user.data.user.position}} <br />
+  tel.: {{this.user.data.user.phone}}<br />
+  e-mail: {{this.user.data.user.email}}</span>
+
+</td></tr>
+<tr>
+  <td
+   class="priceText" 
+    
+  >
+    {{this.user.data.car.make}} {{this.user.data.car.model}}
+    {{this.user.data.car.version}} {{this.user.data.car.engine_power}}KM
+    {{this.user.data.car.engine_capacity}}ccm
+      </td>
+</tr>
+      <tr>
+        <td class="title">
+          <span class="textUpperCase">Informacje podstawowe:</span>
+          <hr />
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+        <li  class="textPad"><span class="textPad"> Stan:</span>
+          <span
+            >{{#ifCond this.user.data.car.new_used '===' 'used'
+            }}Uzywany{{/ifCond}}</span
+          >
+          <span
+            >{{#ifCond this.user.data.car.new_used '===' 'new'
+            }}Nowy{{/ifCond}}</span
+          ></li>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">  <span class="textPad">Skrzynia biegów :</span>
+          {{this.user.data.car.gearbox}}</li>
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">   <span class="textPad">Napęd :</span>
+          {{this.user.data.car.drive}}</li>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">   <span class="textPad">Przebieg :</span>
+          {{this.user.data.car.mileage}}</li>
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+          <li  class="textPad"><span class="textPad">Lakier :</span>
+          {{this.user.data.car.lakier}} {{this.user.data.car.colour}}</li>
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">  <span class="textPad">Typ:</span>
+          {{this.user.data.car.body_type}}</li>
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">  <span class="textPad">Bezwypadkowy :</span>
+          {{this.user.data.car.noCrash}}</li>
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">  <span class="textPad"
+            >Zarejestrowany : {{#ifCond this.user.data.car.registration '==='
+            'TAK' }}TAK{{/ifCond}} {{#ifCond this.user.data.car.registration
+            '===' 'NIE' }}NIE{{/ifCond}}</span
+          ></li>
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">   <span class="textPad">Nr Rejestracyjny :</span>
+          <span
+            >{{#ifCond this.user.data.car.registration '===' 'TAK'
+            }}{{this.user.data.car.nr_rejestracyjny }}{{/ifCond}}</span
+          >
+          <span
+            >{{#ifCond this.user.data.car.registration '===' 'NIE'
+            }}BRAK{{/ifCond}}</span
+          > </li>
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">   <span class="textPad">Paliwo :</span>
+          {{this.user.data.car.fuel_type}}</li>
+        </td>
+      </tr>
+      <tr>
+        <td class="textPad">
+          <li  class="textPad">  <span class="textPad">Ilość siedzeń :</span>
+          {{this.user.data.car.number_seats}}</li>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+           <span class="textUpperCase">Wyposażenie dodatkowe:</span>
+          <hr />
+          <ul>
+            {{#each user.data.car.carOptions}}
+            <li class="addtionalOption">{{this.nameOption}}</li>
+
+            {{/each}}
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="title">
+          <span class="textUpperCase">Wyposażenie standardowe:</span>
+          <hr />
+          <p class="whiteSpace">{{this.user.data.car.description}}</p>
+        </td>
+      </tr>
+      <!-- start add eqipment -->
+      <tr><td class="title">
+        {{#if this.user.data.addEquipOneName}}
+        <span class="textUpperCase">Doposażenie</span>
+        <hr />
+      <ol>
+        <li  class="textPad">{{this.user.data.addEquipOneName}} : {{this.user.data.addEquipOnePrice}}</li>
+        {{/if}}
+        {{#if this.user.data.addEquipTwoName}}
+        <li  class="textPad">{{this.user.data.addEquipTwoName}} : {{this.user.data.addEquipTwoPrice}} </li>
+        {{/if}}
+        {{#if this.user.data.addEquipThreeName}}
+        <li  class="textPad">{{this.user.data.addEquipThreeName}} : {{this.user.data.addEquipThreePrice}}</li>
+        {{/if}}
+      
+      </ol>
+       </td></tr>
+      
+       <tr><td class="title">
+        {{#if this.user.data.addInfo}}
+        <span class="textUpperCase">Informacje dodoatkowe</span>
+        <hr />
+       
+        <p  class="textPad">{{this.user.data.addInfo}} </p>
+        {{/if}}
+      
+       </td></tr>
+<!--     start price calculation ----------- -->
+      <tr>
+        <td  class="priceText" >
+          <hr  />
+          <p>Cena brutto przed rabatem : {{this.user.data.car.price}}</p> 
+
+          {{#if this.user.data.scontoCash}}
+          <p>Rabat : {{this.user.data.scontoCash}}</p>
+          {{/if}}
+
+          {{#unless this.user.data.addEquipOnePrice}}
+          <p>Cena sprzedaży brutto {{addCarPrice this.user.data.car.price this.user.data.scontoCash}}</p>
+          {{/unless}}
+
+
+          {{#if this.user.data.addEquipOnePrice}}
+       
+          <p>Doposażenie : {{addDop  this.user.data.addEquipOnePrice this.user.data.addEquipTwoPrice this.user.data.addEquipThreePrice }}</p>
+         <p>Cena sprzedaży brutto z doposażeniem : {{addAllPrice this.user.data.car.price this.user.data.addEquipOnePrice this.user.data.addEquipTwoPrice this.user.data.addEquipThreePrice this.user.data.scontoCash}}</p>
+          
+          {{/if}}
+        </td>
+      </tr>
+
+<!-- contact salesman -->
+
+<td class="title">
+
+  <span class="textUpperCase">Kontakt z handlowcem</span>  
+  <hr />
+  <span style="font-size:12px">
+        <b>{{this.user.data.user.name}}</b><br />
+        {{this.user.data.user.position}} <br />
+        tel.: {{this.user.data.user.phone}}<br />
+        e-mail: {{this.user.data.user.email}}</span>
+      
+        <br /><br />
+
+      <span style="font-size:12px"><b>{{user.company.nameCompany}}</b><br /><hr />
+     
+        ul. {{user.company.streetAdress}} {{user.company.zipAdress}}, {{user.company.cityAdress}} <br />
+        REGON: {{user.company.REGON}}  NIP {{user.company.NIP}} <br />
+        Konto: {{user.company.bankAccount}}<br />
+        Tel.: {{user.company.phoneCompany}} <br />
+        Email: {{user.company.emailCompany}}<br />
+        {{user.company.siteWWW}}<br /><br />
+   
+        
+      </td></tr>        
+      <tr>
+        <td>
+          {{#each user.data.car.imagesFilesName}}
+
+          <img
+            style="width: 100%"
+            src="http://localhost:8081/import/importImages/{{this}}"
+            alt="Responsive image"
+          />
+          {{/each}}
+        </td>
+      </tr>
+    </table>
+
+ <!--    <div id="pageHeader" class="bordertdor" style="width:80%; height: 100px; justify-content: center; align-items: center;" ></div>   -->
+<!-- <div id="pageFooter" class="bordertdor" style="width:80%; height: 100px; justify-content: center; align-items: center;" >
+<br /><br />
+    <table style="width:100%" >
+        <tr>
+          <td colspan="2" class="footerText"><b>{{this.user.company.nameCompany}}</b><br />
+            <hr /></td>
+        </tr>
+        <td style="width:50%" class="footerText">ul. {{this.user.company.streetAdress}} {{this.user.company.zipAdress}}, {{this.user.company.cityAdress}} </td>
+        <td style="width:50%" class="footerText">REGON: {{this.user.company.REGON}}, NIP{{this.user.company.NIP}} Konto: {{this.user.company.bankAccount}}</td>
+      </tr>
+      </tr>
+      <td style="width:50%" class="footerText"> Tel.: {{this.user.company.phoneCompany}}, Email :{{this.user.company.emailCompany}}</td>
+      <td style="width:50%" class="footerText">{{this.user.company.siteWWW}} </td>
+      </tr>
+      </table> -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+<script>
+  // compile the template
+  var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+  // execute the compiled template and print the output to the console
+  console.log(template({ doesWhat: "rocks!" }));
+</script>
+  </body>
+</html>

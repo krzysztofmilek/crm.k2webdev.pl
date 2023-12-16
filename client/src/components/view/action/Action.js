@@ -90,7 +90,7 @@ const Action = (props) => {
         fileName: file?.name,
         status: "open",
         user: token._id,
-        customer: newCustomer._id || customer._id,
+        customer: newCustomer?._id || customer?._id,
       };
 
       const newAction = await axios.post(

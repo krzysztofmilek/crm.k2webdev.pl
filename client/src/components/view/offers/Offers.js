@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap";
 import Menu from "../menu/Menu";
-import Footer from "../footer/Footer";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Toasts from "../../toasts/Toasts";
-import OverlayTrig from "../../overLay/OverlayTrig";
+
 import "./Offers.css";
-import { PDFDownloadLink, ReactPDF, PDFViewer } from "@react-pdf/renderer";
+
 
 import UserLogin from "../auth/UserLogin";
-
-import JsPdf from "../print/JsPdf";
 
 const Offers = (props) => {
   const [offer, setOffer] = useState([]);
   const [search, setSearch] = useState([]);
   const [showToastSend, setShowToastSend] = useState(false);
   const getIdUser = JSON.parse(localStorage.getItem("user"));
+  const [company, setCompany] = useState([]);
+
+  const getCompany = async () => {
+    const data = await axios.get(process.env.REACT_APP_LOCALHOST+"company/");
+    setCompany(data.data[0]);
+  };
+
+
   const clear = () => {
     setSearch("");
     document.getElementById("formSearch").reset();
@@ -36,11 +41,14 @@ const Offers = (props) => {
   const sednOffer = async (use) => {
     await axios.post(process.env.REACT_APP_LOCALHOST + "api/auth/sendOffer", {
       data: use,
+      company: company,
     });
     setShowToastSend(true);
   };
+  
   useEffect(() => {
     getOffer();
+    getCompany();
   }, []);
 
   console.log(offer)
@@ -121,48 +129,25 @@ const Offers = (props) => {
                       {use.customer?.phone}
                     </td>
 
-                    <td className="tableFontSize tw-items-center tw-justify-center">
-                    <Button
-                        variant="link"
-                        size="sm"
-                        className="btn-small smallSize"
-                      >
-                      <a
-                        href={
-                          process.env.REACT_APP_LOCALHOST +
-                          `/offers/${use.fileName}`
-                        }
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <OverlayTrig
-                        
-                          imagePath="https://img.icons8.com/ios/30/pdf--v1.png" 
-                         
-                          toltip="Podgląd pdf"
-                        />
-                      </a>
-                      </Button>
-                    </td>
+                  
                     <td className="tableFontSize tw-items-center tw-justify-center">
                       <Button
-                        variant="link"
+                           className="btn-small"
+                        variant="outline-success"
                         size="sm"
-                        className="btn-small smallSize"
+                      
+                        onClick={(e) => {
+                          sednOffer(use);
+                        }}
                       >
-                        <OverlayTrig
-                          imagePath="https://img.icons8.com/pastel-glyph/30/send.png"
-                          toltip="Wyslij ofertę"
-                          onClick={(e) => {
-                            sednOffer(use);
-                          }}
-                        />
+                     Wyślij
                       </Button>
                     </td>
                     <td>
-                      <Button
-                        variant="link"
-                        size="sm"
+                    <Button
+                      
+                      variant="outline-success"
+                      size="sm"
                         className="btn-small"
                         as={Link}
                         to="/offertscar"
@@ -180,38 +165,11 @@ const Offers = (props) => {
                           addInfo: use.addInfo,
                         }}
                       >
-                        <OverlayTrig
-                          imagePath="https://img.icons8.com/pulsar-line/30/preview-pane.png"
-                          toltip="Podgląd oferty"
-                        />
+                    Podgląd
                       </Button>
                     </td>
-                   {/*  <td>
                      
-                
-                      <div>
-    <PDFDownloadLink document={<JsPdf    state={{
-                          car: use.car,
-                          customer: use.customer,
-                          user: props.user,
-                          addEquipOnePrice: use.addEquipOnePrice,
-                          scontoCash: use.scontoCash,
-                          addEquipOneName: use.addEquipOneName,
-                          addEquipThreeName: use.addEquipThreeName,
-                          addEquipThreePrice: use.addEquipThreePrice,
-                          addEquipTwoName: use.addEquipTwoName,
-                          addEquipTwoPrice: use.addEquipTwoPrice,
-                          addInfo: use.addInfo,
-                        }}/>} fileName="somename.pdf">
-      {({ blob, url, loading, error }) =>
-        loading ? 'Loading document...' : 'Download now!'
-      }
-    </PDFDownloadLink>
-  </div>
-
-
-  
-                    </td> */}
+                    
                   </tr>
                 ))}
             </tbody>

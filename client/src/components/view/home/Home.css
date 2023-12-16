@@ -52,6 +52,14 @@ font-size: 0.9em;
   align-items: center !important;
 
 }
+.selectMonth{
+  font-size: 12px;
+  width: 282px;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  margin-left: 15px !important;
+
+}
 
 .centerBox{
   justify-content: center!important;
@@ -73,6 +81,10 @@ font-size: 0.9em;
   padding-top: 50px;
 
 }
+.flexChange{
+  display: flex;
+}
+
 
 @media all and (max-width:992px) {
   .taskButtons {
@@ -80,6 +92,20 @@ font-size: 0.9em;
     padding-bottom: 5px;
     text-align: center;
   }
+  .flexChange{
+    display: block;
+    padding: 15px;
+  }
+
+  .selectMonth{
+
+    margin-left: 0px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+ 
+  
+  }
+  
 
   .twoSelectBoxFlex {
     margin: 0px;

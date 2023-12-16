@@ -6,7 +6,7 @@ const cors = require("cors");
 const indexViewControllerCar = require("../controllers/indexControllerCar");
 
 
-router.get("/findData/?",  indexViewControllerCar.carFindData);
+router.get("/findData/:id",  indexViewControllerCar.carFindData);
 router.post("/add", indexViewControllerCar.carCreate);
 router.delete("/delete/:id", indexViewControllerCar.carDelete);
 router.put("/edit/:id",  indexViewControllerCar.carUpdate);

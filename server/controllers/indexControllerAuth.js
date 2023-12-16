@@ -60,6 +60,8 @@ router.post("/login", async (req, res) => {
             name: user.name,
             message: "Zalogowano",
             jwt_token: token,
+            image: user.imageUser,
+
           });
         } else {
           res

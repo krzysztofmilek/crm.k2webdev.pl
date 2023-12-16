@@ -26,16 +26,15 @@ const UserLogin = (props) => {
 
       <div className="tw-flex  tw-justify-start tw-items-center ">
       <Link to="/chance">
-        <div className="">
-              <img
+ 
+      <img
             className="imgMenuLeft"
-            src="https://img.icons8.com/external-outline-geotatah/64/e9e6df/external-chance-talent-management-outline-geotatah.png"
-            alt="analitics"
+            src="https://img.icons8.com/pastel-glyph/64/e9e6df/combo-chart--v2.png"  alt="analitics"
           />
   
-        </div>
+       
       </Link>
-            <span className="tw-border-1 tw-h-5 tw-w-6 tw-rounded-full tw-text-center tw-bg-red-600 tw-text-white">
+            <span className="tw-border-1 tw-h-4 tw-w-4 tw-rounded-full tw-text-center tw-bg-red-600 tw-text-white tw-text-xs">
               {lengthCollection ? lengthCollection : "0"}
             </span>
           </div>

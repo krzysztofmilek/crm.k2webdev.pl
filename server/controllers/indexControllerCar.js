@@ -20,16 +20,24 @@ module.exports = {
   },
 
   carFindData: (req, res) => {
-    Car.find(req.query)
-      .populate("carOptions")
+    console.log(req.params.id)
+    Car.findById(req.params.id, req.bod)
+     .populate("carOptions") 
       .lean()
-      .exec((err, carsFindData) => {
+      .exec((err, carFindData) => {
         if (err) {
           res.send("Błąd wyszukania");
+          return
         }
-        res.json(carsFindData);
+        res.json(carFindData);
+      
       });
   },
+
+
+
+
+
 
   carCreate: (req, res) => {
     let newCar = new Car(req.body);

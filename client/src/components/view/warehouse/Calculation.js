@@ -87,7 +87,7 @@ const Calculation = (props) => {
             <label htmlFor="summary">Cena brutto po rabacie</label>
           </Form.Floating>
         </div>
-        {/*  <div className="conatinerDataCompany tw-text-left tw-m-1 ">
+         <div className="conatinerDataCompany tw-text-left tw-m-1 ">
           <p className="tittle">Doposażenie</p>
           <hr />
           <div className="tw-flex">
@@ -158,7 +158,7 @@ const Calculation = (props) => {
               <label htmlFor="addEquipThreePrice">Cena brutto</label>
             </Form.Floating>
           </div>
-        </div> */}
+        </div> 
       </div>
 
       <div className="conatinerDataCompany tw-text-left tw-m-1">

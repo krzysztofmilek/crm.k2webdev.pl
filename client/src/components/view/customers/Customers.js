@@ -29,7 +29,7 @@ const Customers = (props) => {
     setCustomers(customer.data);
   };
 
-  console.log("tttt",customers)
+
 
   const clear = () => {
     setSearch("");
@@ -128,7 +128,7 @@ const Customers = (props) => {
                       <td id="id4customer" className="getCenter">
                         <div className="tw-flex tw-w-full  tw-flex-col  tw-items-center ">
                           <OverlayTrig
-                            imagePath="https://img.icons8.com/windows/30/checked-user-male--v1.png"
+                            imagePath="https://img.icons8.com/windows/30/000000/checked-user-male--v1.png"
                             toltip="Pobierz Dane Klienta"
                             onClick={(e) => {
                               getCustomerData(cust);

@@ -4,9 +4,8 @@ import { Button, Row, Col } from "react-bootstrap";
 import "./Print.css";
 import { FooterPrint } from "./FooterPrint";
 import axios from "axios";
-
 import "jspdf-autotable";
-import Html2Pdf from "js-html2pdf";
+
 
 const OffertCarPrint = (props) => {
   const [showAdd, setShowAdd] = useState({});
@@ -39,18 +38,9 @@ const OffertCarPrint = (props) => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: documentName,
-    print: async (printIframe) => {
-      const document = printIframe.contentDocument;
-      if (document) {
-        const html = document.getElementById("getElementToPdf");
-
-        const exporter = new Html2Pdf(html, { filename: documentName });
-        exporter.getPdf(true);
-      }
-    },
     onAfterPrint: () => {
       addOffer();
-      generateAndSavePDF();
+
     },
   });
 
@@ -62,40 +52,11 @@ const OffertCarPrint = (props) => {
     setUser(getUserData.data);
   };
 
-  const generateAndSavePDF = async () => {
-    setTimeout(() => {
-      const pdfBlob = new Blob(
-        [document.getElementById("getElementToPdf").innerHTML],
-        { type: "application/pdf" }
-      );
-      const formData = new FormData();
-      formData.append("pdfFile", pdfBlob, documentName);
-      formData.append("fileName", documentName); // Dodaj nazwę pliku jako część danych
-      axios
-        .post(
-          process.env.REACT_APP_LOCALHOST + "upload/generatePDF",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((response) => {
-          console.log("Plik PDF został zapisany na serwerze:", response.data);
-        })
-        .catch((error) => {
-          console.error(
-            "Błąd podczas zapisywania pliku PDF na serwerze:",
-            error
-          );
-        });
-    }, 1000);
-  };
+
 
   const addOffer = async () => {
     const pos = {
-      data: getFullDate,
+      data: getDate,
       addEquipOneName: props.state.addEquipOneName,
       addEquipOnePrice: props.state.addEquipOnePrice,
       addEquipTwoName: props.state.addEquipTwoName,
@@ -128,11 +89,16 @@ const OffertCarPrint = (props) => {
     //eslint-disable-next-line
   }, []);
   return (
-    <span className="bodyPrint pad10">
-      <div ref={componentRef} className="pad10" id="getElementToPdf">
+    <span className="bodyPrint pad10" >
+      <div ref={componentRef} className="pad10" >
         <div>
           <style>{pageStyles()}</style>
           {/* <Table className="pad10 shadow-none"> */}
+          <Row>
+            <Col md={12} xs={12} className="getRight">
+              Wrocław {getDate}
+            </Col>
+          </Row>
           <Row>
             <Col md={12} xs={12} className="getRight shadow-none">
               <img
@@ -140,19 +106,15 @@ const OffertCarPrint = (props) => {
                 src={
                   process.env.REACT_APP_LOCALHOST +
                   "import/importImages/" +
-                  props.state.car._id +
-                  "/" +
+                 /*  props.state.car._id +
+                  "/" + */
                   props.state.car.imagesFilesName[0]
                 }
                 alt=""
               />
             </Col>
           </Row>
-          <Row>
-            <Col md={12} xs={12} className="getRight">
-              Wrocław {getDate}
-            </Col>
-          </Row>
+    
           <Row>
             <Col md={12} xs={12} className="pad10"></Col>{" "}
           </Row>
@@ -223,7 +185,7 @@ const OffertCarPrint = (props) => {
           </Row>
           <Row>
             <Col>
-              <span className="boldPrint">Zarejesrtowany :</span>
+              <span className="boldPrint">Zarejestrowany :</span>
               {props.state.car.registration === "TAK"
                 ? props.state.car.date_registration
                 : "NIE"}
@@ -383,8 +345,8 @@ const OffertCarPrint = (props) => {
                   src={
                     process.env.REACT_APP_LOCALHOST +
                     "import/importImages/" +
-                    props.state.car._id +
-                    "/" +
+                  /*   props.state.car._id +
+                    "/" + */
                     item
                   }
                   alt=""

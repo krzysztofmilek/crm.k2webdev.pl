@@ -7,16 +7,32 @@ import { Form, Button } from "react-bootstrap";
 import ModalCloseActions from "./ModalCloseActions";
 import "../view/action/Action.css";
 
+import axios from "axios";
 function ModalEditActions(props) {
   const [show, setShow] = useState(false);
   const [token, setToken] = useState({});
-
+  const [car, setCar] = useState({});
   const getIdUser = JSON.parse(localStorage.getItem("user"));
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  /*   const getAllCarsArray = async () => {
+    const carsFind = await axios.get(process.env.REACT_APP_LOCALHOST + "car");
+    setCars(carsFind.data);
+  }; */
 
+  const carFind = async () => {
+    const carFindData = await axios.get(
+      process.env.REACT_APP_LOCALHOST +
+        "car/findData/" +
+        props.idAction.offer?.car
+    );
+    setCar(carFindData.data);
+  };
+  console.log("jebać pis", car);
   useEffect(() => {
     setToken(getIdUser);
+    carFind();
+    /*  getAllCarsArray(); */
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -133,15 +149,25 @@ function ModalEditActions(props) {
             {props.idAction?.offer?.fileName ? (
               <Button
                 variant="outline-success"
+                size="sm"
+                className="btn-small"
                 as={Link}
-                to={
-                  process.env.REACT_APP_LOCALHOST +
-                  `offers/` +
-                  props.idAction.offer.fileName
-                }
-                target="_blank"
+                to="/offertscar"
+                state={{
+                  car: car,
+                  customer: props.idAction.offer.customer,
+                  user: props.user,
+                  addEquipOnePrice: props.idAction.offer.addEquipOnePrice,
+                  scontoCash: props.idAction.offer.scontoCash,
+                  addEquipOneName: props.idAction.offer.addEquipOneName,
+                  addEquipThreeName: props.idAction.offer.addEquipThreeName,
+                  addEquipThreePrice: props.idAction.offer.addEquipThreePrice,
+                  addEquipTwoName: props.idAction.offer.addEquipTwoName,
+                  addEquipTwoPrice: props.idAction.offer.addEquipTwoPrice,
+                  addInfo: props.idAction.offer.addInfo,
+                }}
               >
-                Pokaż ofertę
+                Podgląd
               </Button>
             ) : (
               ""

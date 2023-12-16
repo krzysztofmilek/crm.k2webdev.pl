@@ -31,6 +31,10 @@ const UserModel = new mongoose.Schema({
         ref: "Action",
       },
   ],
+  imageUser: {
+    type: String,
+ 
+  },
 });
 
  UserModel.pre("save", function (next) {
